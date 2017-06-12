@@ -16,6 +16,26 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    let saveWebCamImage = function (imageBlob) {
+//        return $q((resolve, reject) => {
+//
+//        })
 
-    return{addNewUser};
+
+
+        let storageReference = firebase.storage().ref();
+        console.log("What did storageRef do?", storageReference);
+
+        storageReference.child("/images/photo.jpg").put(imageBlob)
+        .then((response) => {
+            console.log("Webcam image was sotred", response);
+        })
+        .catch((error) => {
+            console.log("Webcam image was not saved", error);
+        });
+    };
+
+
+
+    return{addNewUser, saveWebCamImage};
 });

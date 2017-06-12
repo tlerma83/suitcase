@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('mainController', function($scope) {
+app.controller('mainController', function($scope, DataFactory) {
     var _video = null,
         patData = null;
 
@@ -27,7 +27,7 @@ app.controller('mainController', function($scope) {
             $scope.patOpts.w = _video.width;
             $scope.patOpts.h = _video.height;
             //$scope.showDemos = true;
-            console.log("IS this showing data for imgs?", $scope.patOpts);
+//            console.log("IS this showing data for imgs?", $scope.patOpts);
         });
     };
 
@@ -47,14 +47,22 @@ app.controller('mainController', function($scope) {
 
             var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w, $scope.patOpts.h);
             ctxPat.putImageData(idata, 0, 0);
-            console.log("What is ctxPat line 60?", ctxPat);
+            console.log("What is patCanvas line 60?", patCanvas);
+            // at this point patCanvas is return the canvas element that holds the snapshot and displays height and width
+
+            patCanvas.toBlob((imageBlobStuff) => {
+                // somehow the toBlog returned an object and gave it 2 key value pairs, one is size. This contains pixel amount, the other is type, this is "image/png"....that last part happened on its own
+               console.log("What does an image blob look like?", imageBlobStuff);
+                DataFactory.saveWebCamImage(imageBlobStuff);
+            });
 
 
-            sendSnapshotToServer(patCanvas.toDataURL());
-            console.log("What is sendSnapshotToServer?", sendSnapshotToServer(patCanvas.toDataURL()));
 
-            patData = idata;
-            console.log("What is patData line 67?", patData);
+//            sendSnapshotToServer(patCanvas.toDataURL());
+//            console.log("What is sendSnapshotToServer?", sendSnapshotToServer(patCanvas.toDataURL()));
+//
+//            patData = idata;
+//            console.log("What is patData line 67?", patData);
         }
     };
 
