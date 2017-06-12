@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory) {
+app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory, $window) {
 
     $scope.auth = {
         email: "",
@@ -14,7 +14,7 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
         AuthFactory.loginUser($scope.auth)
         .then(() =>{
             console.log("user is logged in");
-//            $location.path("suitcase");
+            $window.location.href = "#!/suitcase";
         });
     };
 
@@ -32,7 +32,7 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
         })
         .then((userData) => {
             $scope.login();
-
+            $window.location.href = "#!/suitcase";
         });
     };
 
