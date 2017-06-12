@@ -21,17 +21,23 @@
 -->
 
 
-        <div ng-app='Suitcase' ng-controller="mainController">
-    <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
-<span>Webcam could not be started. Did you give access to it?</span>
-</div>
-    <webcam channel="channel"
-        on-streaming="onSuccess()"
-        on-error="onError(err)"
-        on-stream="onStream(stream)"></webcam>
-    <button ng-click="makeSnapshot()">take picture</button>
-    <canvas id="snapshot" width="300" height="300"></canvas>
-</div>
+        <div ng-app='Suitcase'>
+        <ng-view></ng-view>
+        </div>
+<!--
+            <div ng-controller="mainController">
+                <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
+                    <span>Webcam could not be started. Did you give access to it?</span>
+                </div>
+                <webcam channel="channel"
+                    on-streaming="onSuccess()"
+                    on-error="onError(err)"
+                    on-stream="onStream(stream)"></webcam>
+                <button ng-click="makeSnapshot()">take picture</button>
+                <canvas id="snapshot" width="300" height="300"></canvas>
+            </div>
+        </div>
+-->
 
         <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.js"></script>
 
@@ -42,12 +48,17 @@
         <script type="text/javascript" src="lib/node_modules/firebase/firebase.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
         <script type="text/javascript" src="app/values/fb-Creds.js"></script>
-<!--        <script type="text/javascript" src="app/factories/authfactory.js"></script>-->
+
+        <script type="text/javascript" src="app/factories/DataFactory.js"></script>
+        <script type="text/javascript" src="app/factories/AuthFactory.js"></script>
+
+<!--        //controllers-->
+        <script type="text/javascript" src="app/controllers/authCtrl.js"></script>
+
 <!--
         <script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/newCtrl.js"></script>
-        <script type="text/javascript" src="app/factories/dataFactory.js"></script>
         <script type="text/javascript" src="app/controllers/notesCtrl.js"></script>
 -->
     </body>

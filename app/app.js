@@ -7,7 +7,36 @@
 //});
 
 
-var app = angular.module('Suitcase', ['webcam', 'ngRoute', 'webcam']);
+var app = angular.module('Suitcase', ['webcam', 'ngRoute']);
+
+
+let isAuth = (AuthFactory) => {
+    return $q((resolve, reject) => {
+        AuthFactory.isAuthorized()
+        .then((ifUserTrue) => {
+            if (ifUserTrue) {
+                console.log("User is true");
+                resolve();
+            }else {
+                console.log("No user");
+                reject();
+            }
+
+        });
+    });
+};
+
+
+app.config(function($routeProvider){
+    $routeProvider
+    .when("/", {
+        templateUrl: "partials/auth.html",
+        controller: "AuthCtrl"
+    })
+    .otherwise("/");
+});
+
+
 
 
 app.controller('mainController', function($scope) {
