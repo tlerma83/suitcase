@@ -1,2 +1,4 @@
 lib/node_modules,
-/fb-creds
+/fb-creds,
+css/,
+lib/.sass-cache
