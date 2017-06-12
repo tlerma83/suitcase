@@ -39,6 +39,7 @@ app.factory("AuthFactory", function($q, $http){
     // is user authorized? if so keep user looged in when navigatin page
     let isAuthorized = function () {
         return $q((resolve, reject) => {
+            console.log("Are we authing");
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
                     currentUser = user.uid;
