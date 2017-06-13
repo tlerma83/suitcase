@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller('mainController', function($scope, DataFactory, currentUser) {
+app.controller('mainController', function($scope, DataFactory) {
     var _video = null,
         patData = null;
 
@@ -53,7 +53,7 @@ app.controller('mainController', function($scope, DataFactory, currentUser) {
             patCanvas.toBlob((imageBlobStuff) => {
                 // somehow the toBlog returned an object and gave it 2 key value pairs, one is size. This contains pixel amount, the other is type, this is "image/png"....that last part happened on its own
 //               console.log("What does an image blob look like?", imageBlobStuff);
-                console.log("Current User?", currentUser);
+//                console.log("Current User?", currentUser);
                 DataFactory.saveWebCamImage(imageBlobStuff);
             });
 
