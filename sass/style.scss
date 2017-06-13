@@ -1,10 +1,10 @@
 body, html {
     height: 100%;
+    margin: 0, auto;
 }
 
 //html {
-//  background: url("../images/home8.jpg") no-repeat center center fixed;
-//    height: 50%;
+//  background: url("../images/home6.jpg") no-repeat center center fixed;
 //  -webkit-background-size: cover;
 //  -moz-background-size: cover;
 //  -o-background-size: cover;
@@ -12,15 +12,80 @@ body, html {
 //
 //}
 
-.container {
-    height: 100%;
-    width: 100%;
-}
-
 .background-image {
-    background-image: url("../images/home8.jpg");
-    height: 50%;
+    background-image: url("../images/home6.jpg");
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+#conatiner {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.flex-main {
+    display: flex;
+    justify-content: center;
+//    margin-bottom: 0;
+//    margin-left: 0;
+//    margin-right: 0;
+//    height: 50%;
+//    margin-top: 3em;
+//    margin-bottom: 0;
+    padding-top: 10%;
+}
+
+
+///testing canvas position
+#contain-camera {
+    height: 250px;
+    position: relative;
+    width: 350px;
+}
+
+#controls {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#snapshot {
+    height: 275px;
+    width: 350px;
+}
+
+.carousel-1 {
+    width: 60%;
+    margin: 0;
+}
+
+.webcam-div {
+    width: 35%;
+}
+
+.camera-placeholder {
+  height: 275px !important;
+}
+
+//.placeholder {
+//  position: relative;
+//  padding-bottom: 10px;
+//  margin-top: 10px !important;
+//}
+
+.btn-floating.halfway-fab {
+    bottom: 125px;
+    right: 45%;
+    border-radius: 0 !important;
+}
+
+.camera-icon {
+    height: 64 !important;
+    width: 64 !important;
+}
+

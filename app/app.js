@@ -32,9 +32,9 @@ app.config(function($routeProvider){
         templateUrl: "partials/auth.html",
         controller: "AuthCtrl"
     })
-    .when("/suitcase", {
-        templateUrl: "partials/suitcase.html",
-        controller: "mainController",
+    .when("/tops", {
+        templateUrl: "partials/tops.html",
+        controller: "TopsCtrl",
         resolve: {isAuth}
     })
     .otherwise("/");

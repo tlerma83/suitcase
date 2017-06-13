@@ -3,52 +3,38 @@
     <head>
         <meta charset="utf-8">
         <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body>
-        <div class="container">
-            <div class="background-image"></div>
-        </div>
-<!--
-        <div ng-app="Suitcase">
-    <div ng-controller="AppController">
-        <input type="file" nv-file-select uploader="uploader"/><br/>
-        <ul>
-            <li ng-repeat="item in uploader.queue">
-                Name: <span ng-bind="item.file.name"></span><br/>
-                <button ng-click="item.upload()">upload</button>
-            </li>
-        </ul>
-    </div>
-</div>
--->
-
-
-        <div ng-app='Suitcase'>
-        <ng-view></ng-view>
+    <body class="background-image">
+        <div id="conatiner" ng-app='Suitcase'>
+            <ng-view></ng-view>
         </div>
 
-<!--
-            <div ng-controller="mainController">
-                <div class="alert alert-error ng-scope" ng-show="webcamError" style="">
-                    <span>Webcam could not be started. Did you give access to it?</span>
-                </div>
-                <webcam channel="channel"
-                    on-streaming="onSuccess()"
-                    on-error="onError(err)"
-                    on-stream="onStream(stream)"></webcam>
-                <button ng-click="makeSnapshot()">take picture</button>
-                <canvas id="snapshot" width="300" height="300"></canvas>
-            </div>
-        </div>
--->
+
+
+
+
+
 
         <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.js"></script>
 
-        <script type="text/javascript" src="lib/node_modules/angular/angular.min.js"></script>
-        <script type="text/javascript" src="lib/node_modules/webcam/dist/webcam.min.js"></script>
-        <script type="text/javascript" src="lib/node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
+
+
+        <script type="text/javascript" src="lib/node_modules/angular/angular.js"></script>
         <script type="text/javascript" src="lib/node_modules/angular-route/angular-route.min.js"></script>
+        <script type="text/javascript" src="lib/node_modules/webcam/dist/webcam.min.js"></script>
+<!--        <script type="text/javascript" src="lib/node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>-->
+
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.2/angular-materialize.min.js"></script>
+
+
+
+
         <script type="text/javascript" src="lib/node_modules/firebase/firebase.js"></script>
         <script type="text/javascript" src="app/app.js"></script>
         <script type="text/javascript" src="app/values/fb-Creds.js"></script>
@@ -60,8 +46,8 @@
         <script type="text/javascript" src="app/controllers/authCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/mainCtrl.js"></script>
 
+        <script type="text/javascript" src="app/controllers/topsCtrl.js"></script>
 <!--
-        <script type="text/javascript" src="app/controllers/loginCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/registerCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/newCtrl.js"></script>
         <script type="text/javascript" src="app/controllers/notesCtrl.js"></script>
