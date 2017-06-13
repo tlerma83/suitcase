@@ -11,19 +11,19 @@ var app = angular.module('Suitcase', ['webcam', 'ngRoute']);
 
 
 let isAuth = (AuthFactory) => new Promise( (resolve, reject) => {
-        AuthFactory.isAuthorized()
-        .then((ifUserTrue) => {
-            if (ifUserTrue) {
-                console.log("User is true");
-                resolve();
-            }else {
-                console.log("No user");
-                reject();
-            }
+    AuthFactory.isAuthorized()
+    .then((ifUserTrue) => {
+        if (ifUserTrue) {
+            console.log("User is true");
+            resolve();
+        }else {
+            console.log("No user");
+            reject();
+        }
 
-        });
     });
-};
+});
+
 
 
 app.config(function($routeProvider){
@@ -35,7 +35,7 @@ app.config(function($routeProvider){
     .when("/suitcase", {
         templateUrl: "partials/suitcase.html",
         controller: "mainController",
-//        resolve: {isAuth}
+        resolve: {isAuth}
     })
     .otherwise("/");
 });
