@@ -203,6 +203,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
             $http.delete(`${FBCreds.databaseURL}/bottoms/${photoKey}.json`)
             .then((response) => {
                 console.log("Delete success");
+                resolve(response);
             });
         });
     };
