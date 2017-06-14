@@ -159,7 +159,8 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
         return DataFactory.deleteBottomsImage(photoKey)
         .then((response) => {
             console.log("WHOOOO", response);
-            angular.element(`card--${photoKey}`).remove();
+            angular.element(document.getElementById(`card--${photoKey}`)).remove();
+//            (`card--${photoKey}`).remove();
         });
     };
 
