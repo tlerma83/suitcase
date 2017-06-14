@@ -197,5 +197,15 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
-    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos};
+
+    let deleteBottomsImage = function (photoKey) {
+        return $q( (resolve, promise) => {
+            $http.delete(`${FBCreds.databaseURL}/bottoms/${photoKey}.json`)
+            .then((response) => {
+                console.log("Delete success");
+            });
+        });
+    };
+
+    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage};
 });

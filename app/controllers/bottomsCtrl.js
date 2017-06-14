@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
+app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile){
 
     /** creates an eventlestener in angular to call materialize carousel function when ng-peat
     /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
@@ -13,6 +13,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
+    $scope.hideCamDiv = true;
 
 
     // Setup a channel to receive a video property
@@ -141,6 +142,8 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
     };
 
     $scope.addToCarousel = function () {
+        $scope.hideCamDiv = true;
+        $scope.hideDiv = false;
         let date = new Date().getTime();
         DataFactory.saveBottomsImage($scope.blob, $scope.user, date)
         .then((response) => {
@@ -159,8 +162,8 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 
 //           step 4
                     let newAnchor = document.createElement("a");
-                    newAnchor.value = response.key_id;
-                    newAnchor.setAttribute("ng-click", `deleteBottoms(items.key_id)`);
+//                    newAnchor.value = response.key_id;
+                    newAnchor.setAttribute("ng-click", `deleteBottoms('${response.key_id}')`);
                     newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
 
 //           step 5
@@ -176,12 +179,13 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
                     columnSetDiv.appendChild(newAnchor);
 //
 //  now append all of this to the caontainer div that has ng-repeat attached to it
-                    cardDiv.appendChild(columnSetDiv);
+//                    cardDiv.appendChild(columnSetDiv);
+                    let compiledCard = $compile(cardDiv.outerHTML)($scope);
 
-                    newAnchor.appendChild(newImg);
-//
+                    angular.element(document.getElementsByClassName("carousel")[0]).append(compiledCard);
+
 // append new elements to carousel, jquery required the $ before the newAnchor variable
-                    $('.carousel').append($(cardDiv));
+//                    $('.carousel').append($(cardDiv));
 // the carousel() had to be called again to update with new information
 
                     if ($('.carousel').hasClass("initialized")) {
@@ -212,6 +216,10 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
     $scope.deleteBottoms = function (photoKey) {
         console.log("What image was clicked", photoKey);
         console.log("logging event");
+        DataFactory.deleteBottomsImage(photoKey)
+        .then((response) => {
+              console.log("WHOOOO", response);
+        });
     };
 
     getPhotos();
