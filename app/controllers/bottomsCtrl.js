@@ -59,67 +59,6 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
             patCanvas.toBlob((imageBlobStuff, user) => {
                 $scope.blob = imageBlobStuff;
                 console.log("looking for blob object", $scope.blob);
-
-                // toBlog returned an object and set type to "image/png"
-//                DataFactory.saveBottomsImage(imageBlobStuff, $scope.user, date)
-//                .then((response) => {
-//                    //step 1
-//                    let cardDiv = document.createElement("div");
-//                    cardDiv.className = "carousel-item row";
-//
-//                    //step 2
-//                    let columnSetDiv = document.createElement("div");
-//                    columnSetDiv.className = "col s12 m6";
-//
-//                    //step 3
-//                    let newImg = document.createElement("img");
-//                    newImg.src = response.url;
-//
-//                    //step 4
-//                    let newAnchor = document.createElement("a");
-//                    newAnchor.value = response.key_id;
-//                    newAnchor.setAttribute("ng-click", `deleteBottoms(items.key_id)`);
-//                    newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
-//
-//                    //step 5
-//                    let icon = document.createElement("i");
-//                    icon.className = "material-icons";
-//                    icon.innerHTML = "add";
-//
-//                    // append icon to "a" tag, now anchor element containing icon button
-//                    newAnchor.appendChild(icon);
-//
-//                    //append newImg and newAnchor to it's parent div , columnSetDiv
-//                    columnSetDiv.appendChild(newImg);
-//                    columnSetDiv.appendChild(newAnchor);
-//
-//                    //now append all of this to the caontainer div that has ng-repeat attached to it
-//                    cardDiv.appendChild(columnSetDiv);
-//
-//                    //create new element to carousel so it will update correctly after the page //loads, gives the ability to take multiple phtos without rewriting them
-////                    let newAnchor = document.createElement("a");
-////                    newAnchor.className = "carousel-item";
-//
-//                    // create new img element to append to new anachor element, set the src
-//                    // attribute to the url that is given back in response.url
-////                    let newImg = document.createElement("img");
-////                    newImg.src = response.url;
-//
-//
-//
-////                    newAnchor.appendChild(newImg);
-//
-//                    // append new elements to carousel, jquery required the $ before the
-//                    // newAnchor variable
-//                    $('.carousel').append($(cardDiv));
-//                    // the carousel() had to be called again to update with new information
-//
-//                    if ($('.carousel').hasClass("initialized")) {
-//                        $('.carousel').removeClass("initialized");
-//                    }
-//                    $('.carousel').carousel();
-//                });
-
             });
 
         }
@@ -163,7 +102,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 //           step 4
                     let newAnchor = document.createElement("a");
 //                    newAnchor.value = response.key_id;
-                    newAnchor.setAttribute("ng-click", `deleteBottoms('${response.key_id}')`);
+                    newAnchor.setAttribute("ng-click", `deleteBottoms('${response.key}')`);
                     newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
 
 //           step 5
@@ -179,7 +118,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
                     columnSetDiv.appendChild(newAnchor);
 //
 //  now append all of this to the caontainer div that has ng-repeat attached to it
-//                    cardDiv.appendChild(columnSetDiv);
+                    cardDiv.appendChild(columnSetDiv);
                     let compiledCard = $compile(cardDiv.outerHTML)($scope);
 
                     angular.element(document.getElementsByClassName("carousel")[0]).append(compiledCard);
