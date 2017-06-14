@@ -1,14 +1,12 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
+app.controller("CamCtrl", function ($q, $scope, $location, DataFactory, AuthFactory){
 
-    /** creates an eventlestener in angular to call materialize carousel function when ng-peat
-    /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
-    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        $('.carousel').carousel();
-    });
 
-    var _video = null,
+    $(".button-collapse").sideNav();
+
+
+       var _video = null,
         patData = null;
 
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
@@ -101,19 +99,5 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
     };
-
-
-    let getPhotos = function () {
-        console.log("anything????????");
-        DataFactory.retrieveTopsPhotos($scope.user)
-        .then((response) => {
-            console.log("Is there a object line 98", response);
-            $scope.imageArrayOfObj = response;
-
-        });
-    };
-
-    getPhotos();
-
 
 });

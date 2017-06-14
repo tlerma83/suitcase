@@ -51,6 +51,21 @@ app.config(function($routeProvider){
         controller: "TopsCtrl",
         resolve: {isAuth}
     })
+    .when("/camera", {
+        templateUrl: "partials/sideNav.html",
+        controller: "CamCtrl",
+        resolve: {isAuth}
+    })
+    .when("/bottoms", {
+        templateUrl: "partials/bottoms.html",
+        controller: "BottomsCtrl",
+        resolve: {isAuth}
+    })
+    .when("/shoes", {
+        templateUrl: "partials/shoes.html",
+        controller: "ShoesCtrl",
+        resolve: {isAuth}
+    })
     .otherwise("/");
 });
 

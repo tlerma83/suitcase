@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
+app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
 
     /** creates an eventlestener in angular to call materialize carousel function when ng-peat
     /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
@@ -57,7 +57,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
             patCanvas.toBlob((imageBlobStuff, user) => {
                 // toBlog returned an object and set type to "image/png"
-                DataFactory.saveTopsImage(imageBlobStuff, $scope.user, date)
+                DataFactory.saveShoesImage(imageBlobStuff, $scope.user, date)
                 .then((response) => {
                     //create new element to carousel so it will update correctly after the page //loads, gives the ability to take multiple phtos without rewriting them
                     let newAnchor = document.createElement("a");
@@ -105,7 +105,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
     let getPhotos = function () {
         console.log("anything????????");
-        DataFactory.retrieveTopsPhotos($scope.user)
+        DataFactory.retrieveShoesPhotos($scope.user)
         .then((response) => {
             console.log("Is there a object line 98", response);
             $scope.imageArrayOfObj = response;

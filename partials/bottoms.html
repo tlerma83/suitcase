@@ -1,10 +1,22 @@
 <div ng-include="'partials/nav.html'"></div>
+<!--
 <a ng-href="#!/camera"><button>camera</button></a>
  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+-->
 
 <div class="flex-main">
         <div class="carousel carousel-1">
-            <a ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item"><img src="{{items.url}}"></a>
+
+
+<!--    //carousel-->
+            <div ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
+                <div class="col s12 m6">
+                      <img src="{{items.url}}">
+                      <a ng-click="deleteBottoms(items.key_id" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                </div>
+            </div>
+
+
         </div>
         <div id="contain-camera">
             <div class="alert alert-error ng-scope" ng-show="webcamError">
@@ -34,16 +46,3 @@
         </div>
 
 </div>
-<!--    <div ng-include="'partials/camera.html'" class="webcam-div"></div>-->
-
-<!--
-    <div class=webcam-div>
-        <div class="card">
-        <div class="card-image">
-          <img src="../images/grey-Background1.jpg" class="camera-placeholder">
-          <span class="card-title ">Take Photo</span>
-          <a class="btn-floating halfway-fab waves-effect waves-light grey" ng-href="#!/camera-mode" ><img class ="camera-icon" src="../images/photo-camera.png"></a>
-        </div>
-
-    </div>
--->

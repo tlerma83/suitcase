@@ -29,19 +29,20 @@ body, html {
 
 .flex-main {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 //    margin-bottom: 0;
 //    margin-left: 0;
 //    margin-right: 0;
 //    height: 50%;
 //    margin-top: 3em;
 //    margin-bottom: 0;
-    padding-top: 10%;
+//    padding-top: 10%;
 }
 
 
 ///testing canvas position
 #contain-camera {
+    margin-top: 15%;
     height: 250px;
     position: relative;
     width: 350px;
@@ -60,12 +61,11 @@ body, html {
 }
 
 .carousel-1 {
-    width: 60%;
-    margin: 0;
+    margin-top: 3em;
 }
 
 .webcam-div {
-    width: 35%;
+//    width: 35%;
 }
 
 .camera-placeholder {
@@ -89,10 +89,14 @@ body, html {
     width: 64 !important;
 }
 
-.carousel.carousel-item {
-    width: 200% !important;
+.carousel .carousel-item {
+    width: 400px !important;
+    margin: 0 !important;
+    height: 500px !important;
 }
 
-.carousel.carousel-item img{
-    width: 300% !important;
+.carousel .carousel-item img{
+    width: 400px !important;
+    margin: 0 !important;
+    height: 500px !important;
 }
