@@ -90,6 +90,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 //            step 1
                     let cardDiv = document.createElement("div");
                     cardDiv.className = "carousel-item row";
+                    cardDiv.setAttribute("id", `card--${response.key}`);
 
 //           step 2
                     let columnSetDiv = document.createElement("div");
@@ -155,9 +156,10 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
     $scope.deleteBottoms = function (photoKey) {
         console.log("What image was clicked", photoKey);
         console.log("logging event");
-        DataFactory.deleteBottomsImage(photoKey)
+        return DataFactory.deleteBottomsImage(photoKey)
         .then((response) => {
-              console.log("WHOOOO", response);
+            console.log("WHOOOO", response);
+            angular.element(`card--${photoKey}`).remove();
         });
     };
 
