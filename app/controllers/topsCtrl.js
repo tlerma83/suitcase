@@ -68,6 +68,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
                     let newImg = document.createElement("img");
                     newImg.src = response.url;
 
+
                     newAnchor.appendChild(newImg);
 
                     // append new elements to carousel, jquery required the $ before the

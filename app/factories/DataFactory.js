@@ -116,6 +116,10 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
+//    function to call one image down, return that image object, then call it in controller, and restart carousel function
+
+
+
     // retrieve Bottoms image only
     let retrieveBottomsPhotos = function (userUid) {
         let bottomsImages = [];
