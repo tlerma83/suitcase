@@ -9,6 +9,20 @@
 
 var app = angular.module('Suitcase', ['webcam', 'ngRoute']);
 
+// stackoverFlow solution for angular ng-repeat to finish loading before applying materialize   // function to create it and style
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    };
+});
+
 
 let isAuth = (AuthFactory) => new Promise( (resolve, reject) => {
     AuthFactory.isAuthorized()

@@ -1,28 +1,24 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, DataFactory, AuthFactory, $q){
+app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
 
-    console.log("Hello Top controller");
-
-    $(document).ready(function(){
-      $('.carousel').carousel();
+    /** creates an eventlestener in angular to call materialize carousel function when ng-peat
+    /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        $('.carousel').carousel();
     });
 
-    $scope.topsObj = {};
-
-        var _video = null,
+    var _video = null,
         patData = null;
 
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
-
     $scope.user = AuthFactory.getUser();
-//    console.log("This is user", user);
+
 
     // Setup a channel to receive a video property
     // with a reference to the video element
     // See the HTML binding in main.html
     $scope.channel = {};
-
     $scope.webcamError = false;
     $scope.onError = function (err) {
         $scope.$apply(
@@ -33,7 +29,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, DataFactory, Aut
     };
 
     $scope.onSuccess = function () {
-
         // The video element contains the captured camera data
         _video = $scope.channel.video;
         $scope.$apply(function() {
@@ -45,6 +40,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, DataFactory, Aut
 
 
 	$scope.makeSnapshot = function() {
+
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
         let date = new Date().getTime();
@@ -61,11 +57,32 @@ app.controller("TopsCtrl", function($scope, $window, $location, DataFactory, Aut
 
             patCanvas.toBlob((imageBlobStuff, user) => {
                 // toBlog returned an object and set type to "image/png"
-            DataFactory.saveTopsImage(imageBlobStuff, $scope.user, date);
+                DataFactory.saveTopsImage(imageBlobStuff, $scope.user, date)
+                .then((response) => {
+                    //create new element to carousel so it will update correctly after the page //loads, gives the ability to take multiple phtos without rewriting them
+                    let newAnchor = document.createElement("a");
+                    newAnchor.className = "carousel-item";
+
+                    // create new img element to append to new anachor element, set the src
+                    // attribute to the url that is given back in response.url
+                    let newImg = document.createElement("img");
+                    newImg.src = response.url;
+
+                    newAnchor.appendChild(newImg);
+
+                    // append new elements to carousel, jquery required the $ before the
+                    // newAnchor variable
+                    $('.carousel').append($(newAnchor));
+                    // the carousel() had to be called again to update with new information
+
+                    if ($('.carousel').hasClass("initialized")) {
+                        $('.carousel').removeClass("initialized");
+                    }
+                    $('.carousel').carousel();
+                });
 
             });
 
-//            patData = idata;
         }
     };
 
@@ -85,27 +102,18 @@ app.controller("TopsCtrl", function($scope, $window, $location, DataFactory, Aut
         $scope.hideDiv = false;
     };
 
-//    let requestPhoto = function () {
-//        return $q( (resolve, reject) => {
-//            DataFactory.retrievePhoto();
-//        })
-//        .then( (response) => {
-//            console.log("What did I receive from promise line 90?");
-//        });
-//    };
 
-//    requestPhoto();
+    let getPhotos = function () {
+        console.log("anything????????");
+        DataFactory.retrievePhotos($scope.user)
+        .then((response) => {
+            console.log("Is there a object line 98", response);
+            $scope.imageArrayOfObj = response;
 
-    DataFactory.retrievePhoto($scope.user)
-    .then((response) => {
-        console.log("Is there a object line 98", response);
+        });
+    };
 
-        $scope.imageArrayOfObj= response;
-//        console.log("how did I break you?", $scope.imageArrayOfObj);
-    });
-
-//    $scope.imageObj = DataFactory.retrievePhoto();
-//    console.log("checking image onject in top ctrl", $scope.imageObj);
+    getPhotos();
 
 
 });

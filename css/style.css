@@ -53,4 +53,10 @@ body, html {
   height: 64 !important;
   width: 64 !important; }
 
+.carousel.carousel-item {
+  width: 200% !important; }
+
+.carousel.carousel-item img {
+  width: 300% !important; }
+
 /*# sourceMappingURL=style.css.map */
