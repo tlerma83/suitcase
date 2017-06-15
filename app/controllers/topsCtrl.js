@@ -78,6 +78,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
         DataFactory.saveTopsImage($scope.blob, $scope.user, date)
         .then((response) => {
+//            console.log("did storage ref return?", response);
+//
+//            $scope.storageRef = response.storage_ref;
+
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
             cardDiv.setAttribute("id", `card--${response.key}`);
@@ -86,7 +90,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
             let newImg = document.createElement("img");
             newImg.src = response.url;
             let newAnchor = document.createElement("a");
-            newAnchor.setAttribute("ng-click", `deleteTops('${response.key}')`);
+            newAnchor.setAttribute("ng-click", `deleteTops('${response.key}, ${response.storage_ref}')`);
             newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
             let icon = document.createElement("i");
             icon.className = "material-icons";
@@ -112,6 +116,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $scope.counter = 0;
         DataFactory.retrieveTopsPhotos($scope.user)
         .then((response) => {
+            console.log("Checking response in getPhotos", response);
             for (let i = 0; i < response.length; i++) {
                 $scope.counter = i + 1;
             }
@@ -119,9 +124,12 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         });
     };
 
-    $scope.deleteTops = function (photoKey) {
+    $scope.deleteTops = function (photoKey, storageRef) {
+
+        console.log("storage on delete", storageRef, photoKey);
+
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return DataFactory.deleteTopImage(photoKey)
+        return DataFactory.deleteTopImage(photoKey, storageRef)
         .then((response) => {
             $scope.counter--;
             console.log("WHOOOO", response);
