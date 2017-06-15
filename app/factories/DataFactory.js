@@ -16,6 +16,24 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    let getUserInfo = function(userUid) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/user.json?orderBy="uid"&equalTo="${userUid}"`)
+            .then((response) => {
+                let userName = [];
+                for (let items in response.data) {
+                    let name = response.data;
+                    userName.push(name[items].firtsName);
+                }
+                resolve(userName);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+
+        });
+    };
+
 
     //// For Tops Controller
     let saveTopsImage = function (imageBlob, user, date) {
@@ -236,5 +254,5 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
 
 
 
-    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage, deleteShoeImage, deleteTopImage};
+    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage, deleteShoeImage, deleteTopImage, getUserInfo};
 });
