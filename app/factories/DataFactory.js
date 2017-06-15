@@ -89,6 +89,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    
     // create and add Bottoms Image
     let saveBottomsImage = function (imageBlob, user, date) {
         let storageReference = firebase.storage().ref();
@@ -196,17 +197,49 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
-
-
+    //delete bottoms
     let deleteBottomsImage = function (photoKey) {
-        return $q( (resolve, promise) => {
+        return $q( (resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/bottoms/${photoKey}.json`)
             .then((response) => {
                 console.log("Delete success");
                 resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
             });
         });
     };
 
-    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage};
+    //delete shoes
+    let deleteShoeImage = function (photoKey) {
+        return $q( (resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/shoes/${photoKey}.json`)
+            .then((response) => {
+                console.log("Delete success");
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    //delete top
+    let deleteTopImage = function (photoKey) {
+        return $q( (resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/tops/${photoKey}.json`)
+            .then((response) => {
+                console.log("Delete success");
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+
+    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage, deleteShoeImage, deleteTopImage};
 });

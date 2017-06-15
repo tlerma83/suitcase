@@ -58,9 +58,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 
             patCanvas.toBlob((imageBlobStuff, user) => {
                 $scope.blob = imageBlobStuff;
-                console.log("looking for blob object", $scope.blob);
             });
-
         }
     };
 
@@ -81,12 +79,12 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
     };
 
     $scope.addToCarousel = function () {
+        $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
         DataFactory.saveBottomsImage($scope.blob, $scope.user, date)
         .then((response) => {
-            console.log("What response came back from FB?", response);
 //            step 1
                     let cardDiv = document.createElement("div");
                     cardDiv.className = "carousel-item row";
@@ -102,14 +100,13 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 
 //           step 4
                     let newAnchor = document.createElement("a");
-//                    newAnchor.value = response.key_id;
                     newAnchor.setAttribute("ng-click", `deleteBottoms('${response.key}')`);
                     newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
 
 //           step 5
                     let icon = document.createElement("i");
                     icon.className = "material-icons";
-                    icon.innerHTML = "add";
+                    icon.innerHTML = "delete";
 
 // append icon to "a" tag, now anchor element containing icon button
                     newAnchor.appendChild(icon);
@@ -117,6 +114,8 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 //  append newImg and newAnchor to it's parent div , columnSetDiv
                     columnSetDiv.appendChild(newImg);
                     columnSetDiv.appendChild(newAnchor);
+//                    cardDiv.appendChild(newImg);
+//                    cardDiv.appendChild(newAnchor);
 //
 //  now append all of this to the caontainer div that has ng-repeat attached to it
                     cardDiv.appendChild(columnSetDiv);
@@ -132,39 +131,39 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
                         $('.carousel').removeClass("initialized");
                     }
                     $('.carousel').carousel();
-
-
-
         });
     };
 
 
-
-
     let getPhotos = function () {
-        console.log("anything????????");
+        $scope.counter = 0;
         DataFactory.retrieveBottomsPhotos($scope.user)
         .then((response) => {
-            console.log("Is there a object line 98", response);
+            console.log("Is there a object line 149", response);
+            for (let i = 0; i < response.length; i++) {
+                $scope.counter = i + 1;
+            }
             $scope.imageArrayOfObj = response;
-
         });
     };
 
 
     /******   Delete Single Bottoms Image ******/
     $scope.deleteBottoms = function (photoKey) {
-        console.log("What image was clicked", photoKey);
-        console.log("logging event");
+        let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
         return DataFactory.deleteBottomsImage(photoKey)
         .then((response) => {
+            $scope.counter--;
             console.log("WHOOOO", response);
             angular.element(document.getElementById(`card--${photoKey}`)).remove();
-//            (`card--${photoKey}`).remove();
+            if ($('.carousel').hasClass("initialized")) {
+                $('.carousel').removeClass("initialized");
+            }
+            if (imageCount !== 1) {
+                $('.carousel').carousel();
+            }
         });
     };
 
     getPhotos();
-
-
 });

@@ -1,9 +1,7 @@
 "use strict";
 
-app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q){
+app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile){
 
-    /** creates an eventlestener in angular to call materialize carousel function when ng-peat
-    /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         $('.carousel').carousel();
     });
@@ -13,11 +11,8 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
 
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
+    $scope.hideCamDiv = true;
 
-
-    // Setup a channel to receive a video property
-    // with a reference to the video element
-    // See the HTML binding in main.html
     $scope.channel = {};
     $scope.webcamError = false;
     $scope.onError = function (err) {
@@ -29,7 +24,6 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
     };
 
     $scope.onSuccess = function () {
-        // The video element contains the captured camera data
         _video = $scope.channel.video;
         $scope.$apply(function() {
             $scope.patOpts.w = _video.width;
@@ -43,7 +37,6 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
 
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
-        let date = new Date().getTime();
 
         if (_video) {
             var patCanvas = document.querySelector('#snapshot');
@@ -56,31 +49,8 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
             ctxPat.putImageData(idata, 0, 0);
 
             patCanvas.toBlob((imageBlobStuff, user) => {
-                // toBlog returned an object and set type to "image/png"
-                DataFactory.saveShoesImage(imageBlobStuff, $scope.user, date)
-                .then((response) => {
-                    //create new element to carousel so it will update correctly after the page //loads, gives the ability to take multiple phtos without rewriting them
-                    let newAnchor = document.createElement("a");
-                    newAnchor.className = "carousel-item";
-
-                    // create new img element to append to new anachor element, set the src
-                    // attribute to the url that is given back in response.url
-                    let newImg = document.createElement("img");
-                    newImg.src = response.url;
-
-                    newAnchor.appendChild(newImg);
-
-                    // append new elements to carousel, jquery required the $ before the
-                    // newAnchor variable
-                    $('.carousel').append($(newAnchor));
-                    // the carousel() had to be called again to update with new information
-
-                    if ($('.carousel').hasClass("initialized")) {
-                        $('.carousel').removeClass("initialized");
-                    }
-                    $('.carousel').carousel();
-                });
-
+                $scope.blob = imageBlobStuff;
+                console.log("looking for blob object", $scope.blob);
             });
 
         }
@@ -102,18 +72,69 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
         $scope.hideDiv = false;
     };
 
-
-    let getPhotos = function () {
-        console.log("anything????????");
-        DataFactory.retrieveShoesPhotos($scope.user)
+    $scope.addToCarousel = function () {
+        $scope.counter += 1;
+        $scope.hideCamDiv = true;
+        $scope.hideDiv = false;
+        let date = new Date().getTime();
+        DataFactory.saveShoesImage($scope.blob, $scope.user, date)
         .then((response) => {
-            console.log("Is there a object line 98", response);
-            $scope.imageArrayOfObj = response;
+            let cardDiv = document.createElement("div");
+            cardDiv.className = "carousel-item row";
+            cardDiv.setAttribute("id", `card--${response.key}`);
+            let columnSetDiv = document.createElement("div");
+            columnSetDiv.className = "col s12 m6";
+            let newImg = document.createElement("img");
+            newImg.src = response.url;
+            let newAnchor = document.createElement("a");
+            newAnchor.setAttribute("ng-click", `deleteShoes('${response.key}')`);
+            newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
+            let icon = document.createElement("i");
+            icon.className = "material-icons";
+            icon.innerHTML = "delete";
 
+            newAnchor.appendChild(icon);
+
+            columnSetDiv.appendChild(newImg);
+            columnSetDiv.appendChild(newAnchor);
+            cardDiv.appendChild(columnSetDiv);
+            let compiledCard = $compile(cardDiv.outerHTML)($scope);
+            angular.element(document.getElementsByClassName("carousel")[0]).append(compiledCard);
+
+            if ($('.carousel').hasClass("initialized")) {
+                $('.carousel').removeClass("initialized");
+            }
+            $('.carousel').carousel();
         });
     };
 
-    getPhotos();
+    let getPhotos = function () {
+        $scope.counter = 0;
+        DataFactory.retrieveShoesPhotos($scope.user)
+        .then((response) => {
+            for (let i = 0; i < response.length; i++) {
+                console.log("building counter", response[i]);
+                $scope.counter = i + 1;
+            }
+            $scope.imageArrayOfObj = response;
+        });
+    };
 
+    $scope.deleteShoes = function (photoKey) {
+        let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
+        return DataFactory.deleteShoeImage(photoKey)
+        .then((response) => {
+            $scope.counter--;
+            console.log("WHOOOO", response);
+            angular.element(document.getElementById(`card--${photoKey}`)).remove();
+            if ($('.carousel').hasClass("initialized")) {
+                $('.carousel').removeClass("initialized");
+            }
+            if (imageCount !== 1) {
+                $('.carousel').carousel();
+            }
+        });
+    };
+    getPhotos();
 
 });

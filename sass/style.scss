@@ -72,16 +72,11 @@ body, html {
   height: 275px !important;
 }
 
-//.placeholder {
-//  position: relative;
-//  padding-bottom: 10px;
-//  margin-top: 10px !important;
-//}
 
 .btn-floating.halfway-fab {
     bottom: 125px;
     right: 45%;
-    border-radius: 0 !important;
+//    border-radius: 0 !important;
 }
 
 .camera-icon {
@@ -98,5 +93,6 @@ body, html {
 .carousel .carousel-item img{
     width: 400px !important;
     margin: 0 !important;
+//    border-radius: 10px !important;
 //    height: 500px !important;
 }

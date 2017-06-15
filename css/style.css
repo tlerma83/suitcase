@@ -42,8 +42,7 @@ body, html {
 
 .btn-floating.halfway-fab {
   bottom: 125px;
-  right: 45%;
-  border-radius: 0 !important; }
+  right: 45%; }
 
 .camera-icon {
   height: 64 !important;

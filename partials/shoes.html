@@ -1,10 +1,19 @@
 <div ng-include="'partials/nav.html'"></div>
 
-
 <div class="flex-main">
+
+       <h5>Counter: {{counter}}</h5>
+        <!--    //carousel-->
         <div class="carousel carousel-1">
-            <a ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item"><img src="{{items.url}}"></a>
+            <div id="card--{{items.key_id}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
+                <div class="col s12 m6">
+                      <img src="{{items.url}}">
+                      <a ng-click="deleteShoes(items.key_id)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                </div>
+            </div>
         </div>
+
+        <!--   //camera did not load-->
         <div id="contain-camera">
             <div class="alert alert-error ng-scope" ng-show="webcamError">
                 <span>Webcam could not be started. Did you give access to it?</span>
@@ -21,15 +30,14 @@
                 <button ng-click="makeSnapshot()">take picture</button>
             </div>
 
-
-            <!--    // canvas picture view-->
-            <div ng-hide="hideCamDiv">
-                <canvas id="snapshot"></canvas>
-                <menu id="controls">
-                    <button ng-click="hideCanvas()">delete</button>
-                    <button ng-click="saveToFB()">Save</button>
-                </menu>
+            <!--// canvas view-->
+            <div ng-hide="hideCamDiv" class="row">
+                <div class="card-image">
+                    <canvas id="snapshot"></canvas>
+                    <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+                    <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                </div>
             </div>
-        </div>
 
+        </div>
 </div>
