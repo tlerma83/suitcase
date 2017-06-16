@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory, $window) {
+app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory, TopFactory, $window) {
 
     $scope.auth = {
         email: "",

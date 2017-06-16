@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile){
+app.controller("BottomsCtrl", function($scope, $window, $location, $route, BottomFactory, AuthFactory, $q, $compile){
 
     /** creates an eventlestener in angular to call materialize carousel function when ng-peat
     /** ...cycle has finished .....the $(document).ready(function(){}); provided by materialize /** does NOT work with ng-repeat*/
@@ -77,13 +77,13 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
     };
-
+//changed
     $scope.addToCarousel = function () {
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
-        DataFactory.saveBottomsImage($scope.blob, $scope.user, date)
+        BottomFactory.saveBottomsImage($scope.blob, $scope.user, date)
         .then((response) => {
 //            step 1
                     let cardDiv = document.createElement("div");
@@ -137,7 +137,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveBottomsPhotos($scope.user)
+        BottomFactory.retrieveBottomsPhotos($scope.user)
         .then((response) => {
             console.log("Is there a object line 149", response);
             for (let i = 0; i < response.length; i++) {
@@ -151,7 +151,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, $route, DataF
     /******   Delete Single Bottoms Image ******/
     $scope.deleteBottoms = function (photoKey) {
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return DataFactory.deleteBottomsImage(photoKey)
+        return BottomFactory.deleteBottomsImage(photoKey)
         .then((response) => {
             $scope.counter--;
             console.log("WHOOOO", response);

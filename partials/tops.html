@@ -10,10 +10,10 @@
 
         <!--    //carousel-->
         <div class="carousel carousel-1">
-            <div id="card--{{items.key_id}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
+            <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
                 <div class="col s12 m6">
                       <img src="{{items.url}}">
-                      <a ng-click="deleteTops(items.key_id)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                      <a ng-click="deleteTops(items.key)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
                 </div>
             </div>
         </div>

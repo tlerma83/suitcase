@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile, KeyFactory){
+app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFactory, $q, $compile, KeyFactory, TopFactory, DataFactory){
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         $('.carousel').carousel();
@@ -15,6 +15,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $scope.currentKey = KeyFactory.existingKey;
     }
 
+    $scope.imageArrayOfObj = [];
 
     var _video = null,
         patData = null;
@@ -80,15 +81,16 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
     };
-
+//changed
     $scope.addToCarousel = function () {
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        DataFactory.saveTopsImage($scope.blob, $scope.user, date , $scope.currentKey)
+        TopFactory.saveTopsImage($scope.blob, $scope.user, date , $scope.currentKey)
         .then((response) => {
+            $scope.imageArrayOfObj.push(response);
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
             cardDiv.setAttribute("id", `card--${response.key}`);
@@ -118,10 +120,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
         });
     };
-
+//changed
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveTopsPhotos(KeyFactory.existingKey)
+        TopFactory.retrieveTopsPhotos(KeyFactory.existingKey)
         .then((response) => {
             console.log("Checking response in getPhotos", response);
             for (let i = 0; i < response.length; i++) {
@@ -131,10 +133,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
         });
     };
-
+//changed
     $scope.deleteTops = function (photoKey) {
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return DataFactory.deleteTopImage(photoKey)
+        return TopFactory.deleteTopImage(photoKey)
         .then((response) => {
             $scope.counter--;
             console.log("WHOOOO", response);
@@ -147,15 +149,13 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
             }
         });
     };
-
-    $scope.deleteSuitcase = function (suitKey, objectArray) {
-        console.log("is array returning", $scope.imageArrayOfObj);
+//changed
+    $scope.deleteSuitcase = function (suitKey) {
         DataFactory.deleteSuitcase(suitKey);
-        objectArray.forEach(function(objectArray){
-            $scope.deleteTops(objectArray.key_id);
             console.log("I deleted your tops");
-
-        });
+            $scope.imageArrayOfObj.forEach(function(topArray){
+                $scope.deleteTops(topArray.key);
+            });
     };
 
     getPhotos();

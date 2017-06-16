@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile){
+app.controller("ShoesCtrl", function($scope, $window, $location, $route, ShoeFactory, AuthFactory, $q, $compile){
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         $('.carousel').carousel();
@@ -77,7 +77,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
-        DataFactory.saveShoesImage($scope.blob, $scope.user, date)
+        ShoeFactory.saveShoesImage($scope.blob, $scope.user, date)
         .then((response) => {
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
@@ -110,7 +110,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveShoesPhotos($scope.user)
+        ShoeFactory.retrieveShoesPhotos($scope.user)
         .then((response) => {
             for (let i = 0; i < response.length; i++) {
                 console.log("building counter", response[i]);
@@ -122,7 +122,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, $route, DataFac
 
     $scope.deleteShoes = function (photoKey) {
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return DataFactory.deleteShoeImage(photoKey)
+        return ShoeFactory.deleteShoeImage(photoKey)
         .then((response) => {
             $scope.counter--;
             console.log("WHOOOO", response);
