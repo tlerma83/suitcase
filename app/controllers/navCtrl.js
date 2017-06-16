@@ -20,27 +20,19 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         DataFactory.getUserInfo($scope.user)
         .then((response) => {
             $scope.firstName = response[0];
-            console.log("getUserInfo", response);
         });
 
     };
 
 
-
     $scope.addNewSuitcase = function () {
         $("#createNew").modal('close');
-        console.log("ng model info", $scope.newSuitcase);
         $scope.newSuitcase.uid = $scope.user;
         DataFactory.addSuitCase($scope.newSuitcase)
         .then((response) => {
             KeyFactory.key = response;
             $scope.keyStuff = KeyFactory;
-
-
-            console.log("check KeyFactory", KeyFactory);
-
             return $scope.keyStuff;
-
         })
         .then((response) => {
             $window.location.href = "#!tops";
@@ -50,17 +42,13 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
     let allSuitcases = function () {
         DataFactory.getAllSuitcases($scope.user)
         .then((response) => {
-            console.log("This is all suitcases", response);
             $scope.select = response;
         });
     };
 
     $scope.openSuitcase = function(suitKey, tittle) {
-        console.log("opensuitcase", suitKey);
         KeyFactory.existingKey = suitKey;
         KeyFactory.title = tittle;
-
-        //$scope.selectedSuitcase = KeyFactory;
         $window.location.href = "#!tops";
     };
 
@@ -68,11 +56,5 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
 
     getUserName();
     allSuitcases();
-
-
-
-
-
-
 
 });

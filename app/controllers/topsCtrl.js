@@ -6,8 +6,14 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $('.carousel').carousel();
     });
 
-    console.log("checking key factory in topsCtrl", KeyFactory);
+
     $scope.suitObj = KeyFactory;
+
+    if($scope.suitObj.key !== "") {
+       $scope.currentKey = $scope.suitObj.key;
+    }else {
+        $scope.currentKey = KeyFactory.existingKey;
+    }
 
 
     var _video = null,
@@ -76,13 +82,12 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
     };
 
     $scope.addToCarousel = function () {
-        console.log("looking for keyFactory", KeyFactory.existingKey);
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        DataFactory.saveTopsImage($scope.blob, $scope.user, date , KeyFactory.existingKey)
+        DataFactory.saveTopsImage($scope.blob, $scope.user, date , $scope.currentKey)
         .then((response) => {
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
@@ -116,7 +121,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveTopsPhotos(KeyFactory.existingKey)
+        DataFactory.retrieveTopsPhotos(KeyFactory.currentKey)
         .then((response) => {
             console.log("Checking response in getPhotos", response);
             for (let i = 0; i < response.length; i++) {
@@ -142,22 +147,15 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         });
     };
 
+
     $scope.deleteSuitcase = function (suitKey, objectArray) {
+        console.log("is array returning", objectArray);
         DataFactory.deleteSuitcase(suitKey);
-        console.log("Array", objectArray);
-        console.log("suite Key", suitKey);
         objectArray.forEach(function(singleObj){
-                DataFactory.deleteTopsinSuitcase(singleObj.key_id)
-                .then((response) => {
-                    console.log("check stuff and things", response);
-                });
-//                console.log("single key", singleObj.key_id);
-            });
+            $scope.deleteTops(singleObj.key_id);
+            console.log("I deleted your tops");
 
-//        .then((response) => {
-//            console.log("tops in suitcase deleted", response);
-//        });
-
+        });
     };
 
     getPhotos();
