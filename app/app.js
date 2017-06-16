@@ -7,7 +7,8 @@
 //});
 
 
-var app = angular.module('Suitcase', ['webcam', 'ngRoute']);
+var app = angular.module('Suitcase', ['webcam', 'ngRoute', "ui.materialize"]);
+
 
 // stackoverFlow solution for angular ng-repeat to finish loading before applying materialize   // function to create it and style
 app.directive('onFinishRender', function ($timeout) {
@@ -45,6 +46,11 @@ app.config(function($routeProvider){
     .when("/", {
         templateUrl: "partials/auth.html",
         controller: "AuthCtrl"
+    })
+    .when("/navigation", {
+        templateUrl: "partials/nav.html",
+        controller: "NavCtrl",
+        resolve: {isAuth}
     })
     .when("/tops", {
         templateUrl: "partials/tops.html",

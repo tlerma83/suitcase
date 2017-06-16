@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile){
+app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFactory, AuthFactory, $q, $compile, KeyFactory){
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         $('.carousel').carousel();
@@ -8,6 +8,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
     var _video = null,
         patData = null;
+
+    //$scope.selectedSuitcase = KeyFactory;
+
+console.log("KeyFactory.existingKey", KeyFactory.existingKey);
 
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
@@ -34,6 +38,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
 
 	$scope.makeSnapshot = function() {
+
 
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
@@ -71,17 +76,17 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
     };
 
     $scope.addToCarousel = function () {
+        console.log("looking for keyFactory", KeyFactory.existingKey);
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        DataFactory.saveTopsImage($scope.blob, $scope.user, date)
+        DataFactory.saveTopsImage($scope.blob, $scope.user, date , KeyFactory.existingKey)
         .then((response) => {
 //            console.log("did storage ref return?", response);
 //
 //            $scope.storageRef = response.storage_ref;
-
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
             cardDiv.setAttribute("id", `card--${response.key}`);
@@ -90,7 +95,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
             let newImg = document.createElement("img");
             newImg.src = response.url;
             let newAnchor = document.createElement("a");
-            newAnchor.setAttribute("ng-click", `deleteTops('${response.key}, ${response.storage_ref}')`);
+            newAnchor.setAttribute("ng-click", `deleteTops('${response.key}')`);
             newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
             let icon = document.createElement("i");
             icon.className = "material-icons";
@@ -114,7 +119,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveTopsPhotos($scope.user)
+        DataFactory.retrieveTopsPhotos(KeyFactory.existingKey)
         .then((response) => {
             console.log("Checking response in getPhotos", response);
             for (let i = 0; i < response.length; i++) {
@@ -124,12 +129,11 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         });
     };
 
-    $scope.deleteTops = function (photoKey, storageRef) {
+    $scope.deleteTops = function (photoKey) {
 
-        console.log("storage on delete", storageRef, photoKey);
 
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return DataFactory.deleteTopImage(photoKey, storageRef)
+        return DataFactory.deleteTopImage(photoKey)
         .then((response) => {
             $scope.counter--;
             console.log("WHOOOO", response);

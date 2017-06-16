@@ -14,7 +14,7 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
         AuthFactory.loginUser($scope.auth)
         .then(() =>{
             console.log("user is logged in");
-            $window.location.href = "#!/tops";
+            $window.location.href = "#!/navigation";
         });
     };
 
@@ -32,7 +32,7 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
         })
         .then((userData) => {
             $scope.login();
-            $window.location.href = "#!/tops";
+            $window.location.href = "#!/navigation";
         });
     };
 

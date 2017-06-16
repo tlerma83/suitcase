@@ -34,9 +34,46 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    let addSuitCase = function(suitcase) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/suitcase.json`, suitcase)
+            .then((response) => {
+                console.log("added a new suitcase", response);
+                let suitKey = response.data.name;
+                resolve(suitKey);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+    let getAllSuitcases = function(userUid) {
+        let suitArray = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/suitcase.json?orderBy="uid"&equalTo="${userUid}"`)
+            .then((response) => {
+                let suitcaseObj = response.data;
+                Object.keys(suitcaseObj).forEach((key) => {
+                    suitcaseObj[key].suitKey = key;
+                    suitArray.push(suitcaseObj[key]);
+                });
+//                console.log("check get all suitcase DF", suitArray);
+                resolve(suitArray);
+
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+
 
     //// For Tops Controller
-    let saveTopsImage = function (imageBlob, user, date) {
+    let saveTopsImage = function (imageBlob, user, date, suitcaseKey) {
         // initiate storage reference
         let storageReference = firebase.storage().ref();
 
@@ -56,6 +93,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
             .then( (picObj) => {
                 newPhotoObject.url = picObj;
                 newPhotoObject.uid = user;
+                newPhotoObject.suitcase = suitcaseKey;
                 return $http.post(`${FBCreds.databaseURL}/tops.json`, newPhotoObject);
             })
             .then( (key) => {
@@ -71,10 +109,10 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
     //Retrieves Tops images only
-    let retrieveTopsPhotos = function (userUid) {
+    let retrieveTopsPhotos = function (suitcase) {
         let topsImages = [];
         return $q( (resolve, reject) => {
-        $http.get(`${FBCreds.databaseURL}/tops.json?orderBy="uid"&equalTo="${userUid}"`)
+        $http.get(`${FBCreds.databaseURL}/tops.json?orderBy="suitcase"&equalTo="${suitcase}"`)
             .then( (response) => {
                 let imageObj = response.data;
                 Object.keys(imageObj).forEach( (key) => {
@@ -93,21 +131,14 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
     //delete top
-    let deleteTopImage = function (photoKey, storageRef) {
-//        let storeTest = JSON.stringify(storageRef);
-//        let workalready = firebase.storage().ref();
-//         let workalready2 = workalready.child(storeTest);
+    let deleteTopImage = function (photoKey) {
+        console.log("Delete Top: " + photoKey);
         return $q( (resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/tops/${photoKey}.json`)
             .then((response) => {
                 console.log("Delete success");
                 resolve(response);
-//                return workalready2.delete();
             })
-//            .then((response) => {
-//                console.log("something deleted", response);
-//                resolve(response);
-//            })
             .catch((error) => {
                 reject(error);
             });
@@ -254,5 +285,17 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
 
 
 
-    return{addNewUser, saveTopsImage, retrieveTopsPhotos, saveBottomsImage, retrieveBottomsPhotos, saveShoesImage, retrieveShoesPhotos, deleteBottomsImage, deleteShoeImage, deleteTopImage, getUserInfo};
+    return{addNewUser,
+           saveTopsImage,
+           retrieveTopsPhotos,
+           saveBottomsImage,
+           retrieveBottomsPhotos,
+           saveShoesImage,
+           retrieveShoesPhotos,
+           deleteBottomsImage,
+           deleteShoeImage,
+           deleteTopImage,
+           getUserInfo,
+           addSuitCase,
+           getAllSuitcases};
 });
