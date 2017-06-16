@@ -9,10 +9,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
     var _video = null,
         patData = null;
 
-    //$scope.selectedSuitcase = KeyFactory;
-
-console.log("KeyFactory.existingKey", KeyFactory.existingKey);
-
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;

@@ -8,12 +8,12 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         choices: ["Option1", "Option 2", "Option3", "Option4"]
     };*/
 
+
     $scope.user = AuthFactory.getUser();
 
     $scope.newSuitcase = {
         title: ""
     };
-//    $scope.currentLocation = $location.url();
 
 
     let getUserName = function () {
@@ -36,13 +36,14 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
             KeyFactory.key = response;
             $scope.keyStuff = KeyFactory;
 
+
             console.log("check KeyFactory", KeyFactory);
 
             return $scope.keyStuff;
 
         })
         .then((response) => {
-            return $location.path("/tops");
+            $window.location.href = "#!tops";
         });
     };
 
@@ -53,11 +54,12 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
             $scope.select = response;
         });
     };
-    
+
     $scope.openSuitcase = function(suitKey, tittle) {
         console.log("opensuitcase", suitKey);
         KeyFactory.existingKey = suitKey;
         KeyFactory.title = tittle;
+
         //$scope.selectedSuitcase = KeyFactory;
         $window.location.href = "#!tops";
     };
