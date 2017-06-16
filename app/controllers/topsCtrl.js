@@ -121,7 +121,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrieveTopsPhotos($scope.currentKey)
+        DataFactory.retrieveTopsPhotos(KeyFactory.existingKey)
         .then((response) => {
             console.log("Checking response in getPhotos", response);
             for (let i = 0; i < response.length; i++) {
@@ -148,12 +148,11 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         });
     };
 
-console.log("is array returning", $scope.imageArrayOfObj);
     $scope.deleteSuitcase = function (suitKey, objectArray) {
         console.log("is array returning", $scope.imageArrayOfObj);
         DataFactory.deleteSuitcase(suitKey);
-        objectArray.forEach(function(singleObj){
-            $scope.deleteTops(singleObj.key_id);
+        objectArray.forEach(function(objectArray){
+            $scope.deleteTops(objectArray.key_id);
             console.log("I deleted your tops");
 
         });
