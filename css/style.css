@@ -19,7 +19,6 @@ body, html {
   justify-content: space-between; }
 
 #contain-camera {
-  margin-top: 15%;
   height: 250px;
   position: relative;
   width: 350px; }
@@ -33,9 +32,6 @@ body, html {
 #snapshot {
   height: 275px;
   width: 350px; }
-
-.carousel-1 {
-  margin-top: 3em; }
 
 .camera-placeholder {
   height: 275px !important; }

@@ -69,8 +69,31 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    let deleteSuitcase = function (suitKey) {
+        return $q((resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/suitcase/${suitKey}.json`)
+            .then((response) => {
+                console.log("suitcase deleted successfully");
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
 
-
+    let deleteTopsinSuitcase = function (photoKey) {
+        return $q((resolve, reject) => {
+         $http.delete(`${FBCreds.databaseURL}/tops/${photoKey}.json`)
+            .then((response) => {
+                console.log("all tops in suitcase deleted", response);
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
 
     //// For Tops Controller
     let saveTopsImage = function (imageBlob, user, date, suitcaseKey) {
@@ -297,5 +320,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
            deleteTopImage,
            getUserInfo,
            addSuitCase,
-           getAllSuitcases};
+           getAllSuitcases,
+           deleteTopsinSuitcase,
+           deleteSuitcase};
 });

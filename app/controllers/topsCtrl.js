@@ -6,6 +6,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         $('.carousel').carousel();
     });
 
+    console.log("checking key factory in topsCtrl", KeyFactory);
+    $scope.suitObj = KeyFactory;
+
+
     var _video = null,
         patData = null;
 
@@ -80,9 +84,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
 
         DataFactory.saveTopsImage($scope.blob, $scope.user, date , KeyFactory.existingKey)
         .then((response) => {
-//            console.log("did storage ref return?", response);
-//
-//            $scope.storageRef = response.storage_ref;
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
             cardDiv.setAttribute("id", `card--${response.key}`);
@@ -126,8 +127,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
     };
 
     $scope.deleteTops = function (photoKey) {
-
-
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
         return DataFactory.deleteTopImage(photoKey)
         .then((response) => {
@@ -143,6 +142,23 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, DataFact
         });
     };
 
+    $scope.deleteSuitcase = function (suitKey, objectArray) {
+        DataFactory.deleteSuitcase(suitKey);
+        console.log("Array", objectArray);
+        console.log("suite Key", suitKey);
+        objectArray.forEach(function(singleObj){
+                DataFactory.deleteTopsinSuitcase(singleObj.key_id)
+                .then((response) => {
+                    console.log("check stuff and things", response);
+                });
+//                console.log("single key", singleObj.key_id);
+            });
+
+//        .then((response) => {
+//            console.log("tops in suitcase deleted", response);
+//        });
+
+    };
 
     getPhotos();
 
