@@ -6,7 +6,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
         $('.carousel').carousel();
     });
 
-
+    $scope.hideTitle = true;
     $scope.suitObj = KeyFactory;
 
     if($scope.suitObj.key !== "") {
@@ -45,8 +45,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
 
 
 	$scope.makeSnapshot = function() {
-
-
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
 
@@ -81,8 +79,10 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
     };
-//changed
+
+
     $scope.addToCarousel = function () {
+//        $scope.imageArrayOfObj = [];
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
@@ -90,7 +90,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
 
         TopFactory.saveTopsImage($scope.blob, $scope.user, date , $scope.currentKey)
         .then((response) => {
-            $scope.imageArrayOfObj.push(response);
             let cardDiv = document.createElement("div");
             cardDiv.className = "carousel-item row";
             cardDiv.setAttribute("id", `card--${response.key}`);
@@ -113,14 +112,20 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
             let compiledCard = $compile(cardDiv.outerHTML)($scope);
             angular.element(document.getElementsByClassName("carousel")[0]).append(compiledCard);
 
+
+            console.log("What is array at this point in life", $scope.imageArrayOfObj);
+
             if ($('.carousel').hasClass("initialized")) {
                 $('.carousel').removeClass("initialized");
             }
             $('.carousel').carousel();
 
+//            $scope.imageArrayOfObj.push(response);
+//            console.log("check array line 124", $scope.imageArrayOfObj);
         });
     };
-//changed
+
+
     let getPhotos = function () {
         $scope.counter = 0;
         TopFactory.retrieveTopsPhotos(KeyFactory.existingKey)
@@ -129,11 +134,13 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
             for (let i = 0; i < response.length; i++) {
                 $scope.counter = i + 1;
             }
+
             $scope.imageArrayOfObj = response;
 
         });
     };
-//changed
+
+
     $scope.deleteTops = function (photoKey) {
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
         return TopFactory.deleteTopImage(photoKey)
@@ -149,13 +156,25 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
             }
         });
     };
-//changed
+
+
     $scope.deleteSuitcase = function (suitKey) {
-        DataFactory.deleteSuitcase(suitKey);
-            console.log("I deleted your tops");
-            $scope.imageArrayOfObj.forEach(function(topArray){
+        TopFactory.retrieveTopsPhotos(suitKey)
+        .then((response) => {
+            console.log("Did all images come back?", response);
+            $scope.imageArray = response;
+        });
+        DataFactory.deleteSuitcase(suitKey)
+        .then((response) => {
+
+            $scope.imageArray.forEach(function(topArray){
                 $scope.deleteTops(topArray.key);
             });
+        })
+        .then((response) =>{
+            console.log("Did shit get deleted", response);
+            $window.location.href = "#!/navigation";
+        });
     };
 
     getPhotos();

@@ -1,9 +1,13 @@
 <div ng-include="'partials/nav.html'"></div>
 
-<div class="row">
-    <h4>Suitcase: {{suitObj.title}}</h4>
-    <a><i ng-click="deleteSuitcase(currentKey, imageArrayOfObj)" class="material-icons">delete</i></a>
-    <h6>Counter: {{counter}}</h6>
+<div class="">
+        <div>
+            <h4 class="suite-title-tag">Suitcase: {{suitObj.title}}</h4>
+            <a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a>
+            <h6 class="suite-title-tag">Counter: {{counter}}</h6>
+        </div>
+
+
 </div>
 <div class="flex-main">
 

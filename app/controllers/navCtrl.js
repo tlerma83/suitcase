@@ -27,6 +27,8 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, TopFact
 
     $scope.addNewSuitcase = function () {
         $("#createNew").modal('close');
+        $scope.hideTitle = false;
+
         $scope.newSuitcase.uid = $scope.user;
         DataFactory.addSuitCase($scope.newSuitcase)
         .then((response) => {
@@ -47,12 +49,16 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, TopFact
     };
 
     $scope.openSuitcase = function(suitKey, tittle) {
+        $scope.hideTitle = false;
+
         KeyFactory.existingKey = suitKey;
         KeyFactory.title = tittle;
         $window.location.href = "#!tops";
     };
 
-
+    $scope.navToTops = function () {
+        $window.location.href = "#!/tops";
+    };
 
     getUserName();
     allSuitcases();

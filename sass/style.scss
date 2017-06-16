@@ -96,3 +96,22 @@ body, html {
 //    border-radius: 10px !important;
 //    height: 500px !important;
 }
+
+
+.flex-title {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex-title div {
+    margin: 10px;
+    padding: 10px;
+}
+
+.suite-title-tag {
+    display: inline-block;
+}
+
+//.title-delete-icon {
+//    margin-top: 10px !important;
+//}
