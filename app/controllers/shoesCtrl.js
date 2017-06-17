@@ -2,7 +2,8 @@
 
 app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, AuthFactory, KeyFactory, $q){
 
-$scope.imageArrayOfObj = [];
+
+    $scope.imageArrayOfObj = [];
     $scope.channel = {};
     $scope.hideTitle = true;
     $scope.suitObj = KeyFactory;

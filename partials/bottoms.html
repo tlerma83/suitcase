@@ -1,10 +1,16 @@
 <div ng-include="'partials/nav.html'"></div>
 
-<div>
-    <h4 class="suite-title-tag">Suitcase: {{suitObj.title}}</h4>
-    <a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a>
-    <h6 class="suite-title-tag">Counter: {{counter}}</h6>
-</div>
+<nav class="second-nav" ng-controller="NavCtrl">
+    <div class="nav-wrapper second-nav-color">
+        <a href="#!" class="brand-logo center second-nav-color-text">{{suitObj.title}}</a>
+        <a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a>
+        <ul class="left hide-on-med-and-down">
+            <li class="active" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.key.url}}">{{stuff.key.name}}</a></li>
+            <li><a href="">Items: {{counter}}</a></li>
+        </ul>
+    </div>
+</nav>
+
 
 <div class="flex-main">
 

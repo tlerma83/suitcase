@@ -48,7 +48,7 @@ app.config(function($routeProvider){
         controller: "AuthCtrl"
     })
     .when("/navigation", {
-        templateUrl: "partials/nav.html",
+        templateUrl: "partials/landing.html",
         controller: "NavCtrl",
         resolve: {isAuth}
     })

@@ -10,9 +10,28 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
 
 
     $scope.user = AuthFactory.getUser();
+    console.log("user on nav ctrl", $scope.user);
 
-    $scope.newSuitcase = {
-        title: ""
+    $scope.newSuitcase = {title: ""};
+    $scope.menuItems = [
+        {
+           key: {url: "tops", name: "Tops"}
+        },
+        {
+            key: {url: "bottoms", name: "Bottoms"}
+        },
+        {
+            key: {url: "shoes", name: "Shoes"},
+        },
+        {
+            key: {url: "packlist", name: "Pack List"}
+        }
+
+    ];
+
+
+    $scope.logout = function () {
+        AuthFactory.logout();
     };
 
 
@@ -45,6 +64,7 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         DataFactory.getAllSuitcases($scope.user)
         .then((response) => {
             $scope.select = response;
+            console.log("what is current suitcase", response);
         });
     };
 
@@ -56,9 +76,9 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         $window.location.href = "#!tops";
     };
 
-    $scope.navToTops = function () {
-        $window.location.href = "#!/tops";
-    };
+//    $scope.navToTops = function () {
+//        $window.location.href = "#!/tops";
+//    };
 
     getUserName();
     allSuitcases();

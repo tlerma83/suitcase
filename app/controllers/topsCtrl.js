@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory){
+app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory, $route){
 
 
     $scope.imageArrayOfObj = [];
@@ -119,6 +119,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
             let photoIndex = $scope.imageArrayOfObj.indexOf(photoObj);
             if (imageCount !== 0) {
                 $scope.imageArrayOfObj.splice(photoIndex, 1);
+                $route.reload();
             }
         });
     };

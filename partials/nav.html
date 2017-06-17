@@ -1,21 +1,15 @@
 
-<ul id="dropdown1" class="dropdown-content">
-  <li><a ng-href="#!/suitcase">one</a></li>
-  <li><a ng-href="#!/suitcase">two</a></li>
-  <li class="divider"></li>
-  <li><a ng-href="#!/suitcase">three</a></li>
-</ul>
-<nav ng-controller="NavCtrl">
+<nav class="nav-background" ng-controller="NavCtrl">
   <div class="nav-wrapper">
     <a ng-href="#!/suitcase" class="brand-logo">Welcome {{firstName}}</a>
     <ul class="right hide-on-med-and-down">
-      <li><a><i class="material-icons" data-target='createNew' modal>library_add</i></a></li>
+      <li><a tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="pack new suitcase!"><i class="material-icons" data-target='createNew' modal>library_add</i></a></li>
 
-
+<!--btn col s4-->
     <!-- Dropdown Trigger -->
        <li>
-        <a class='dropdown-button' href='' data-activates='demoDropdown' dropdown data-hover="true">
-            Select Suitcase
+        <a class='dropdown-button'  href='' data-activates='demoDropdown' dropdown data-hover="true">
+            Suitcase
         </a>
 
         <!-- Dropdown Structure -->
@@ -23,9 +17,11 @@
             <li ng-repeat="value in select"><a ng-click="openSuitcase(value.suitKey, value.title)">{{value.title}}</a></li>
         </ul>
         </li>
+<!--
       <li><a ng-href="#!/tops">Tops</a></li>
       <li><a ng-href="#!/bottoms">Bottoms</a></li>
-      <li><a ng-href="#!/shoes">Shoes</a></li>
+-->
+      <li><a  ng-click="logout()" ng-href="#!/">Logout</a></li>
     </ul>
   </div>
 
@@ -43,19 +39,20 @@
 </nav>
 
 <!--
-    <div class="row">
-    <div class="col s12">
-        <ul tabs>
-            <li class="tab col s3"><a ng-href="#!/tops" class="active">Tops</a></li>
-            <li class="tab col s3"><a ng-href="#!/bottoms">Bottoms</a></li>
-            <li class="tab col s3"><a ng-href="#!/shoes">Shoes</a></li>
-            <li class="tab col s3"><a ng-href="#!/navigation">Pack List</a></li>
+<div class="row" ng-controller="NavCtrl">
+    <div class="col s4 m8">
+        <ul>
+            <li class="tab col s12 m2" ng-repeat="stuff in menuItems" ng-class="{activeStuff : whichSelected === stuff.key}"><a ng-click="setSelected(stuff.key)" ng-href="#!/{{stuff.key.url}}">{{stuff.key.name}}</a></li>
         </ul>
     </div>
-    </div>
+</div>
 -->
 
+<!--
 
+
+
+-->
 <!--    create new modal-->
 
 

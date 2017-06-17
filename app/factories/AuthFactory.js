@@ -29,7 +29,7 @@ app.factory("AuthFactory", function($q, $http){
 
     // let user logout
     let logout = () => {
-        return firebase.auth().signout()
+        return firebase.auth().signOut()
         .then(function(data){
             console.log("User logged out");
         });

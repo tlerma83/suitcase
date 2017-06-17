@@ -1,9 +1,17 @@
 body, html {
   height: 100%;
-  margin: 0, auto; }
+  margin: 0, auto;
+  background-color: #333 !important; }
 
 .background-image {
-  background-image: url("../images/home6.jpg");
+  background-image: url("../images/girl2.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.main-content-wrapper {
+  background-image: url("../images/girl2.png") !important;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -62,5 +70,30 @@ body, html {
 
 .suite-title-tag {
   display: inline-block; }
+
+.activeStuff {
+  border-bottom: 2px solid black !important; }
+
+.nav-background {
+  background-color: #85D5DE !important; }
+
+.second-nav {
+  background-color: white !important; }
+
+.second-nav-color i {
+  color: #999 !important; }
+
+.second-nav-color-text {
+  color: #333 !important; }
+
+.flex-landing-card {
+  display: flex;
+  justify-content: space-between; }
+
+.landing-card-input {
+  width: 70% !important; }
+
+.landing-card i {
+  width: 40px !important; }
 
 /*# sourceMappingURL=style.css.map */
