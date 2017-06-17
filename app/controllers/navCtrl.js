@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, TopFactory, $location, $window, KeyFactory){
+app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $location, $window, KeyFactory){
 
     // angular-materialize example
     /*$scope.select = {

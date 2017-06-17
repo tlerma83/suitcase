@@ -1,13 +1,21 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFactory, $q, $compile, KeyFactory, TopFactory, DataFactory){
+app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory){
 
-    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        $('.carousel').carousel();
-    });
 
+    $scope.imageArrayOfObj = [];
+    $scope.channel = {};
     $scope.hideTitle = true;
     $scope.suitObj = KeyFactory;
+    $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
+    $scope.user = AuthFactory.getUser();
+    $scope.hideCamDiv = true;
+    $scope.webcamError = false;
+    $scope.tops = "tops";
+
+    let _video = null,
+        patData = null;
+
 
     if($scope.suitObj.key !== "") {
        $scope.currentKey = $scope.suitObj.key;
@@ -15,17 +23,16 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
         $scope.currentKey = KeyFactory.existingKey;
     }
 
-    $scope.imageArrayOfObj = [];
 
-    var _video = null,
-        patData = null;
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        if ($('.carousel').hasClass("initialized")) {
+            $('.carousel').removeClass("initialized");
+        }
+            $('.carousel').carousel();
+    });
 
-    $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
-    $scope.user = AuthFactory.getUser();
-    $scope.hideCamDiv = true;
 
-    $scope.channel = {};
-    $scope.webcamError = false;
+
     $scope.onError = function (err) {
         $scope.$apply(
             function() {
@@ -82,97 +89,47 @@ app.controller("TopsCtrl", function($scope, $window, $location, $route, AuthFact
 
 
     $scope.addToCarousel = function () {
-//        $scope.imageArrayOfObj = [];
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        TopFactory.saveTopsImage($scope.blob, $scope.user, date , $scope.currentKey)
+        DataFactory.saveImage($scope.blob, $scope.user, date, $scope.currentKey, $scope.tops)
         .then((response) => {
-            let cardDiv = document.createElement("div");
-            cardDiv.className = "carousel-item row";
-            cardDiv.setAttribute("id", `card--${response.key}`);
-            let columnSetDiv = document.createElement("div");
-            columnSetDiv.className = "col s12 m6";
-            let newImg = document.createElement("img");
-            newImg.src = response.url;
-            let newAnchor = document.createElement("a");
-            newAnchor.setAttribute("ng-click", `deleteTops('${response.key}')`);
-            newAnchor.className = "btn-floating halfway-fab waves-effect waves-light red";
-            let icon = document.createElement("i");
-            icon.className = "material-icons";
-            icon.innerHTML = "delete";
-
-            newAnchor.appendChild(icon);
-            columnSetDiv.appendChild(newImg);
-            columnSetDiv.appendChild(newAnchor);
-            cardDiv.appendChild(columnSetDiv);
-
-            let compiledCard = $compile(cardDiv.outerHTML)($scope);
-            angular.element(document.getElementsByClassName("carousel")[0]).append(compiledCard);
-
-
-            console.log("What is array at this point in life", $scope.imageArrayOfObj);
-
-            if ($('.carousel').hasClass("initialized")) {
-                $('.carousel').removeClass("initialized");
-            }
-            $('.carousel').carousel();
-
-//            $scope.imageArrayOfObj.push(response);
-//            console.log("check array line 124", $scope.imageArrayOfObj);
+            $scope.imageArrayOfObj.push(response);
         });
     };
 
 
     let getPhotos = function () {
         $scope.counter = 0;
-        TopFactory.retrieveTopsPhotos(KeyFactory.existingKey)
+        DataFactory.retrievePhotos(KeyFactory.existingKey, $scope.tops)
         .then((response) => {
-            console.log("Checking response in getPhotos", response);
-            for (let i = 0; i < response.length; i++) {
-                $scope.counter = i + 1;
-            }
-
+            $scope.counter = response.length;
             $scope.imageArrayOfObj = response;
-
         });
     };
 
 
-    $scope.deleteTops = function (photoKey) {
+    $scope.deleteTops = function (photoObj) {
         let imageCount = angular.element(document.getElementsByClassName("carousel-item")).length;
-        return TopFactory.deleteTopImage(photoKey)
+        return DataFactory.deletePhoto(photoObj.key, $scope.tops)
         .then((response) => {
             $scope.counter--;
-            console.log("WHOOOO", response);
-            angular.element(document.getElementById(`card--${photoKey}`)).remove();
-            if ($('.carousel').hasClass("initialized")) {
-                $('.carousel').removeClass("initialized");
-            }
-            if (imageCount !== 1) {
-                $('.carousel').carousel();
+            let photoIndex = $scope.imageArrayOfObj.indexOf(photoObj);
+            if (imageCount !== 0) {
+                $scope.imageArrayOfObj.splice(photoIndex, 1);
             }
         });
     };
 
 
     $scope.deleteSuitcase = function (suitKey) {
-        TopFactory.retrieveTopsPhotos(suitKey)
-        .then((response) => {
-            console.log("Did all images come back?", response);
-            $scope.imageArray = response;
-        });
         DataFactory.deleteSuitcase(suitKey)
         .then((response) => {
-
-            $scope.imageArray.forEach(function(topArray){
-                $scope.deleteTops(topArray.key);
+            $scope.imageArrayOfObj.forEach(function(photoObj){
+                $scope.deleteTops(photoObj);
             });
-        })
-        .then((response) =>{
-            console.log("Did shit get deleted", response);
             $window.location.href = "#!/navigation";
         });
     };
