@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, AuthFactory, KeyFactory, $q){
+app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, AuthFactory, KeyFactory, $q, $route){
 
 
     $scope.imageArrayOfObj = [];
@@ -117,6 +117,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
             let photoIndex = $scope.imageArrayOfObj.indexOf(photoObj);
             if (imageCount !== 0) {
                 $scope.imageArrayOfObj.splice(photoIndex, 1);
+                $route.reload();
             }
         });
     };

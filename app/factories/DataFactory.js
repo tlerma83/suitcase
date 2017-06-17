@@ -40,9 +40,11 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/suitcase.json`, suitcase)
             .then((response) => {
-                console.log("added a new suitcase", response);
-                let suitKey = response.data.name;
-                resolve(suitKey);
+                console.log("added a new suitcase", suitcase);
+                let newObj = {};
+                newObj.key = response.data.name;
+                newObj.title = suitcase.title;
+                resolve(newObj);
             })
             .catch((error) => {
                 reject(error);

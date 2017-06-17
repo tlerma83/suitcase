@@ -4,16 +4,23 @@
 <nav class="second-nav" ng-controller="NavCtrl">
     <div class="nav-wrapper second-nav-color">
         <a href="#!" class="brand-logo center second-nav-color-text">{{suitObj.title}}</a>
-        <a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a>
-        <a class="title-delete-icon"><i ng-click="" class="material-icons">mode_edit</i></a>
         <ul class="left hide-on-med-and-down">
-            <li class="active" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.key.url}}">{{stuff.key.name}}</a></li>
-            <li><a href="">Items: {{counter}}</a></li>
+            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+
         </ul>
+
+        <ul class="right hide-on-med-and-down">
+            <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
+            <li><a><i ng-click="" class="material-icons">mode_edit</i></a></li>
+            <li><a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a></li>
+        </ul>
+
     </div>
 </nav>
 
 
+<div class="main-content-wrapper">
+<a href="#!/tops" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 <div class="flex-main">
 
     <!--    //carousel-->
@@ -27,7 +34,45 @@
     </div>
 
     <!--   //camera did not load-->
+<!--
     <div id="contain-camera">
+        <div class="alert alert-error ng-scope" ng-show="webcamError">
+            <span>Webcam could not be started. Did you give access to it?</span>
+        </div>
+-->
+
+        <!--    // webcam view-->
+<!--
+        <div ng-hide="hideDiv">
+            <webcam channel="channel"
+                on-streaming="onSuccess()"
+                on-error="onError(err)"
+                on-stream="onStream(stream)">
+
+            </webcam>
+            <button ng-click="makeSnapshot()">take picture</button>
+        </div>
+-->
+
+        <!--// canvas view-->
+<!--
+        <div ng-hide="hideCamDiv" class="row">
+            <div class="card-image">
+                <canvas id="snapshot"></canvas>
+                <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+                <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+            </div>
+        </div>
+-->
+
+<!--    </div>-->
+</div>
+
+<ul id="slide-out" class="side-nav">
+    <div class="userView">
+
+
+          <div id="contain-camera">
         <div class="alert alert-error ng-scope" ng-show="webcamError">
             <span>Webcam could not be started. Did you give access to it?</span>
         </div>
@@ -53,4 +98,11 @@
         </div>
 
     </div>
+
+
+
+    </div>
+</ul>
+
+
 </div>

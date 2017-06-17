@@ -1,12 +1,15 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory, $route){
+app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory, $route, $routeParams){
 
+    console.log("royreParams", $routeParams.suitTitle);
+    $scope.suitObj = {};
+    $scope.suitObj.title = $routeParams.suitTitle;
+    $scope.suitObj.key = $routeParams.suitcaseKey;
 
     $scope.imageArrayOfObj = [];
     $scope.channel = {};
     $scope.hideTitle = true;
-    $scope.suitObj = KeyFactory;
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;
@@ -30,6 +33,21 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
         }
             $('.carousel').carousel();
     });
+
+
+//    $(".button-collapse").sideNav();
+
+
+
+      $('.button-collapse').sideNav({
+      menuWidth: 400, // Default is 300
+      edge: 'right', // Choose the horizontal origin
+      closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      draggable: true // Choose whether you can drag to open on touch screens
+    }
+  );
+
+
 
 
 
@@ -94,7 +112,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        DataFactory.saveImage($scope.blob, $scope.user, date, $scope.currentKey, $scope.tops)
+        DataFactory.saveImage($scope.blob, $scope.user, date, $routeParams.suitcaseKey, $scope.tops)
         .then((response) => {
             $scope.imageArrayOfObj.push(response);
         });
@@ -103,7 +121,8 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrievePhotos(KeyFactory.existingKey, $scope.tops)
+//        console.log("existing key", KeyFactory.existingKey, $scope.tops);
+        DataFactory.retrievePhotos($routeParams.suitcaseKey, $scope.tops)
         .then((response) => {
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;

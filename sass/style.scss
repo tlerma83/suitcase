@@ -145,6 +145,10 @@ body, html {
     color: #333 !important;
 }
 
+.dark-color-text a {
+    color: #333 !important;
+}
+
 
 .flex-landing-card {
     display: flex;
@@ -157,3 +161,10 @@ body, html {
 .landing-card i{
     width: 40px !important;
 }
+
+.circle {
+//    border-radius-: 10% !important;
+    border-bottom-left-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+

@@ -52,7 +52,7 @@ app.config(function($routeProvider){
         controller: "NavCtrl",
         resolve: {isAuth}
     })
-    .when("/tops", {
+    .when("/tops/:suitcaseKey/:suitTitle", {
         templateUrl: "partials/tops.html",
         controller: "TopsCtrl",
         resolve: {isAuth}

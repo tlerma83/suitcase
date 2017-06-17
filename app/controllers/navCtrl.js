@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $location, $window, KeyFactory){
+app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $location, $window, KeyFactory, $routeParams){
 
     // angular-materialize example
     /*$scope.select = {
@@ -14,19 +14,10 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
 
     $scope.newSuitcase = {title: ""};
     $scope.menuItems = [
-        {
-           key: {url: "tops", name: "Tops"}
-        },
-        {
-            key: {url: "bottoms", name: "Bottoms"}
-        },
-        {
-            key: {url: "shoes", name: "Shoes"},
-        },
-        {
-            key: {url: "packlist", name: "Pack List"}
-        }
-
+        {url: `tops/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Tops"},
+        {url: `bottoms/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Bottoms"},
+        {url: `shoes/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Shoes"},
+        {url: `packlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Pack List"}
     ];
 
 
@@ -51,12 +42,8 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         $scope.newSuitcase.uid = $scope.user;
         DataFactory.addSuitCase($scope.newSuitcase)
         .then((response) => {
-            KeyFactory.key = response;
-            $scope.keyStuff = KeyFactory;
-            return $scope.keyStuff;
-        })
-        .then((response) => {
-            $window.location.href = "#!tops";
+            console.log("checking line 54", response);
+            $window.location.href = "#!tops/" + response.key + "/"  + response.title;
         });
     };
 
@@ -73,7 +60,7 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
 
         KeyFactory.existingKey = suitKey;
         KeyFactory.title = tittle;
-        $window.location.href = "#!tops";
+        $window.location.href = "#!tops/" + suitKey + "/"  + tittle;
     };
 
 //    $scope.navToTops = function () {

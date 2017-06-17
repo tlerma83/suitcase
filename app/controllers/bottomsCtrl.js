@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, DataFactory, KeyFactory, $q){
+app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, DataFactory, KeyFactory, $q, $route){
 
     $scope.imageArrayOfObj = [];
     $scope.channel = {};
@@ -116,6 +116,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
             let photoIndex = $scope.imageArrayOfObj.indexOf(photoObj);
             if (imageCount !== 0) {
                 $scope.imageArrayOfObj.splice(photoIndex, 1);
+                $route.reload();
             }
         });
     };
