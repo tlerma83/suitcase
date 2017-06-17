@@ -1,60 +1,63 @@
+<!--main nav-->
 <div ng-include="'partials/nav.html'"></div>
 
+<!--second nav-->
 <nav class="second-nav" ng-controller="NavCtrl">
+<!--   view selected-->
     <div class="nav-wrapper second-nav-color">
         <a href="#!" class="brand-logo center second-nav-color-text">{{suitObj.title}}</a>
         <ul class="left hide-on-med-and-down">
             <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
-
         </ul>
-
+        <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
             <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
             <li><a><i ng-click="" class="material-icons">mode_edit</i></a></li>
             <li><a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a></li>
         </ul>
-
     </div>
 </nav>
+
+<!--main content-->
 <div class="main-content-wrapper">
-<div class="flex-main">
-
+<!--    button for slide out nav-->
+    <a href="#!/shoes" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+    <div class="flex-main">
     <!--    //carousel-->
-    <div class="carousel carousel-1">
-        <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
-            <div class="col s12 m6">
-                <img src="{{items.url}}">
-                <a ng-click="deleteShoes(items)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+        <div class="carousel carousel-1">
+            <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
+                <div class="col s12 m6">
+                    <img src="{{items.url}}">
+                    <a ng-click="deleteShoes(items)" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                </div>
             </div>
         </div>
     </div>
-
-    <!--   //camera did not load-->
-    <div id="contain-camera">
-        <div class="alert alert-error ng-scope" ng-show="webcamError">
-            <span>Webcam could not be started. Did you give access to it?</span>
-        </div>
-
-        <!--    // webcam view-->
-        <div ng-hide="hideDiv">
-            <webcam channel="channel"
-                on-streaming="onSuccess()"
-                on-error="onError(err)"
-                on-stream="onStream(stream)">
-
-            </webcam>
-            <button ng-click="makeSnapshot()">take picture</button>
-        </div>
-
-        <!--// canvas view-->
-        <div ng-hide="hideCamDiv" class="row">
-            <div class="card-image">
-                <canvas id="snapshot"></canvas>
-                <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
-                <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+<!--    slide out camera content-->
+    <ul id="slide-out" class="side-nav">
+        <div class="userView">
+            <div id="contain-camera">
+                <div class="alert alert-error ng-scope" ng-show="webcamError">
+                    <span>Webcam could not be started. Did you give access to it?</span>
+                </div>
+                <!--    // webcam view-->
+                <div ng-hide="hideDiv">
+                    <webcam channel="channel"
+                        on-streaming="onSuccess()"
+                        on-error="onError(err)"
+                        on-stream="onStream(stream)">
+                    </webcam>
+                    <button ng-click="makeSnapshot()">take picture</button>
+                </div>
+                <!--// canvas view-->
+                <div ng-hide="hideCamDiv" class="row">
+                    <div class="card-image">
+                        <canvas id="snapshot"></canvas>
+                        <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                    </div>
+                </div>
             </div>
         </div>
-
-    </div>
-</div>
+    </ul>
 </div>

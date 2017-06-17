@@ -27,6 +27,13 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
             $('.carousel').carousel();
     });
 
+    $('.button-collapse').sideNav({
+      menuWidth: 400, // Default is 300
+      edge: 'right', // Choose the horizontal origin
+      closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      draggable: true // Choose whether you can drag to open on touch screens
+    });
+
 
     $scope.onError = function (err) {
         $scope.$apply(
