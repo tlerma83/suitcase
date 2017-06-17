@@ -1,12 +1,10 @@
 "use strict";
 
-app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, KeyFactory, DataFactory, $route, $routeParams){
+app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q, DataFactory, $route, $routeParams){
 
-    console.log("royreParams", $routeParams.suitTitle);
     $scope.suitObj = {};
     $scope.suitObj.title = $routeParams.suitTitle;
     $scope.suitObj.key = $routeParams.suitcaseKey;
-
     $scope.imageArrayOfObj = [];
     $scope.channel = {};
     $scope.hideTitle = true;
@@ -19,14 +17,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     let _video = null,
         patData = null;
 
-
-    if($scope.suitObj.key !== "") {
-       $scope.currentKey = $scope.suitObj.key;
-    }else {
-        $scope.currentKey = KeyFactory.existingKey;
-    }
-
-
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
             $('.carousel').removeClass("initialized");
@@ -36,9 +26,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
 //    $(".button-collapse").sideNav();
-
-
-
       $('.button-collapse').sideNav({
       menuWidth: 400, // Default is 300
       edge: 'right', // Choose the horizontal origin
@@ -46,9 +33,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
       draggable: true // Choose whether you can drag to open on touch screens
     }
   );
-
-
-
 
 
     $scope.onError = function (err) {
@@ -90,11 +74,11 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     };
 
 
-    var getVideoData = function getVideoData(x, y, w, h) {
-        var hiddenCanvas = document.createElement('canvas');
+    let getVideoData = function getVideoData(x, y, w, h) {
+        let hiddenCanvas = document.createElement('canvas');
         hiddenCanvas.width = _video.width;
         hiddenCanvas.height = _video.height;
-        var ctx = hiddenCanvas.getContext('2d');
+        let ctx = hiddenCanvas.getContext('2d');
         ctx.drawImage(_video, 0, 0, _video.width, _video.height);
         return ctx.getImageData(x, y, w, h);
     };
@@ -121,7 +105,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
     let getPhotos = function () {
         $scope.counter = 0;
-//        console.log("existing key", KeyFactory.existingKey, $scope.tops);
         DataFactory.retrievePhotos($routeParams.suitcaseKey, $scope.tops)
         .then((response) => {
             $scope.counter = response.length;

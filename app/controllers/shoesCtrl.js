@@ -1,12 +1,15 @@
 "use strict";
 
-app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, AuthFactory, KeyFactory, $q, $route){
+app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, AuthFactory, $routeParams, $q, $route){
 
 
+
+    $scope.suitObj = {};
+    $scope.suitObj.title = $routeParams.suitTitle;
+    $scope.suitObj.key = $routeParams.suitcaseKey;
     $scope.imageArrayOfObj = [];
     $scope.channel = {};
     $scope.hideTitle = true;
-    $scope.suitObj = KeyFactory;
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;
@@ -17,20 +20,12 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
         patData = null;
 
 
-    if($scope.suitObj.key !== "") {
-       $scope.currentKey = $scope.suitObj.key;
-    }else {
-        $scope.currentKey = KeyFactory.existingKey;
-    }
-
-
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
             $('.carousel').removeClass("initialized");
         }
             $('.carousel').carousel();
     });
-
 
 
     $scope.onError = function (err) {
@@ -91,8 +86,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
-
-        DataFactory.saveImage($scope.blob, $scope.user, date, $scope.currentKey, $scope.shoes)
+        DataFactory.saveImage($scope.blob, $scope.user, date, $routeParams.suitcaseKey, $scope.shoes)
         .then((response) => {
             $scope.imageArrayOfObj.push(response);
         });
@@ -101,7 +95,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrievePhotos(KeyFactory.existingKey, $scope.shoes)
+        DataFactory.retrievePhotos($routeParams.suitcaseKey, $scope.shoes)
         .then((response) => {
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;

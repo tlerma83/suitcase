@@ -1,11 +1,14 @@
 "use strict";
 
-app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, DataFactory, KeyFactory, $q, $route){
+app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, DataFactory, $q, $route, $routeParams){
 
+
+    $scope.suitObj = {};
+    $scope.suitObj.title = $routeParams.suitTitle;
+    $scope.suitObj.key = $routeParams.suitcaseKey;
     $scope.imageArrayOfObj = [];
     $scope.channel = {};
     $scope.hideTitle = true;
-    $scope.suitObj = KeyFactory;
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;
@@ -14,13 +17,6 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
 
     let _video = null,
         patData = null;
-
-
-    if($scope.suitObj.key !== "") {
-       $scope.currentKey = $scope.suitObj.key;
-    }else {
-        $scope.currentKey = KeyFactory.existingKey;
-    }
 
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
@@ -91,7 +87,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
         $scope.hideDiv = false;
         let date = new Date().getTime();
 
-        DataFactory.saveImage($scope.blob, $scope.user, date, $scope.currentKey, $scope.bottoms)
+        DataFactory.saveImage($scope.blob, $scope.user, date, $routeParams.suitcaseKey, $scope.bottoms)
         .then((response) => {
             $scope.imageArrayOfObj.push(response);
         });
@@ -100,7 +96,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
 
     let getPhotos = function () {
         $scope.counter = 0;
-        DataFactory.retrievePhotos(KeyFactory.existingKey, $scope.bottoms)
+        DataFactory.retrievePhotos($routeParams.suitcaseKey, $scope.bottoms)
         .then((response) => {
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;

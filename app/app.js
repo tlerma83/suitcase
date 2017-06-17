@@ -62,12 +62,12 @@ app.config(function($routeProvider){
         controller: "CamCtrl",
         resolve: {isAuth}
     })
-    .when("/bottoms", {
+    .when("/bottoms/:suitcaseKey/:suitTitle", {
         templateUrl: "partials/bottoms.html",
         controller: "BottomsCtrl",
         resolve: {isAuth}
     })
-    .when("/shoes", {
+    .when("/shoes/:suitcaseKey/:suitTitle", {
         templateUrl: "partials/shoes.html",
         controller: "ShoesCtrl",
         resolve: {isAuth}
