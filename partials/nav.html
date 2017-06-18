@@ -14,7 +14,7 @@
 
         <!-- Dropdown Structure -->
         <ul id='demoDropdown' class='dropdown-content'>
-            <li ng-repeat="value in select"><a ng-click="openSuitcase(value.suitKey, value.title)">{{value.title}}</a></li>
+            <li ng-repeat="value in select"><a ng-click="openSuitcase(value.key, value.title)">{{value.title}}</a></li>
         </ul>
         </li>
 <!--
@@ -31,8 +31,8 @@
         <input type="text" ng-model="newSuitcase.title" placeholder="Title your Suitcase">
     </div>
     <div class="modal-footer">
-      <a ng-href="#!/navigation" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a ng-href="#!/navigation" class="btn waves-effect red" ng-click="addNewSuitcase()">Add</a>
+      <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a class="btn waves-effect red" ng-click="addNewSuitcase()">Add</a>
     </div>
 </div>
 

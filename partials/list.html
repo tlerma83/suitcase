@@ -1,0 +1,100 @@
+  <!--main nav-->
+<div ng-include="'partials/nav.html'"></div>
+
+<nav class="second-nav" ng-controller="NavCtrl">
+<!--   view selected-->
+    <div class="nav-wrapper second-nav-color">
+<!--        <a href="#!" class="brand-logo center second-nav-color-text">{{suitName}}</a>-->
+          <a class="title-styling"><input maxlength="32" id="search" type="text" required placeholder="{{suitName}}" class="input-field brand-logo center suitcase-title" ng-model="newSuitcase.title" ng-disabled="titleInput"></a>
+
+        <ul class="left hide-on-med-and-down">
+            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+        </ul>
+        <!--    title and counter display-->
+        <ul class="right hide-on-med-and-down">
+            <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
+            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
+            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
+        </ul>
+    </div>
+<!--    change suitcase title modal-->
+    <div id="edit-mode-modal" class="modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
+        </div>
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <a class="btn waves-effect red" ng-click="editSuitcaseTitle()">Add</a>
+        </div>
+    </div>
+</nav>
+
+
+
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Tops</div>
+            <div class="collapsible-body">
+                <a ng-repeat="image in topArray"><img class="list-thumbnail" src="{{image.url}}"></a>
+                <a><img class="list-thumbnail" src="../images/funny.jpg" alt="Forest"></a>
+            </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Bottoms</div>
+            <div class="collapsible-body">
+                <span ng-repeat="image in bottomArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+            </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Shoes</div>
+            <div class="collapsible-body">
+                <span ng-repeat="image in shoeArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+            </div>
+    </li>
+  </ul>
+
+<!--
+<div input-field>
+    <select class="" ng-model="select.value3" material-select multiple watch>
+        <option ng-repeat="value in select.choices">{{value}}</option>
+    </select>
+</div>
+
+  <div class="input-field col s12">
+    <select multiple>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+      <a><i class="material-icons">delete</i></a>
+    </select>
+
+    <label>Materialize Multiple Select</label>
+  </div>
+
+
+
+
+      <div class="row">
+        <div class="col s12 m3">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title activator grey-text text-darken-4">Tops<i class="material-icons right">more_vert</i></span>
+                <a href="#"><i class="material-icons">delete</i>This is a link</a>
+            </div>
+            <div class="card-action">
+
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+              <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+-->
+
+
+
+
+

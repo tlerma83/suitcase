@@ -7,21 +7,21 @@
 </nav>
 
 <div class="main-content-wrapper">
-    <div class="row">
-    <div class="col s12 m4">
-      <div class="card">
-        <div class="card-image drop-shadow-img">
-          <img  class="circle" src="../images/coollllll.jpg">
-<!--          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
+    <div class="row landing-card-position">
+        <div class="col s12 m4">
+          <div class="card landing-card-styling">
+            <div class="card-image drop-shadow-img">
+              <img  class="circle" src="../images/coollllll.jpg">
+            </div>
+            <div class="card-content" >
+              <p>First we'll start by creating a new suitcase.</p>
+              <p>Then we'll add some photos!</p>
+            </div>
+            <div class="card-content flex-landing-card">
+                    <input class="landing-card-input" placeholder="Label Your Suitcase" autofocus="true" ng-model="newSuitcase.title">
+                    <a class="landing-card" ng-click="addNewSuitcase()"><i class="material-icons">add_library</i></a>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <p>Let' start by creating a new suitcase!</p>
-        </div>
-        <div class="card-content flex-landing-card">
-                <input class="landing-card-input" placeholder="Label Your Suitcase" autofocus="true">
-                <a class="landing-card" href="#"><i class="material-icons">add_library</i></a>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

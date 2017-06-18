@@ -5,23 +5,37 @@
 <nav class="second-nav" ng-controller="NavCtrl">
 <!--   view selected-->
     <div class="nav-wrapper second-nav-color">
-        <a href="#!" class="brand-logo center second-nav-color-text">{{suitObj.title}}</a>
+        <a href="#!" class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
             <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
             <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
-            <li><a><i ng-click="" class="material-icons">mode_edit</i></a></li>
-            <li><a class="title-delete-icon"><i ng-click="deleteSuitcase(currentKey)" class="material-icons">delete</i></a></li>
+            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
+            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
         </ul>
+    </div>
+<!--    change suitcase title modal-->
+    <div id="edit-mode-modal" class="modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
+        </div>
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <a class="btn waves-effect red" ng-click="editSuitcaseTitle()">Add</a>
+        </div>
     </div>
 </nav>
 
 <!--main content-->
 <div class="main-content-wrapper">
-<!--    button for slide out nav-->
-    <a href="#!/bottoms" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+<!--    breadcrumb and slide out nav-->
+    <div class="col m12 breadcrumbs">
+        <a href="">Bottoms</a>
+        <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/photo-camera.png"></a>
+    </div>
+
     <div class="flex-main">
     <!--    //carousel-->
         <div class="carousel carousel-1">

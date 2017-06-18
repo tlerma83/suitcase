@@ -2,12 +2,9 @@
 
 app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, DataFactory, $q, $route, $routeParams){
 
-
-    $scope.suitObj = {};
-    $scope.suitObj.title = $routeParams.suitTitle;
-    $scope.suitObj.key = $routeParams.suitcaseKey;
+    $scope.suitName = $routeParams.suitTitle;
+    $scope.suitKey = $routeParams.suitcaseKey;
     $scope.imageArrayOfObj = [];
-    $scope.channel = {};
     $scope.hideTitle = true;
     $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();

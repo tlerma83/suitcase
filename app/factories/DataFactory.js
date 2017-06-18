@@ -60,7 +60,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
             .then((response) => {
                 let suitcaseObj = response.data;
                 Object.keys(suitcaseObj).forEach((key) => {
-                    suitcaseObj[key].suitKey = key;
+                    suitcaseObj[key].key = key;
                     suitArray.push(suitcaseObj[key]);
                 });
                 resolve(suitArray);
@@ -86,6 +86,22 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    /************ suitcase ************/
+    let editSuitTitle = function (key, titleObj) {
+        let newobj = {};
+        newobj.title = titleObj;
+        return $q((resolve, reject) => {
+            $http.patch(`${FBCreds.databaseURL}/suitcase/${key}.json`, newobj)
+            .then((response) => {
+                console.log("are we making it this far?", response);
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
     /************ Photos ************/
     let saveImage = function (imageBlob, user, date, suitcaseKey, collectionName) {
         // initiate storage reference
@@ -103,6 +119,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
                 newPhotoObject.url = picObj;
                 newPhotoObject.uid = user;
                 newPhotoObject.suitcase = suitcaseKey;
+                newPhotoObject.type = collectionName;
                 return $http.post(`${FBCreds.databaseURL}/${collectionName}.json`, newPhotoObject);
             })
             .then( (key) => {
@@ -155,6 +172,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         deleteSuitcase,
         saveImage,
         retrievePhotos,
-        deletePhoto
+        deletePhoto,
+        editSuitTitle
     };
 });

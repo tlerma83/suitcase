@@ -83,8 +83,11 @@ body, html {
 .second-nav-color i {
   color: #999 !important; }
 
-.second-nav-color-text {
+.suitcase-title {
   color: #333 !important; }
+
+.side-nav {
+  background-color: #85D5DE !important; }
 
 .dark-color-text a {
   color: #333 !important; }
@@ -99,8 +102,57 @@ body, html {
 .landing-card i {
   width: 40px !important; }
 
+.landing-card-position {
+  margin-left: 10% !important;
+  padding-top: 5em !important; }
+
+.landing-card-styling {
+  margin: 0 !important;
+  border-radius: 15px !important; }
+
+.card-content {
+  padding: 15px !important; }
+
+.card-content p {
+  padding: 5px !important; }
+
 .circle {
-  border-bottom-left-radius: 10px !important;
-  border-bottom-right-radius: 10px !important; }
+  border-radius: 15px !important; }
+
+.input-field {
+  width: 20% !important;
+  margin-left: 40% !important; }
+
+.breadcrumbs {
+  text-align: center !important;
+  padding-top: 3em !important; }
+
+.breadcrumbs a {
+  color: white !important;
+  font-size: 1.5em !important;
+  width: 20% !important;
+  margin-top: 10px !important;
+  margin-right: 25px !important; }
+
+.breadcrumbs img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle !important;
+  margin-bottom: 5px !important; }
+
+.list-thumbnail {
+  border: 1px solid #ddd;
+  /* Gray border */
+  border-radius: 4px;
+  /* Rounded border */
+  padding: 5px;
+  /* Some padding */
+  width: 100px !important;
+  /* Set a small width */
+  height: 100px !important; }
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000; }
 
 /*# sourceMappingURL=style.css.map */
