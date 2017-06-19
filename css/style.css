@@ -71,23 +71,14 @@ body, html {
 .suite-title-tag {
   display: inline-block; }
 
+nav li, a {
+  font-family: 'Josefin Slab', serif !important; }
+
 .activeStuff {
   border-bottom: 2px solid black !important; }
 
-.nav-background {
-  background-color: #85D5DE !important; }
-
-.second-nav {
-  background-color: white !important; }
-
-.second-nav-color i {
-  color: #999 !important; }
-
-.suitcase-title {
-  color: #333 !important; }
-
 .side-nav {
-  background-color: #85D5DE !important; }
+  background-color: #77bfc7 !important; }
 
 .dark-color-text a {
   color: #333 !important; }
@@ -114,7 +105,8 @@ body, html {
   padding: 15px !important; }
 
 .card-content p {
-  padding: 5px !important; }
+  padding: 5px !important;
+  font-family: 'Josefin Slab', serif !important; }
 
 .circle {
   border-radius: 15px !important; }
@@ -140,6 +132,18 @@ body, html {
   vertical-align: middle !important;
   margin-bottom: 5px !important; }
 
+.nav-background {
+  background-color: #85D5DE !important; }
+
+.second-nav {
+  background-color: white !important; }
+
+.second-nav-color i {
+  color: #999 !important; }
+
+.suitcase-title {
+  color: #333 !important; }
+
 .list-thumbnail {
   border: 1px solid #ddd;
   /* Gray border */
@@ -151,18 +155,91 @@ body, html {
   /* Set a small width */
   height: 100px !important; }
 
+.pack-list-add-btn {
+  background-color: #77bfc7 !important;
+  margin-top: 8em !important;
+  margin-left: 15% !important; }
+
 .pack-list {
-  background-color: #85D5DE !important; }
+  background: rgba(133, 213, 222, 0.8) !important; }
+
+.label-cards {
+  column-count: 6 !important; }
 
 .pack-list-color {
-  background-color: white; }
+  background-color: white;
+  font-family: 'Josefin Slab', serif !important;
+  border-radius: 15px !important;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+  -webkit-column-break-inside: avoid; }
 
 .popout-styling {
   margin-top: 0;
-  padding-top: 3em !important; }
+  padding-top: 2em !important;
+  width: 65% !important;
+  margin-left: 20%; }
 
-.input-field input[type=text]:focus {
-  border-bottom: 1px solid #000;
-  box-shadow: 0 1px 0 0 #000; }
+.background-images-pack-list {
+  background: rgba(133, 213, 222, 0.9) !important; }
+
+.collapsible-header {
+  font-family: 'Josefin Slab', serif !important; }
+
+.pack-list-delete-icon {
+  color: #999 !important; }
+
+.label-icon {
+  color: #999 !important; }
+
+.clothing-icons {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 12px; }
+
+.contain-login-page {
+  padding-top: 1em !important; }
+
+#logo-login {
+  padding-bottom: .5em !important;
+  padding-left: 5% !important; }
+
+#logo-login a {
+  color: #77bfc7 !important;
+  font-family: 'Handlee', cursive !important; }
+
+.login-form {
+  background: rgba(255, 255, 255, 0.9) !important;
+  width: 60%;
+  border-radius: 15px !important;
+  border: 1px #999 solid !important; }
+
+.flex-btn {
+  width: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin-left: 25% !important; }
+
+.login-btn {
+  padding: 0 !important;
+  font-size: 1vw !important;
+  background-color: #77bfc7 !important;
+  font-family: 'Josefin Slab', serif !important; }
+
+.login-p-tag {
+  margin-left: 10px !important;
+  margin-right: 10px !important; }
+
+.login-input {
+  width: 50% !important;
+  margin-left: 25% !important; }
+
+.register-btn {
+  width: 100% !important;
+  font-size: 1vw !important;
+  padding: 0 !important;
+  background-color: #77bfc7 !important;
+  font-family: 'Josefin Slab', serif !important; }
 
 /*# sourceMappingURL=style.css.map */

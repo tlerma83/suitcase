@@ -4,15 +4,6 @@ body, html {
     background-color: #333 !important;
 }
 
-//html {
-//  background: url("../images/home6.jpg") no-repeat center center fixed;
-//  -webkit-background-size: cover;
-//  -moz-background-size: cover;
-//  -o-background-size: cover;
-//  background-size: cover;
-//
-//}
-
 .background-image {
     background-image: url("../images/girl2.png");
     height: 100%;
@@ -120,6 +111,11 @@ body, html {
     display: inline-block;
 }
 
+
+nav li, a {
+//    font-family: 'Pacifico', cursive !important;
+    font-family: 'Josefin Slab', serif !important;
+}
 //.title-delete-icon {
 //    margin-top: 10px !important;
 //}
@@ -128,32 +124,12 @@ body, html {
     border-bottom: 2px solid black !important;
 }
 
-.nav-background {
-    background-color: #85D5DE !important;
-}
-
-.second-nav {
-    background-color: white !important;
-}
-
-.second-nav-color i{
-    color: #999 !important;
-}
-
-.suitcase-title {
-    color: #333 !important;
-//    border-bottom: none !important;
-//    font-size: 2rem !important;
-//    width: 35% !important;
-//    padding-top: 5px !important;
-//    margin-bottom: 0 !important;
-}
-
-
 .side-nav {
-    background-color: #85D5DE !important;
+    background-color: #77bfc7 !important;
 }
 
+
+//landing card page
 .dark-color-text a {
     color: #333 !important;
 }
@@ -187,6 +163,7 @@ body, html {
 
 .card-content p {
     padding: 5px !important;
+    font-family: 'Josefin Slab', serif !important;
 }
 
 .circle {
@@ -198,6 +175,8 @@ body, html {
     margin-left: 40% !important;
 }
 
+
+//second navbar
 .breadcrumbs {
     text-align: center !important;
     padding-top: 3em !important;
@@ -218,6 +197,34 @@ body, html {
     margin-bottom: 5px !important;
 }
 
+.nav-background {
+    background-color: #85D5DE !important;
+}
+
+.second-nav {
+    background-color: white !important;
+}
+
+.second-nav-color i{
+    color: #999 !important;
+}
+
+.suitcase-title {
+    color: #333 !important;
+//    border-bottom: none !important;
+//    font-size: 2rem !important;
+//    width: 35% !important;
+//    padding-top: 5px !important;
+//    margin-bottom: 0 !important;
+}
+
+
+
+
+//pack list page
+.pack-list-wrap {
+
+}
 .list-thumbnail {
 
     border: 1px solid #ddd; /* Gray border */
@@ -227,32 +234,129 @@ body, html {
     height: 100px !important;
 }
 
-.pack-list {
-    background-color: #85D5DE !important;
+.pack-list-add-btn {
+    background-color: #77bfc7 !important;
+    margin-top: 8em !important;
+    margin-left: 15% !important;
 }
 
-//.pack-list-flex {
-//    display: flex !important;
-//    justify-content: center!important;
-//}
+.pack-list {
+//    background-color: #85D5DE !important;
+    background:rgba(133,213,222, 0.8) !important;
+}
+
+.label-cards {
+    column-count: 6 !important;
+}
 
 .pack-list-color {
     background-color: white;
+    font-family: 'Josefin Slab', serif !important;
+    border-radius: 15px !important;
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+    -webkit-column-break-inside: avoid;
 }
 
 .popout-styling {
     margin-top:  0;
-    padding-top: 3em !important;
-//    display: flex !important;
-//    flex-flow: row;
-//    justify-content: center !important;
+    padding-top: 2em !important;
+    width: 65% !important;
+    margin-left: 20%;
+}
+
+.background-images-pack-list {
+    background:rgba(133,213,222, 0.9) !important;
 }
 
 .add-list-item {
 //    background-color: bisque !important;
 }
 
- .input-field input[type=text]:focus {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
+.collapsible-header {
+    font-family: 'Josefin Slab', serif !important;
+}
+
+.pack-list-delete-icon {
+    color: #999 !important;
+}
+
+
+.label-icon {
+    color: #999 !important;
+}
+
+.clothing-icons {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+// LOGIN Styling //
+.contain-login-page {
+    padding-top: 1em !important;
+}
+
+#logo-login {
+    padding-bottom: .5em !important;
+    padding-left: 5% !important;
+}
+
+#logo-login a {
+    color: #77bfc7 !important;
+    font-family: 'Handlee', cursive !important;
+}
+
+//.form-wrapper {
+//    background-color: white;
+//    opacity: 0.5;
+//}
+
+.login-form {
+//    background-color: white !important;
+//    background: rgba(76, 175, 80, 0.6) !important;
+    background:rgba(255,255,255, 0.9) !important;
+    width: 60%;
+    border-radius: 15px !important;
+    border: 1px #999 solid !important;
+}
+
+.flex-btn {
+    width: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-left: 25% !important;
+}
+
+.login-btn {
+    padding: 0 !important;
+    font-size: 1vw !important;
+    background-color: #77bfc7 !important;
+    font-family: 'Josefin Slab', serif !important;
+}
+
+.login-p-tag {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.login-input {
+    width: 50% !important;
+    margin-left: 25% !important;
+}
+
+.register-btn {
+    width: 100% !important;
+    font-size: 1vw !important;
+    padding: 0 !important;
+    background-color: #77bfc7 !important;
+    font-family: 'Josefin Slab', serif !important;
+}
+
+
+
+
+
+
+

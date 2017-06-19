@@ -28,73 +28,70 @@
 </nav>
 
 <div class="main-content-wrapper">
-  <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
-
-
-  <li col s12 m4 add-list-item>
-        <div data-target="label-modal" modal><i class="material-icons">label</i>
-            <span ng-hide="addLabelText" >add new label</span>
-        </div>
-    </li>
-
-
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Tops</div>
-            <div class="collapsible-body">
-                <a ng-repeat="image in topArray"><img class="list-thumbnail" src="{{image.url}}"></a>
-                <a><img class="list-thumbnail" src="../images/funny.jpg" alt="Forest"></a>
-            </div>
-    </li>
-
-    <li col s12 m4>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Bottoms</div>
-            <div class="collapsible-body">
-                <span ng-repeat="image in bottomArray"><img class="list-thumbnail" src="{{image.url}}"></span>
-            </div>
-    </li>
-    <li col s12 m4>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>Shoes</div>
-            <div class="collapsible-body">
-                <span ng-repeat="image in shoeArray"><img class="list-thumbnail" src="{{image.url}}"></span>
-            </div>
-    </li>
-
-    <li col s12 m4 ng-repeat="items in labelObj">
-        <div class="collapsible-header"><i class="material-icons">label</i>
-            <span>{{items.title}}</span>
-            <span ng-click="deleteLabel(items.label_key)"><i class="material-icons">delete</i></span>
-        </div>
-            <div class="collapsible-body pack-list">
-                <span>
-                <i class="material-icons" ng-click="addListItem(items.label_key)">add</i>
-                <input class="list-input" type="text" placeholder="list item" ng-model="listObj.title">
-<!--                <i class="material-icons">delete</i>-->
-                </span>
-                <div class="row pack-list-flex">
-                <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">
-                    <p>{{list.title}}</p>
-                    <i class="material-icons">delete</i>
+    <a class="waves-effect waves-light btn pack-list-add-btn" data-target="label-modal" modal><i class="material-icons left">add</i>Add a label</a>
+    <div>
+        <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
+<!--           tops image ng-repeat list-->
+            <li>
+                <div class="collapsible-header"><img src="../images/003-shirt.png" class="clothing-icons">
+                   Tops
                 </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <a ng-repeat="image in topArray"><img class="list-thumbnail" src="{{image.url}}"></a>
+                    <a><img class="list-thumbnail" src="../images/funny.jpg" alt="Forest"></a>
                 </div>
-            </div>
-    </li>
+            </li>
+<!--            bottoms image ng-repeat list-->
+            <li>
+                <div class="collapsible-header"><img src="../images/002-pants.png" class="clothing-icons">
+                    Bottoms
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <span ng-repeat="image in bottomArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+                </div>
+            </li>
+<!--            shoes image ng-repeat list-->
+            <li>
+                <div class="collapsible-header"><img src="../images/001-high-heels.png" class="clothing-icons">
+                    Shoes
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <span ng-repeat="image in shoeArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+                </div>
+            </li>
+<!--            labels and lists ng-repeat-->
+            <li ng-repeat="items in labelObj">
+                <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
+                    <span>{{items.title}}</span>
+                    <span ng-click="deleteLabel(items.label_key)"><a href="#!" class="secondary-content"><i class="material-icons pack-list-delete-icon">delete</i></a></span>
+                </div>
+                <div class="collapsible-body pack-list">
+                    <span>
+                        <i class="material-icons" ng-click="addListItem(items.label_key)">add</i>
+                        <input type="text" placeholder="list item" ng-model="listObj.title">
+                    </span>
+                    <div class="row pack-list-flex">
+                        <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">
+                            <p>{{list.title}}</p>
+                            <i class="material-icons pack-list-delete-icon">delete</i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-
-
-  </ul>
-</div>
-
-<!--  add label modal-->
-  <div id="label-modal" class="modal">
+    <!--  add label modal-->
+    <div id="label-modal" class="modal">
         <div class="modal-content">
             <input type="text" ng-model="newLabel.title" placeholder="Customize your suitcase">
         </div>
         <div class="modal-footer">
-          <a class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
-          <a ng-click="addNewLabel()" class="btn waves-effect teal"><i class="material-icons">add</i></a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+            <a ng-click="addNewLabel()" class="btn waves-effect teal"><i class="material-icons">add</i></a>
         </div>
     </div>
-
+</div>
 
 
 

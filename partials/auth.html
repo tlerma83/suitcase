@@ -1,18 +1,53 @@
-<div>
-   <div>Log In
-       <input type="email" ng-model="auth.email" placeholder="email">
-        <input type="password" ng-model="auth.password" placeholder="password">
-        <button ng-click="login()">login</button>
+<div class="contain-login-page">
 
-   </div>
+    <h1 id="logo-login"><a>PackStar</a></h1>
 
-   <br><br>
 
-   <div>Register
-    <input type="text" ng-model="auth.firstName" placeholder="first name">
-    <input type="text" ng-model="auth.lastName" placeholder="last name">
-    <input type="email" ng-model="auth.email" placeholder="email">
-    <input type="password" ng-model="auth.password" placeholder="password">
-    <button ng-click="register()">register</button>
+<!--landing login view-->
+    <div class="row login-form" ng-hide="hideLogin">
+        <form class="col m12">
+            <div class="row">
+                <div class="input-field col s12 m12 login-input">
+                    <input id="email" class="validate" type="email" ng-model="auth.email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12 m12 login-input">
+                    <input id="password" type="password" ng-model="auth.password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12 m12 flex-btn">
+                    <button class="col s6 btn waves-effect waves-light login-btn" type="submit" name="action" ng-click="login()">login</button>
+                    <p class="login-p-tag">or</p>
+                    <button class="col s6 btn waves-effect waves-light login-btn" type="submit" name="action" ng-click="registerClick()">register</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--Register view-->
+    <div class="row login-form" ng-hide="hideRegister">
+        <form class="col m12">
+            <div class="row">
+                <div class="input-field col s12 m12 login-input">
+                    <input ng-model="auth.firstName" id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s12 m12 login-input">
+                    <input ng-model="auth.lastName" id="last_name" type="text" class="validate">
+                    <label for="last_name">Last Name</label>
+                </div>
+                <div class="input-field col s12 m12 login-input">
+                    <input id="email" class="validate" type="email" ng-model="auth.email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12 m12 login-input">
+                    <input id="password" type="password" ng-model="auth.password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12 m12">
+                    <button class="col s6 btn waves-effect waves-light register-btn" type="submit" name="action" ng-click="register()">register</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
