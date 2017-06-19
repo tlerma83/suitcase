@@ -10,7 +10,7 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         {url: `tops/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Tops"},
         {url: `bottoms/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Bottoms"},
         {url: `shoes/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Shoes"},
-        {url: `packlist/${$routeParams.suitcaseKey}${$routeParams.suitTitle}`, name: "Pack List"}
+        {url: `packlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Pack List"}
     ];
 
 

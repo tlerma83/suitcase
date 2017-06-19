@@ -164,6 +164,83 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+
+    let createLabel = function (labelObj) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/label.json`, labelObj)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+    let getlabel = function (labelKey) {
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/label/${labelKey}.json`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    let getAllLabels = function (suitKey, collectionName) {
+        let labeArray = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/${collectionName}.json?orderBy="suitcase"&equalTo="${suitKey}"`)
+            .then((response) => {
+                let labelObj = response.data;
+                Object.keys(labelObj).forEach(function(key){
+                    labelObj[key].label_key = key;
+                    labeArray.push(labelObj[key]);
+
+                });
+                resolve(labeArray);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    let postListItem = function (listObj) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/list.json`, listObj)
+            .then((response) => {
+                console.log("list key", response.data);
+                resolve(response.data.name);
+            });
+        });
+    };
+
+
+
+    let getAllLists = function (suitKey) {
+        let listArray = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/list.json?orderBy="suitcase"&equalTo="${suitKey}"`)
+            .then((response) => {
+                let listObj = response.data;
+                Object.keys(listObj).forEach(function(key){
+                    listObj[key].list_key = key;
+                    listArray.push(listObj[key]);
+
+                });
+                resolve(listArray);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
     return{
         addNewUser,
         getUserInfo,
@@ -173,6 +250,11 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         saveImage,
         retrievePhotos,
         deletePhoto,
-        editSuitTitle
+        editSuitTitle,
+        createLabel,
+        getlabel,
+        getAllLabels,
+        postListItem,
+        getAllLists
     };
 });

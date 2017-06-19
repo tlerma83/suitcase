@@ -4,9 +4,7 @@
 <nav class="second-nav" ng-controller="NavCtrl">
 <!--   view selected-->
     <div class="nav-wrapper second-nav-color">
-<!--        <a href="#!" class="brand-logo center second-nav-color-text">{{suitName}}</a>-->
-          <a class="title-styling"><input maxlength="32" id="search" type="text" required placeholder="{{suitName}}" class="input-field brand-logo center suitcase-title" ng-model="newSuitcase.title" ng-disabled="titleInput"></a>
-
+        <a href="#!" class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
             <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
         </ul>
@@ -29,9 +27,17 @@
     </div>
 </nav>
 
+<div class="main-content-wrapper">
+  <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
 
 
-  <ul class="collapsible popout" data-collapsible="accordion">
+  <li col s12 m4 add-list-item>
+        <div data-target="label-modal" modal><i class="material-icons">label</i>
+            <span ng-hide="addLabelText" >add new label</span>
+        </div>
+    </li>
+
+
     <li>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Tops</div>
             <div class="collapsible-body">
@@ -39,60 +45,56 @@
                 <a><img class="list-thumbnail" src="../images/funny.jpg" alt="Forest"></a>
             </div>
     </li>
-    <li>
+
+    <li col s12 m4>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Bottoms</div>
             <div class="collapsible-body">
                 <span ng-repeat="image in bottomArray"><img class="list-thumbnail" src="{{image.url}}"></span>
             </div>
     </li>
-    <li>
+    <li col s12 m4>
       <div class="collapsible-header"><i class="material-icons">filter_drama</i>Shoes</div>
             <div class="collapsible-body">
                 <span ng-repeat="image in shoeArray"><img class="list-thumbnail" src="{{image.url}}"></span>
             </div>
     </li>
-  </ul>
 
-<!--
-<div input-field>
-    <select class="" ng-model="select.value3" material-select multiple watch>
-        <option ng-repeat="value in select.choices">{{value}}</option>
-    </select>
+    <li col s12 m4 ng-repeat="items in labelObj">
+        <div class="collapsible-header"><i class="material-icons">label</i>
+            <span>{{items.title}}</span>
+            <span ng-click="deleteLabel(items.label_key)"><i class="material-icons">delete</i></span>
+        </div>
+            <div class="collapsible-body pack-list">
+                <span>
+                <i class="material-icons" ng-click="addListItem(items.label_key)">add</i>
+                <input class="list-input" type="text" placeholder="list item" ng-model="listObj.title">
+<!--                <i class="material-icons">delete</i>-->
+                </span>
+                <div class="row pack-list-flex">
+                <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">
+                    <p>{{list.title}}</p>
+                    <i class="material-icons">delete</i>
+                </div>
+                </div>
+            </div>
+    </li>
+
+
+
+  </ul>
 </div>
 
-  <div class="input-field col s12">
-    <select multiple>
-      <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-      <a><i class="material-icons">delete</i></a>
-    </select>
-
-    <label>Materialize Multiple Select</label>
-  </div>
-
-
-
-
-      <div class="row">
-        <div class="col s12 m3">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title activator grey-text text-darken-4">Tops<i class="material-icons right">more_vert</i></span>
-                <a href="#"><i class="material-icons">delete</i>This is a link</a>
-            </div>
-            <div class="card-action">
-
-            </div>
-            <div class="card-reveal">
-              <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-              <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-          </div>
+<!--  add label modal-->
+  <div id="label-modal" class="modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newLabel.title" placeholder="Customize your suitcase">
         </div>
-      </div>
--->
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+          <a ng-click="addNewLabel()" class="btn waves-effect teal"><i class="material-icons">add</i></a>
+        </div>
+    </div>
+
 
 
 
