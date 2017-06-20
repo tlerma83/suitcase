@@ -17,21 +17,6 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover; }
 
-#conatiner {
-  height: 100%;
-  width: 100%;
-  margin: 0; }
-
-.flex-main {
-  display: flex;
-  justify-content: space-between; }
-
-#controls {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  width: 100%; }
-
 .container-images {
   position: relative !important;
   width: 50% !important; }
@@ -42,7 +27,9 @@ body, html {
   width: 100% !important;
   height: auto !important;
   transition: .5s ease !important;
-  backface-visibility: hidden !important; }
+  backface-visibility: hidden !important;
+  border-radius: 15px;
+  box-shadow: -5px 5px 15px 5px #191919; }
 
 .carousel-btn {
   transition: .5s ease !important;
@@ -70,13 +57,14 @@ body, html {
   height: 64 !important;
   width: 64 !important; }
 
+.carousel {
+  height: 435px !important; }
+
 .carousel .carousel-item {
-  width: 400px !important;
-  margin: 0 !important; }
+  width: 400px !important; }
 
 .carousel .carousel-item img {
-  width: 400px !important;
-  margin: 0 !important; }
+  width: 400px !important; }
 
 .flex-title {
   display: flex;
@@ -185,13 +173,9 @@ nav li, a {
 
 .list-thumbnail {
   border: 1px solid #ddd;
-  /* Gray border */
   border-radius: 4px;
-  /* Rounded border */
   padding: 5px;
-  /* Some padding */
   width: 100px !important;
-  /* Set a small width */
   height: 100px !important; }
 
 .pack-list-add-btn {

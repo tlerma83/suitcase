@@ -20,44 +20,12 @@ body, html {
     background-size: cover;
 }
 
-#conatiner {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-}
-
-.flex-main {
-    display: flex;
-    justify-content: space-between;
-//    margin-bottom: 0;
-//    margin-left: 0;
-//    margin-right: 0;
-//    height: 50%;
-//    margin-top: 3em;
-//    margin-bottom: 0;
-//    padding-top: 10%;
-}
-
-
-///testing canvas position
-//#contain-camera {
-////    margin-top: 15%;
-//    height: 250px;
-//    position: relative;
-//    width: 500px;
+//#conatiner {
+//    height: 100%;
+//    width: 100%;
+//    margin: 0;
 //}
 
-#controls {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-}
-
-
-//.camera-placeholder {
-//  height: 275px !important;
-//}
 
 .container-images {
     position: relative !important;
@@ -71,6 +39,8 @@ body, html {
     height: auto !important;
     transition: .5s ease !important;
     backface-visibility: hidden !important;
+    border-radius: 15px;
+    box-shadow: -5px 5px 15px 5px #191919;
 }
 
 .carousel-btn {
@@ -100,42 +70,23 @@ body, html {
 }
 
 
-//.btn-floating.halfway-fab {
-//    bottom: 125px;
-//    right: 45%;
-////    border-radius: 0 !important;
-//}
-
 .camera-icon {
     height: 64 !important;
     width: 64 !important;
 }
 
+.carousel {
+    height: 435px !important;
+}
+
 .carousel .carousel-item {
     width: 400px !important;
-    margin: 0 !important;
-//    height: 500px !important;
 }
 
 .carousel .carousel-item img{
     width: 400px !important;
-    margin: 0 !important;
-//    border-radius: 10px !important;
-//    height: 500px !important;
 }
 
-//.carousel-img-btn {
-//    position: relative;
-////    text-align: right;
-//}
-//.photo-delete-btn {
-////    margin-top: 70% !important;
-//    position: absolute;
-//    top: 70% !important;
-//    right: -70% !important;
-////    left: 70 !important;
-////    bottom: 0 !important;
-//}
 
 .flex-title {
     display: flex;
@@ -199,7 +150,6 @@ nav li, a {
     width: 70% !important;
     font-family: 'Josefin Slab', serif !important;
     font-size: 1.5em !important;
-//    margin-right: 0 !important;
     margin-left: 5px !important;
 }
 
@@ -293,10 +243,10 @@ nav li, a {
 }
 .list-thumbnail {
 
-    border: 1px solid #ddd; /* Gray border */
-    border-radius: 4px;  /* Rounded border */
-    padding: 5px; /* Some padding */
-    width: 100px !important; /* Set a small width */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100px !important;
     height: 100px !important;
 }
 
@@ -307,7 +257,6 @@ nav li, a {
 }
 
 .pack-list {
-//    background-color: #85D5DE !important;
     background:rgba(133,213,222, 0.8) !important;
 }
 
@@ -335,10 +284,6 @@ nav li, a {
     background:rgba(133,213,222, 0.9) !important;
 }
 
-.add-list-item {
-//    background-color: bisque !important;
-}
-
 .collapsible-header {
     font-family: 'Josefin Slab', serif !important;
 }
@@ -346,7 +291,6 @@ nav li, a {
 .pack-list-delete-icon {
     color: #999 !important;
 }
-
 
 .label-icon {
     color: #999 !important;
