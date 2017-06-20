@@ -171,6 +171,9 @@ nav li, a {
 .second-nav-color i {
   color: #999 !important; }
 
+.second-nav-color a {
+  color: #333 !important; }
+
 .suitcase-title {
   color: #333 !important; }
 
