@@ -25,6 +25,7 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
 
 
     $scope.addNewLabel = function () {
+        if ($scope.newLabel.title === "") return;
         $("#label-modal").modal("close");
         $scope.newLabel.suitcase = $scope.suitKey;
         $scope.newLabel.uid = $scope.user;

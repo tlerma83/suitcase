@@ -43,7 +43,7 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         }
     };
 
-    
+
     let allSuitcases = function () {
         DataFactory.getAllSuitcases($scope.user)
         .then((response) => {
@@ -56,6 +56,7 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
     };
 
     $scope.editSuitcaseTitle = function () {
+        if ($scope.newSuitcase.title === "") return;
         $("#edit-mode-modal").modal("close");
         DataFactory.editSuitTitle($routeParams.suitcaseKey, $scope.newSuitcase.title)
         .then((response) =>{

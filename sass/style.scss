@@ -107,6 +107,10 @@ nav li, a {
     font-family: 'Josefin Slab', serif !important;
 }
 
+.welcome-logo {
+    margin-left: 15px;
+}
+
 .suitcase-modal {
     background-color: #e5e5e5 !important;
     border-radius: 15px !important;
@@ -161,7 +165,7 @@ nav li, a {
 }
 
 .landing-card-position {
-    margin-left: 15% !important;
+    margin-left: 20% !important;
     padding-top: 5em !important;
 }
 
@@ -323,7 +327,7 @@ nav li, a {
     width: 60%;
     border-radius: 15px !important;
     border: 1px #999 solid !important;
-    box-shadow: -5px 5px 15px 5px #191919;
+    box-shadow: -5px 5px 25px 5px #212121;
 }
 
 .flex-btn {
