@@ -17,22 +17,18 @@
             <li ng-repeat="value in select"><a ng-click="openSuitcase(value.key, value.title)">{{value.title}}</a></li>
         </ul>
         </li>
-<!--
-      <li><a ng-href="#!/tops">Tops</a></li>
-      <li><a ng-href="#!/bottoms">Bottoms</a></li>
--->
-      <li><a  ng-click="logout()" ng-href="#!/">Logout</a></li>
+      <li><a ng-click="logout()" ng-href="#!/">Logout</a></li>
     </ul>
   </div>
-
-  <div id='createNew' class="modal">
+<!--    create new suitecase title modal-->
+  <div id='createNew' class="modal suitcase-modal">
     <div class="modal-content">
-        <h4>Pack New Suitcase</h4>
+        <h4>Pack a New Suitcase</h4>
         <input type="text" ng-model="newSuitcase.title" placeholder="Title your Suitcase">
     </div>
     <div class="modal-footer">
-      <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-      <a class="btn waves-effect red" ng-click="addNewSuitcase()">Add</a>
+      <a class="modal-action modal-close waves-effect waves-blue btn-flat" ng-click="clearModalInput()">Cancel</a>
+      <a class="btn waves-effect blue suit-modal-btn" ng-click="addNewSuitcase()">Add</a>
     </div>
 </div>
 

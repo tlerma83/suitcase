@@ -27,16 +27,23 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
     };
 
 
-    $scope.addNewSuitcase = function () {
-        $("#createNew").modal('close');
-        $scope.newSuitcase.uid = $scope.user;
-        console.log("new title", $scope.newSuitcase);
-        DataFactory.addSuitCase($scope.newSuitcase)
-        .then((response) => {
-            $window.location.href = "#!tops/" + response.key + "/"  + response.title;
-        });
+    $scope.clearModalInput = function () {
+        $scope.newSuitcase.title = "";
     };
 
+
+    $scope.addNewSuitcase = function () {
+        if ($scope.newSuitcase.title !== "") {
+            $("#createNew").modal('close');
+            $scope.newSuitcase.uid = $scope.user;
+            DataFactory.addSuitCase($scope.newSuitcase)
+            .then((response) => {
+                $window.location.href = "#!tops/" + response.key + "/"  + response.title;
+            });
+        }
+    };
+
+    
     let allSuitcases = function () {
         DataFactory.getAllSuitcases($scope.user)
         .then((response) => {

@@ -74,8 +74,21 @@ body, html {
 nav li, a {
   font-family: 'Josefin Slab', serif !important; }
 
-.activeStuff {
-  border-bottom: 2px solid black !important; }
+.suitcase-modal {
+  background-color: #e5e5e5 !important;
+  border-radius: 15px !important;
+  color: #666 !important;
+  font-family: 'Josefin Slab', serif !important;
+  width: 30% !important; }
+
+.suitcase-modal a {
+  margin: 3px !important; }
+
+.suit-modal-btn {
+  background-color: #77bfc7 !important; }
+
+.suitcase-modal input {
+  font-size: 1.5em !important; }
 
 .side-nav {
   background-color: #77bfc7 !important; }
@@ -88,25 +101,33 @@ nav li, a {
   justify-content: space-between; }
 
 .landing-card-input {
-  width: 70% !important; }
+  width: 70% !important;
+  font-family: 'Josefin Slab', serif !important;
+  font-size: 1.5em !important;
+  margin-left: 5px !important; }
 
 .landing-card i {
-  width: 40px !important; }
+  width: 40px !important;
+  color: #999 !important;
+  padding-top: 10px !important;
+  margin-right: 10px !important; }
 
 .landing-card-position {
-  margin-left: 10% !important;
+  margin-left: 15% !important;
   padding-top: 5em !important; }
 
 .landing-card-styling {
   margin: 0 !important;
-  border-radius: 15px !important; }
+  border-radius: 15px !important;
+  box-shadow: -5px 5px 15px 5px #191919; }
 
 .card-content {
   padding: 15px !important; }
 
 .card-content p {
   padding: 5px !important;
-  font-family: 'Josefin Slab', serif !important; }
+  font-family: 'Josefin Slab', serif !important;
+  font-size: 1.5em !important; }
 
 .circle {
   border-radius: 15px !important; }
