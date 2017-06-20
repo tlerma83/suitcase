@@ -40,9 +40,9 @@
     <!--    //carousel-->
         <div class="carousel carousel-1">
             <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
-                <div class="col s12 m6 carousel-img-btn">
-                    <img src="{{items.url}}">
-                    <a ng-click="deleteTops(items)" class="btn-floating halfway-fab waves-effect waves-light red photo-delete-btn"><i class="material-icons">delete</i></a>
+                <div class="container-images">
+                    <img class="carousel-img-styling" src="{{items.url}}">
+                    <a ng-click="deleteTops(items)" class="carousel-btn"><i class="material-icons delete-photo-icon">delete</i></a>
                 </div>
             </div>
         </div>

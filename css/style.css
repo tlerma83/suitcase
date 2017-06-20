@@ -32,9 +32,39 @@ body, html {
   position: absolute;
   width: 100%; }
 
-.btn-floating.halfway-fab {
-  bottom: 125px;
-  right: 45%; }
+.container-images {
+  position: relative !important;
+  width: 50% !important; }
+
+.carousel-img-styling {
+  opacity: 1 !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  transition: .5s ease !important;
+  backface-visibility: hidden !important; }
+
+.carousel-btn {
+  transition: .5s ease !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  top: 85% !important;
+  right: -95% !important;
+  transform: translate(-50%, -50%) !important;
+  -ms-transform: translate(-50%, -50%); }
+
+.container-images:hover .carousel-img-styling {
+  opacity: 1 !important; }
+
+.container-images:hover .carousel-btn {
+  opacity: 1 !important;
+  cursor: pointer !important; }
+
+.delete-photo-icon {
+  background-color: #77bfc7 !important;
+  color: white !important;
+  border-radius: 50% !important;
+  padding: 8px 8px !important; }
 
 .camera-icon {
   height: 64 !important;
@@ -47,14 +77,6 @@ body, html {
 .carousel .carousel-item img {
   width: 400px !important;
   margin: 0 !important; }
-
-.carousel-img-btn {
-  position: relative; }
-
-.photo-delete-btn {
-  position: absolute;
-  top: 70% !important;
-  right: -70% !important; }
 
 .flex-title {
   display: flex;
