@@ -49,26 +49,32 @@
     </div>
 <!--    slide out camera content-->
     <ul id="slide-out" class="side-nav">
+        <h4>Pants, skirts, or shorts?<br>Take a photo of them all</h4>
+        <h5>We'll add them to your Pack List!</h5>
         <div class="userView">
             <div id="contain-camera">
                 <div class="alert alert-error ng-scope" ng-show="webcamError">
                     <span>Webcam could not be started. Did you give access to it?</span>
                 </div>
                 <!--    // webcam view-->
-                <div ng-hide="hideDiv">
-                    <webcam channel="channel"
-                        on-streaming="onSuccess()"
-                        on-error="onError(err)"
-                        on-stream="onStream(stream)">
-                    </webcam>
-                    <button ng-click="makeSnapshot()">take picture</button>
-                </div>
-                <!--// canvas view-->
-                <div ng-hide="hideCamDiv" class="row">
-                    <div class="card-image">
-                        <canvas id="snapshot"></canvas>
-                        <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
-                        <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                <div class="camera-conatiner-div">
+                    <div ng-hide="hideDiv" class="webcam-div">
+                        <webcam channel="channel"
+                            on-streaming="onSuccess()"
+                            on-error="onError(err)"
+                            on-stream="onStream(stream)">
+                        </webcam>
+                        <div class="add-photo-btn">
+                            <a class="btn waves-effect suit-modal-btn" ng-click="makeSnapshot()">Take a pic!</a>
+                        </div>
+                    </div>
+                    <!--// canvas view-->
+                    <div ng-hide="hideCamDiv" class="webcam-div">
+                        <canvas id="snapshot" class="canvas-photo"></canvas>
+                        <div class="add-photo-btn">
+                            <a ng-click="addToCarousel()" class="btn waves-effect waves-light suit-modal-btn">Save to Suitcase</a>
+                            <a ng-click="hideCanvas()" class="waves-effect btn-flat">Retry</a>
+                        </div>
                     </div>
                 </div>
             </div>

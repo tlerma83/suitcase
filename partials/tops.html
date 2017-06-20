@@ -72,11 +72,11 @@
                     </div>
                     <!--// canvas view-->
                     <div ng-hide="hideCamDiv" class="webcam-div">
-<!--                        <div class="card-image">-->
-                            <canvas id="snapshot"></canvas>
-                            <a ng-click="addToCarousel()" class="btn-floating waves-effect waves-light red"><i class="material-icons">add</i></a>
-                            <a ng-click="hideCanvas()" class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
-<!--                        </div>-->
+                        <canvas id="snapshot" class="canvas-photo"></canvas>
+                        <div class="add-photo-btn">
+                            <a ng-click="addToCarousel()" class="btn waves-effect waves-light suit-modal-btn">Save to Suitcase</a>
+                            <a ng-click="hideCanvas()" class="waves-effect btn-flat">Retry</a>
+                        </div>
                     </div>
                 </div>
             </div>
