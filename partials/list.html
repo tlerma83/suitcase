@@ -42,7 +42,7 @@
                 </div>
             </li>
 <!--            bottoms image ng-repeat list-->
-            <li>
+            <li col s12 m4>
                 <div class="collapsible-header"><img src="../images/002-pants.png" class="clothing-icons">
                     Bottoms
                 </div>
@@ -51,7 +51,7 @@
                 </div>
             </li>
 <!--            shoes image ng-repeat list-->
-            <li>
+            <li col s12 m4>
                 <div class="collapsible-header"><img src="../images/001-high-heels.png" class="clothing-icons">
                     Shoes
                 </div>
@@ -60,10 +60,10 @@
                 </div>
             </li>
 <!--            labels and lists ng-repeat-->
-            <li ng-repeat="items in labelObj">
+            <li col s12 m4 ng-repeat="items in labelObj">
                 <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
                     <span>{{items.title}}</span>
-                    <span ng-click="deleteLabel(items.label_key)"><a href="#!" class="secondary-content"><i class="material-icons pack-list-delete-icon">delete</i></a></span>
+                    <span ng-click="deleteLabel(items.label_key)"><a href="" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="right" data-delay="50" data-tooltip="delete entire label?">delete</i></a></span>
                 </div>
                 <div class="collapsible-body pack-list">
                     <span>
@@ -73,7 +73,7 @@
                     <div class="row pack-list-flex">
                         <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">
                             <p>{{list.title}}</p>
-                            <i class="material-icons pack-list-delete-icon">delete</i>
+                            <i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">delete</i>
                         </div>
                     </div>
                 </div>

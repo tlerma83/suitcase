@@ -209,6 +209,8 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+
+    // List Items inside Labels
     let postListItem = function (listObj) {
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/list.json`, listObj)
@@ -241,6 +243,18 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
+    let deleteListItem = function (labelKey) {
+        return $q((resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/list/${labelKey}.json`)
+            .then((response) => {
+                resolve(resolve);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
     return{
         addNewUser,
         getUserInfo,
@@ -255,6 +269,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         getlabel,
         getAllLabels,
         postListItem,
-        getAllLists
+        getAllLists,
+        deleteListItem
     };
 });
