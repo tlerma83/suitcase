@@ -40,12 +40,12 @@ body, html {
 
 
 ///testing canvas position
-#contain-camera {
-//    margin-top: 15%;
-    height: 250px;
-    position: relative;
-    width: 350px;
-}
+//#contain-camera {
+////    margin-top: 15%;
+//    height: 250px;
+//    position: relative;
+//    width: 500px;
+//}
 
 #controls {
     bottom: 0;
@@ -54,22 +54,10 @@ body, html {
     width: 100%;
 }
 
-#snapshot {
-    height: 275px;
-    width: 350px;
-}
 
-.carousel-1 {
-//    margin-top: 1.5em;
-}
-
-.webcam-div {
-//    width: 35%;
-}
-
-.camera-placeholder {
-  height: 275px !important;
-}
+//.camera-placeholder {
+//  height: 275px !important;
+//}
 
 
 .btn-floating.halfway-fab {
@@ -96,6 +84,18 @@ body, html {
 //    height: 500px !important;
 }
 
+.carousel-img-btn {
+    position: relative;
+//    text-align: right;
+}
+.photo-delete-btn {
+//    margin-top: 70% !important;
+    position: absolute;
+    top: 70% !important;
+    right: -70% !important;
+//    left: 70 !important;
+//    bottom: 0 !important;
+}
 
 .flex-title {
     display: flex;
@@ -142,6 +142,7 @@ nav li, a {
 
 .side-nav {
     background-color: #77bfc7 !important;
+    width: 550px !important;
 }
 
 
@@ -339,6 +340,7 @@ nav li, a {
     width: 60%;
     border-radius: 15px !important;
     border: 1px #999 solid !important;
+    box-shadow: -5px 5px 15px 5px #191919;
 }
 
 .flex-btn {

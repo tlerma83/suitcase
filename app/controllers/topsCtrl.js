@@ -5,15 +5,15 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     $scope.suitName = $routeParams.suitTitle;
     $scope.suitKey = $routeParams.suitcaseKey;
     $scope.imageArrayOfObj = [];
-    $scope.channel = {};
-    $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;
     $scope.webcamError = false;
     $scope.tops = "tops";
 
-    let _video = null,
-        patData = null;
+    let _video = null;
+
+    //this sets the size of the webcam view, videoWidth is the parameter name set by author of this install
+    $scope.channel = {videoWidth: 500};
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
@@ -57,13 +57,18 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
         if (_video) {
             var patCanvas = document.querySelector('#snapshot');
-            if (!patCanvas) return;
+            if (!patCanvas) return; //this acts like a break within the function
             patCanvas.width = _video.width;
             patCanvas.height = _video.height;
-            var ctxPat = patCanvas.getContext('2d');
+            //grabs innards of canvas so it can be drawn to, returns drawing context of canvas
+            // need this before canvas can be drawn on
+            let contextofCanvas = patCanvas.getContext('2d');
 
-            var idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w, $scope.patOpts.h);
-            ctxPat.putImageData(idata, 0, 0);
+            //drawImage() requires the source it draws from, ex. _video...this is first arg
+            // next two arguments represent the x and y coordinates, starts at the top of a square, 0, 0
+            //4th arg gets width of patCanvas.width object, 5th arg gives height
+            //now this will draw to the canvas element with #snapshot ID
+            contextofCanvas.drawImage(_video, 0, 0, patCanvas.width, patCanvas.height);
 
             patCanvas.toBlob((imageBlobStuff, user) => {
                 $scope.blob = imageBlobStuff;
@@ -72,14 +77,14 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     };
 
 
-    let getVideoData = function getVideoData(x, y, w, h) {
-        let hiddenCanvas = document.createElement('canvas');
-        hiddenCanvas.width = _video.width;
-        hiddenCanvas.height = _video.height;
-        let ctx = hiddenCanvas.getContext('2d');
-        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
-        return ctx.getImageData(x, y, w, h);
-    };
+//    let getVideoData = function getVideoData(x, y, w, h) {
+//        let hiddenCanvas = document.createElement('canvas');
+//        hiddenCanvas.width = _video.width;
+//        hiddenCanvas.height = _video.height;
+//        let ctx = hiddenCanvas.getContext('2d');
+//        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
+//        return ctx.getImageData(x, y, w, h);
+//    };
 
 
     $scope.hideCanvas = function () {
