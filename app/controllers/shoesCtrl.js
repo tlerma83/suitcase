@@ -7,16 +7,14 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
     $scope.suitName = $routeParams.suitTitle;
     $scope.suitKey = $routeParams.suitcaseKey;
     $scope.imageArrayOfObj = [];
-    $scope.channel = {};
-    $scope.patOpts = {x: 25, y: 25, w: 25, h: 25};
     $scope.user = AuthFactory.getUser();
     $scope.hideCamDiv = true;
     $scope.webcamError = false;
     $scope.shoes = "shoes";
 
-    let _video = null,
-        patData = null;
+    let _video = null;
 
+    $scope.channel = {videoWidth: 500};
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
@@ -26,7 +24,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
     });
 
     $('.button-collapse').sideNav({
-      menuWidth: 400, // Default is 300
+      menuWidth: 550, // Default is 300
       edge: 'right', // Choose the horizontal origin
       closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
       draggable: true // Choose whether you can drag to open on touch screens
@@ -43,11 +41,6 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
 
     $scope.onSuccess = function () {
         _video = $scope.channel.video;
-        $scope.$apply(function() {
-            $scope.patOpts.w = _video.width;
-            $scope.patOpts.h = _video.height;
-
-        });
     };
 
 
@@ -56,27 +49,16 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
         $scope.hideCamDiv = false;
 
         if (_video) {
-            let patCanvas = document.querySelector('#snapshot');
+            var patCanvas = document.querySelector('#snapshot');
             if (!patCanvas) return;
             patCanvas.width = _video.width;
             patCanvas.height = _video.height;
-            let ctxPat = patCanvas.getContext('2d');
-            let idata = getVideoData($scope.patOpts.x, $scope.patOpts.y, $scope.patOpts.w, $scope.patOpts.h);
-            ctxPat.putImageData(idata, 0, 0);
+            let contextofCanvas = patCanvas.getContext('2d');
+            contextofCanvas.drawImage(_video, 0, 0, patCanvas.width, patCanvas.height);
             patCanvas.toBlob((imageBlobStuff, user) => {
                 $scope.blob = imageBlobStuff;
             });
         }
-    };
-
-
-    let getVideoData = function getVideoData(x, y, w, h) {
-        let hiddenCanvas = document.createElement('canvas');
-        hiddenCanvas.width = _video.width;
-        hiddenCanvas.height = _video.height;
-        let ctx = hiddenCanvas.getContext('2d');
-        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
-        return ctx.getImageData(x, y, w, h);
     };
 
 

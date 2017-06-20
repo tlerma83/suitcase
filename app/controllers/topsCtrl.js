@@ -43,11 +43,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
     $scope.onSuccess = function () {
         _video = $scope.channel.video;
-        $scope.$apply(function() {
-            $scope.patOpts.w = _video.width;
-            $scope.patOpts.h = _video.height;
-
-        });
     };
 
 
@@ -76,15 +71,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
         }
     };
 
-
-//    let getVideoData = function getVideoData(x, y, w, h) {
-//        let hiddenCanvas = document.createElement('canvas');
-//        hiddenCanvas.width = _video.width;
-//        hiddenCanvas.height = _video.height;
-//        let ctx = hiddenCanvas.getContext('2d');
-//        ctx.drawImage(_video, 0, 0, _video.width, _video.height);
-//        return ctx.getImageData(x, y, w, h);
-//    };
 
 
     $scope.hideCanvas = function () {
