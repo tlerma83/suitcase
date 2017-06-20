@@ -25,7 +25,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 //    $(".button-collapse").sideNav();
       $('.button-collapse').sideNav({
-      menuWidth: 550, // Default is 300
+      menuWidth: 600, // Default is 300
       edge: 'right', // Choose the horizontal origin
       closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
       draggable: true // Choose whether you can drag to open on touch screens

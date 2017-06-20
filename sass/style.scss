@@ -136,9 +136,56 @@ nav li, a {
 //}
 
 .side-nav {
-    background-color: #77bfc7 !important;
+    background-color: #e5e5e5 !important;
+    font-family: 'Josefin Slab', serif !important;
+    text-align: center;
 }
 
+//.camera-conatiner-div {
+//    background-color: white;
+//    width: 100%;
+////    padding: 15px;
+//}
+
+//#contain-camera {
+////    margin-top: 1em !important;
+//    width: 100%;
+//    height: 550px;
+//}
+
+.webcam-div {
+    width: 540px;
+    height: 500px;
+    background-color: white;
+    border-radius: 10px !important;
+    box-shadow: 5px 5px 25px 5px #999;
+}
+
+.webcam-live {
+    margin-top: 40px !important;
+    border-radius: 10px !important;
+    box-shadow: 2px 2px 4px #999;
+}
+
+.canvas-photo {
+    margin-top: 40px !important;
+    border-radius: 10px !important;
+    box-shadow: 2px 2px 4px #999;
+}
+
+.add-photo-btn {
+    margin-top: 12px;
+}
+
+.userView {
+    padding-top: 1em !important;
+}
+
+//@media screen and (max-width: 699px) and (min-width: 520px) {
+//    .webcam-live {
+//       width: 300px !important;
+//    }
+//}
 
 //landing card page
 .dark-color-text a {

@@ -112,6 +112,8 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
             });
         });
     };
+    
+
 
     getAllPhotos();
     getLabels();

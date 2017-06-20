@@ -100,7 +100,32 @@ nav li, a {
   font-size: 1.5em !important; }
 
 .side-nav {
-  background-color: #77bfc7 !important; }
+  background-color: #e5e5e5 !important;
+  font-family: 'Josefin Slab', serif !important;
+  text-align: center; }
+
+.webcam-div {
+  width: 540px;
+  height: 500px;
+  background-color: white;
+  border-radius: 10px !important;
+  box-shadow: 5px 5px 25px 5px #999; }
+
+.webcam-live {
+  margin-top: 40px !important;
+  border-radius: 10px !important;
+  box-shadow: 2px 2px 4px #999; }
+
+.canvas-photo {
+  margin-top: 40px !important;
+  border-radius: 10px !important;
+  box-shadow: 2px 2px 4px #999; }
+
+.add-photo-btn {
+  margin-top: 12px; }
+
+.userView {
+  padding-top: 1em !important; }
 
 .dark-color-text a {
   color: #333 !important; }
