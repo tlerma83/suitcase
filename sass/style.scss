@@ -20,13 +20,8 @@ body, html {
     background-size: cover;
 }
 
-//#conatiner {
-//    height: 100%;
-//    width: 100%;
-//    margin: 0;
-//}
 
-
+//// main carousel
 .container-images {
     position: relative !important;
     width: 50% !important;
@@ -39,8 +34,8 @@ body, html {
     height: auto !important;
     transition: .5s ease !important;
     backface-visibility: hidden !important;
-    border-radius: 15px;
-    box-shadow: -5px 5px 15px 5px #191919;
+    border-radius: 10px;
+    box-shadow: -5px 5px 15px 5px #333;
 }
 
 .carousel-btn {
@@ -69,22 +64,71 @@ body, html {
     padding: 8px 8px !important;
 }
 
-
-.camera-icon {
-    height: 64 !important;
-    width: 64 !important;
-}
-
-.carousel {
+.carousel-1 {
     height: 435px !important;
 }
 
-.carousel .carousel-item {
+.carousel-1 .carousel-item {
     width: 400px !important;
 }
 
-.carousel .carousel-item img{
+.carousel-1 .carousel-item img{
     width: 400px !important;
+}
+
+
+///// closet carousel
+.container-images-2 {
+    position: relative !important;
+    width: 50% !important;
+}
+
+.carousel-img-styling-2 {
+    opacity: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    transition: .5s ease !important;
+    backface-visibility: hidden !important;
+    border-radius: 15px;
+    box-shadow: -5px 5px 15px 5px #333;
+}
+
+.carousel-btn-2 {
+    transition: .5s ease !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    top: 85% !important;
+    right: -95% !important;
+    transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%)
+}
+
+.container-images-2:hover .carousel-img-styling-2 {
+    opacity: 1 !important;
+}
+
+.container-images-2:hover .carousel-btn-2 {
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+.carousel-2 {
+    height: 300px !important;
+}
+
+.carousel-2 .carousel-item-2 {
+    width: 200px !important;
+}
+
+.carousel-2 .carousel-item-2 img{
+    width: 200px !important;
+}
+
+
+.camera-icon {
+    height: 75 !important;
+    width: 75 !important;
 }
 
 
@@ -113,7 +157,7 @@ nav li, a {
 
 .suitcase-modal {
     background-color: #e5e5e5 !important;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     color: #666 !important;
     font-family: 'Josefin Slab', serif !important;
     width: 30% !important;
@@ -131,9 +175,6 @@ nav li, a {
     font-size: 1.5em !important;
 }
 
-//.activeStuff {
-//    border-bottom: 2px solid black !important;
-//}
 
 .side-nav {
     background-color: #e5e5e5 !important;
@@ -141,35 +182,24 @@ nav li, a {
     text-align: center;
 }
 
-//.camera-conatiner-div {
-//    background-color: white;
-//    width: 100%;
-////    padding: 15px;
-//}
-
-//#contain-camera {
-////    margin-top: 1em !important;
-//    width: 100%;
-//    height: 550px;
-//}
 
 .webcam-div {
     width: 540px;
     height: 500px;
     background-color: white;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 5px 5px 25px 5px #999;
 }
 
 .webcam-live {
     margin-top: 40px !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 2px 2px 4px #999;
 }
 
 .canvas-photo {
     margin-top: 40px !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 2px 2px 4px #999;
 }
 
@@ -234,7 +264,7 @@ nav li, a {
 }
 
 .circle {
-    border-radius: 15px !important;
+    border-radius: 10px !important;
 }
 
 .input-field {
@@ -246,13 +276,13 @@ nav li, a {
 //second navbar
 .breadcrumbs {
     text-align: center !important;
-    padding-top: 3em !important;
+//    padding-top: 3em !important;
 }
 
 .breadcrumbs a {
     color: white !important;
-    font-size: 1.5em !important;
-    width: 20% !important;
+//    font-size: 1.5em !important;
+//    width: 20% !important;
     margin-top: 10px !important;
     margin-right: 25px !important;
 }
@@ -262,6 +292,16 @@ nav li, a {
     height: 40px;
     vertical-align: middle !important;
     margin-bottom: 5px !important;
+}
+
+.empty-content-message {
+    font-family: 'Josefin Slab', serif !important;
+    text-align: center;
+    color: white;
+    margin-top: 6em;
+    font-style: italic;
+    width: 50%;
+    margin-left: 2em;
 }
 
 .nav-background {
@@ -282,20 +322,12 @@ nav li, a {
 
 .suitcase-title {
     color: #333 !important;
-//    border-bottom: none !important;
-//    font-size: 2rem !important;
-//    width: 35% !important;
-//    padding-top: 5px !important;
-//    margin-bottom: 0 !important;
 }
 
 
 
 
 //pack list page
-.pack-list-wrap {
-
-}
 .list-thumbnail {
 
     border: 1px solid #ddd;
@@ -322,7 +354,7 @@ nav li, a {
 .pack-list-color {
     background-color: white;
     font-family: 'Josefin Slab', serif !important;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     margin-left: 8px !important;
     margin-right: 8px !important;
     -webkit-column-break-inside: avoid;
@@ -376,7 +408,7 @@ nav li, a {
 .login-form {
     background:rgba(255,255,255, 0.9) !important;
     width: 60%;
-    border-radius: 15px !important;
+    border-radius: 10px !important;
     border: 1px #999 solid !important;
     box-shadow: -5px 5px 25px 5px #212121;
 }
@@ -412,6 +444,79 @@ nav li, a {
     background-color: #77bfc7 !important;
     font-family: 'Josefin Slab', serif !important;
 }
+
+
+.closet-message {
+    font-family: 'Josefin Slab', serif !important;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    width: 60%;
+    padding-top: 3em;
+    margin-bottom: 3em;
+}
+
+.closet-icon {
+    font-size: 2vw !important;
+    padding: 5px !important;
+}
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #999;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-style: solid;
+    border-color: #999
+        transparent transparent transparent;
+}
+
+.popop .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+
+
+
+
+
 
 
 

@@ -77,6 +77,11 @@ app.config(function($routeProvider){
         controller: "ListCtrl",
         resolve: {isAuth}
     })
+    .when("/closet/:suitcaseKey/:suitTitle", {
+        templateUrl: "partials/closet.html",
+        controller: "ClosetCtrl",
+        resolve: {isAuth}
+    })
     .otherwise("/");
 });
 

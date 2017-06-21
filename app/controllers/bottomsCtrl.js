@@ -10,6 +10,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
     $scope.hideCamDiv = true;
     $scope.webcamError = false;
     $scope.bottoms = "bottoms";
+    $scope.emptyPhotosMessage = true;
 
     let _video = null;
 
@@ -48,6 +49,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
 	$scope.makeSnapshot = function() {
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
+        $scope.emptyPhotosMessage = true;
 
         if (_video) {
             var patCanvas = document.querySelector('#snapshot');
@@ -88,6 +90,9 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
         .then((response) => {
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;
+            if($scope.counter < 1) {
+                $scope.emptyPhotosMessage = false;
+            }
         });
     };
 

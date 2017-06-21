@@ -4,18 +4,21 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
 
     $scope.user = AuthFactory.getUser();
     $scope.suitKey = $routeParams.suitcaseKey;
+    $scope.suitName = $routeParams.suitTitle;
     $scope.menuItems = ["tops", "bottoms", "shoes"];
     $scope.imageArray = [];
     $scope.topArray = [];
     $scope.bottomArray = [];
     $scope.shoeArray = [];
     $scope.listArray = [];
+    $scope.counterArray = [];
     $scope.labelObj = {};
     $scope.addLabelText = false;
     $scope.newLabel = {title: ""};
     $scope.label = "label";
     $scope.list = "list";
     $scope.listObj = {title: ""};
+//    $scope.counter = 0;
 
 
 
@@ -96,10 +99,12 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
 
 
     let getAllPhotos = function () {
+        $scope.counter = 0;
         $scope.menuItems.forEach(function(collection){
             DataFactory.retrievePhotos($scope.suitKey, collection)
             .then((response) => {
                 response.forEach(function(objects){
+                    $scope.counter++;
                     if (objects.type === $scope.menuItems[0]) {
                     $scope.topArray.push(objects);
                     }else if (objects.type === $scope.menuItems[1]) {
@@ -108,11 +113,11 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
                         $scope.shoeArray.push(objects);
                     }
                 });
-
             });
+
         });
+
     };
-    
 
 
     getAllPhotos();

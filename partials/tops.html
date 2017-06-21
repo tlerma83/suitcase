@@ -8,10 +8,13 @@
         <a class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
             <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+<!--            <a ng-click="addToCarousel()" class="btn waves-effect waves-light suit-modal-btn">add</a>-->
+
+
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
-            <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
+            <li class= dark-color-text><a href="">Tops Packed: {{counter}}</a></li>
             <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
             <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
         </ul>
@@ -31,18 +34,36 @@
 <!--main content-->
 <div class="main-content-wrapper">
 <!--    breadcrumb and slide out nav-->
-    <div class="col m12 breadcrumbs">
-        <a href="">Tops</a>
-        <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/photo-camera.png"></a>
+    <div class="breadcrumbs">
+        <div class="bread-crumbs-2">
+            <div>
+                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
+            </div>
+            <div><a href="">Tops</a></div>
+            <div>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
+            </div>
+        </div>
+    </div>
+    <div class="empty-content-message" ng-hide="emptyPhotosMessage">
+        <h4>Let's get packing! Start adding to your suitcase by taking a photo</h4>
+        <h5>Then head to your Pack List to add your essential items</h5>
+        <h6>Organize your suitcase by tops, bottoms, and shoes</h6>
     </div>
 
+
     <div>
+
     <!--    //carousel-->
         <div class="carousel carousel-1">
             <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
                 <div class="container-images">
-                    <img class="carousel-img-styling" src="{{items.url}}">
-                    <a ng-click="deleteTops(items)" class="carousel-btn"><i class="material-icons delete-photo-icon">delete</i></a>
+                    <img class="carousel-img-styling" ng-src="{{items.url}}">
+                    <div class="carousel-btn">
+                        <a ng-click="deleteTops(items)" class="waves-effect waves-circle waves-light"><i class="material-icons delete-photo-icon">delete</i></a>
+
+                        <a tooltipped id="pop--{{items.key}}" class="waves-effect waves-circle waves-light title-delete-icon popup" data-position="bottom" data-delay="50" data-tooltip="save photos to your closet" ng-click="addToCloset(items)" ng-controller="ClosetCtrl"><i class="material-icons delete-photo-icon">add</i><span class="popuptext">PopUp Text</span></a>
+                    </div>
                 </div>
             </div>
         </div>

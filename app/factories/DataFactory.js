@@ -232,7 +232,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
                 Object.keys(listObj).forEach(function(key){
                     listObj[key].list_key = key;
                     listArray.push(listObj[key]);
-
                 });
                 resolve(listArray);
             })
@@ -255,6 +254,52 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+    //closet
+    let addToCloset = function (imgObject) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/closet.json`, imgObject)
+            .then((response) => {
+                resolve(response.data.name);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    let getCloset = function (user) {
+        let closetKey = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/closet.json?orderBy="uid"&equalTo="${user}"`)
+            .then((response) =>{
+                let closetObj = response.data;
+                Object.keys(closetObj).forEach(function(key){
+                    closetObj[key].closet_key = key;
+                    closetKey.push(closetObj[key]);
+                });
+                resolve(closetKey);
+//                console.log("Return closet from FB", closetObj);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+    let addClosetToSuitcase = function (imgObj) {
+
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/${imgObj.type}.json`, imgObj)
+            .then((response) => {
+                console.log("did imageget added correctly?", response);
+                resolve(response.data.name);
+            });
+        });
+    };
+
+
+
     return{
         addNewUser,
         getUserInfo,
@@ -270,6 +315,9 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         getAllLabels,
         postListItem,
         getAllLists,
-        deleteListItem
+        deleteListItem,
+        addToCloset,
+        getCloset,
+        addClosetToSuitcase
     };
 });

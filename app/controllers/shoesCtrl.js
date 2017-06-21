@@ -11,6 +11,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
     $scope.hideCamDiv = true;
     $scope.webcamError = false;
     $scope.shoes = "shoes";
+    $scope.emptyPhotosMessage = true;
 
     let _video = null;
 
@@ -47,6 +48,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
 	$scope.makeSnapshot = function() {
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
+        $scope.emptyPhotosMessage = true;
 
         if (_video) {
             var patCanvas = document.querySelector('#snapshot');
@@ -86,6 +88,9 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
         .then((response) => {
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;
+            if($scope.counter < 1) {
+                $scope.emptyPhotosMessage = false;
+            }
         });
     };
 

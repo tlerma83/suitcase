@@ -11,7 +11,7 @@
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
-            <li class= dark-color-text><a href="">Items: {{counter}}</a></li>
+            <li class= dark-color-text><a href="">Shoes Packed: {{counter}}</a></li>
             <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
             <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
         </ul>
@@ -31,18 +31,36 @@
 <!--main content-->
 <div class="main-content-wrapper">
 <!--    breadcrumb and slide out nav-->
-    <div class="col m12 breadcrumbs">
-        <a href="">Shoes</a>
-        <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/photo-camera.png"></a>
-    </div>
+    <div class="breadcrumbs">
+        <div class="bread-crumbs-2">
+            <div>
+                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
+            </div>
+            <div><a href="">Tops</a></div>
+            <div>
+                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
+            </div>
+        </div>
 
-    <div class="flex-main">
+
+    </div>
+        <div class="empty-content-message" ng-hide="emptyPhotosMessage">
+            <h4>No outfit is complete without<br>an amazing pair of shoes</h4>
+        <h5>Let's add some photos</h5>
+        </div>
+
+
     <!--    //carousel-->
+    <div>
         <div class="carousel carousel-1">
             <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
                 <div class="container-images">
-                    <img class="carousel-img-styling" src="{{items.url}}">
-                    <a ng-click="deleteShoes(items)" class="carousel-btn"><i class="material-icons delete-photo-icon">delete</i></a>
+                    <img class="carousel-img-styling" ng-src="{{items.url}}">
+                    <div class="carousel-btn">
+                        <a ng-click="deleteShoes(items)" class="waves-effect waves-circle waves-light"><i class="material-icons delete-photo-icon">delete</i></a>
+
+                        <a tooltipped class="waves-effect waves-circle waves-light title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="save photos to your closet" ng-click="addToCloset(items)" ng-controller="ClosetCtrl"><i class="material-icons delete-photo-icon">add</i></a>
+                    </div>
                 </div>
             </div>
         </div>

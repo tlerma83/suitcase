@@ -1,0 +1,324 @@
+
+
+
+  <!--main nav-->
+<div ng-include="'partials/nav.html'"></div>
+
+<nav class="second-nav" ng-controller="NavCtrl">
+<!--   view selected-->
+    <div class="nav-wrapper second-nav-color">
+        <a class="brand-logo center suitcase-title">{{suitName}}</a>
+        <ul class="left hide-on-med-and-down">
+            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+        </ul>
+        <!--    title and counter display-->
+        <ul class="right hide-on-med-and-down">
+            <li class= dark-color-text><a href="">Clothing Packed: {{counter}}</a></li>
+            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
+            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
+        </ul>
+    </div>
+<!--    change suitcase title modal-->
+    <div id="edit-mode-modal" class="modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
+        </div>
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+          <a class="btn waves-effect red" ng-click="editSuitcaseTitle()">Add</a>
+        </div>
+    </div>
+</nav>
+
+<div class="main-content-wrapper">
+        <div class="breadcrumbs">
+        <div class="bread-crumbs-2">
+
+            <div>
+                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
+            </div>
+            <div><a href="">Tops</a></div>
+            <div>
+
+                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
+<!--            <a class="btn waves-effect closet-icon">Save to Closet</a>-->
+<!--                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/003-hanger-2.png"></a>-->
+<!--                <a class="waves-effect waves-light btn closet-icon"><i class="material-icons left">cloud</i>button</a>-->
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div>
+       <div class="closet-message">
+        <h4>Save all your photos in a vitual closet<br> for your next vacation</h4>
+        <h5>Browse through your closet and pack your favorite outfits</h5>
+        </div>
+        <ul class="collapsible popout row" data-collapsible="accordion">
+<!--           tops image ng-repeat list-->
+            <li>
+                <div class="collapsible-header"><img src="../images/003-shirt.png" class="clothing-icons">
+                   Tops
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <div class="row">
+                        <div class="col s12 m2" ng-repeat="items in closetObject | filter: {type:'tops'}">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{items.url}}">
+                                </div>
+                                <div class="card-content">
+                                    <a ng-click="fromClosetToSuitCase(items)" class="btn waves-effect waves-light">pack</a>
+                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="collapsible-header"><img src="../images/002-pants.png" class="clothing-icons">
+                   Bottoms
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <div class="row">
+                        <div class="col s12 m2" ng-repeat="pants in closetObject | filter: {type:'bottoms'}">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{pants.url}}">
+                                </div>
+                                <div class="card-content">
+                                    <a ng-click="fromClosetToSuitCase(pants)" class="btn waves-effect waves-light">pack</a>
+                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="collapsible-header"><img src="../images/001-high-heels.png"  class="clothing-icons">
+                   Shoes
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <div class="row">
+                        <div class="col s12 m2" ng-repeat="shoes in closetObject | filter: {type:'shoes'}">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{{shoes.url}}">
+                                </div>
+                                <div class="card-content">
+                                    <a ng-click="fromClosetToSuitCase(shoes)" class="btn waves-effect waves-light">pack</a>
+                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+
+<!--            bottoms image ng-repeat list-->
+<!--
+            <li col s12 m4>
+                <div class="collapsible-header"><img src="../images/002-pants.png" class="clothing-icons">
+                    Bottoms
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <span ng-repeat="image in bottomArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+                </div>
+            </li>
+-->
+<!--            shoes image ng-repeat list-->
+<!--
+            <li col s12 m4>
+                <div class="collapsible-header"><img src="../images/001-high-heels.png" class="clothing-icons">
+                    Shoes
+                </div>
+                <div class="collapsible-body background-images-pack-list">
+                    <span ng-repeat="image in shoeArray"><img class="list-thumbnail" src="{{image.url}}"></span>
+                </div>
+            </li>
+-->
+<!--            labels and lists ng-repeat-->
+<!--
+            <li col s12 m4 ng-repeat="items in labelObj">
+                <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
+                    <span>{{items.title}}</span>
+                    <span ng-click="deleteLabel(items.label_key)"><a href="" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="right" data-delay="50" data-tooltip="delete entire label?">delete</i></a></span>
+                </div>
+                <div class="collapsible-body pack-list">
+                    <span>
+                        <i class="material-icons" ng-click="addListItem(items.label_key)">add</i>
+                        <input type="text" placeholder="list item" ng-model="listObj.title">
+                    </span>
+                    <div class="row pack-list-flex">
+                        <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">
+                            <p>{{list.title}}</p>
+                            <i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">delete</i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--main nav-->
+<!--<div ng-include="'partials/nav.html'"></div>-->
+
+<!--second nav-->
+<!--<nav class="second-nav" ng-controller="NavCtrl">-->
+<!--   view selected-->
+<!--
+    <div class="nav-wrapper second-nav-color">
+        <a class="brand-logo center suitcase-title">{{suitName}}</a>
+        <ul class="left hide-on-med-and-down">
+            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+        </ul>
+-->
+        <!--    title and counter display-->
+<!--
+        <ul class="right hide-on-med-and-down">
+            <li class= dark-color-text><a href="">Tops Packed: {{counter}}</a></li>
+            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
+            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
+        </ul>
+    </div>
+-->
+<!--    change suitcase title modal-->
+<!--
+    <div id="edit-mode-modal" class="modal suitcase-modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
+        </div>
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect btn-flat">Cancel</a>
+          <a class="btn waves-effect" ng-click="editSuitcaseTitle()">Add</a>
+        </div>
+    </div>
+</nav>
+
+
+<div>
+-->
+
+
+
+<!--
+
+    <div class="carousel">
+        <a class="carousel-item" ng-repeat="items in closetObject | filter: {type:'tops'}"><img src="{{items.url}}"></a>
+    </div>
+-->
+
+<!--    <div ng-include="partials/test.html"></div>-->
+<!--
+    <div class="carousel carousel-shoe">
+        <a class="carousel-item" ng-repeat="items in closetObject | filter: {type:'shoes'}"><img src="{{items.url}}"></a>
+    </div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+    <div ng-repeat="items in bottomsArray" class="col s12 m2">
+        <img src="{{items.url}}">
+        <button ng-click="fromClosetToSuitCase(items)">Add to suitcase</button>
+        <button ng-click="">Delete</button>
+    </div>
+
+    <div ng-repeat="items in shoesArray" class="col s12 m2">
+        <img src="{{items.url}}">
+        <button ng-click="fromClosetToSuitCase(items)">Add to suitcase</button>
+        <button ng-click="">Delete</button>
+    </div>
+</div>
+-->
+
+<!--
+        <div class="carousel carousel-2">
+            <div ng-repeat="items in closetObject | filter: {type:'tops'}" on-finish-render="ngRepeatFinished" class="carousel-item row">
+                <div class="container-images 2">
+                    <img class="carousel-img-styling-2" src="{{items.url}}">
+                    <div class="carousel-btn-2">
+                        <a ng-click="fromClosetToSuitCase(items)"><i class="material-icons delete-photo-icon">add</i></a>
+                        <a ng-click><i class="material-icons delete-photo-icon">delete</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+
+
+
+
+
+
+<!--
+    <div>
+        <a class="waves-effect waves-light closet-view-btn"><img src="../images/003-shirt.png"></a>
+        <a class="waves-effect waves-light closet-view-btn"><img src="../images/002-pants.png"></a>
+        <a class="waves-effect waves-light closet-view-btn"><img src="../images/001-high-heels.png"></a>
+    </div>
+    <div class="row">
+        <div class="col s12 m2" ng-repeat="items in closetObject | filter: {type:'tops'}">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{items.url}}">
+                </div>
+                <div class="card-content">
+                    <a ng-click="fromClosetToSuitCase(items)" class="btn waves-effect waves-light">pack</a>
+                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+-->

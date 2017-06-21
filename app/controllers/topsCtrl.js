@@ -9,11 +9,15 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     $scope.hideCamDiv = true;
     $scope.webcamError = false;
     $scope.tops = "tops";
-
+    $scope.emptyPhotosMessage = true;
     let _video = null;
 
     //this sets the size of the webcam view, videoWidth is the parameter name set by author of this install
     $scope.channel = {videoWidth: 500};
+
+//    if($scope.counter > 0) {
+//        $scope.emptyPhotosMessage = true;
+//    }
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
@@ -47,6 +51,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
 	$scope.makeSnapshot = function() {
+//        $scope.emptyPhotosMessage = true;
         $scope.hideDiv = true;
         $scope.hideCamDiv = false;
 
@@ -80,11 +85,11 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
     $scope.addToCarousel = function () {
+        $scope.emptyPhotosMessage = true;
         $scope.counter += 1;
         $scope.hideCamDiv = true;
         $scope.hideDiv = false;
         let date = new Date().getTime();
-
         DataFactory.saveImage($scope.blob, $scope.user, date, $routeParams.suitcaseKey, $scope.tops)
         .then((response) => {
             $scope.imageArrayOfObj.push(response);
@@ -96,8 +101,13 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
         $scope.counter = 0;
         DataFactory.retrievePhotos($routeParams.suitcaseKey, $scope.tops)
         .then((response) => {
+
             $scope.counter = response.length;
             $scope.imageArrayOfObj = response;
+            if($scope.counter < 1) {
+                $scope.emptyPhotosMessage = false;
+            }
+            console.log("photos", $scope.imageArrayOfObj);
         });
     };
 
