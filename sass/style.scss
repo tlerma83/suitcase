@@ -50,7 +50,8 @@ body, html {
     top: 85% !important;
     right: -95% !important;
     transform: translate(-50%, -50%) !important;
-    -ms-transform: translate(-50%, -50%)
+    -ms-transform: translate(-50%, -50%);
+    height: 80px !important;
 }
 
 .container-images:hover .carousel-img-styling {
@@ -66,22 +67,13 @@ body, html {
     background-color: #77bfc7 !important;
     color: white !important;
     border-radius: 50% !important;
-    padding: 10px 10px !important;
-}
-
-.carousel-1 {
-//    height: 400px !important;
-//    padding-bottom: 500px !important;
+    padding: 5px 5px !important;
 }
 
 
 .carousel-1 .carousel-item {
     width: 400px !important;
 }
-//.carousel-item {
-//    padding-bottom: 2em !important;
-//}
-
 
 .carousel-1 .carousel-item img{
     width: 400px !important;
@@ -320,7 +312,7 @@ nav li, a {
 .closet-btn {
 //    margin-top: 20px;
     background-color: #77bfc7 !important;
-    float:right;
+//    float:right;
 //    margin-left: 200px !important;
 //    color: #333 !important;
 }
@@ -389,6 +381,7 @@ nav li, a {
     margin-left: 8px !important;
     margin-right: 8px !important;
     -webkit-column-break-inside: avoid;
+    margin-bottom: 10px !important;
 }
 
 .popout-styling {
@@ -502,7 +495,12 @@ nav li, a {
     box-shadow: none !important;
 }
 
+.closet-view-btn-icons  {
 
+//    margin-left: 10px !important;
+    margin-right: 5px !important;
+    padding-right: 10px !important;
+}
 
 
 

@@ -16,13 +16,13 @@
         </ul>
     </div>
 <!--    change suitcase title modal-->
-    <div id="edit-mode-modal" class="modal">
+    <div id="edit-mode-modal" class="modal suitcase-modal">
         <div class="modal-content">
             <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
         </div>
         <div class="modal-footer">
-          <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-          <a class="btn waves-effect red" ng-click="editSuitcaseTitle()">Add</a>
+          <a class="modal-action modal-close waves-effect btn-flat">Cancel</a>
+          <a class="btn waves-effect" ng-click="editSuitcaseTitle()">Add</a>
         </div>
     </div>
 </nav>
@@ -38,7 +38,6 @@
                 </div>
                 <div class="collapsible-body background-images-pack-list">
                     <a ng-repeat="image in topArray"><img class="list-thumbnail" src="{{image.url}}"></a>
-                    <a><img class="list-thumbnail" src="../images/funny.jpg" alt="Forest"></a>
                 </div>
             </li>
 <!--            bottoms image ng-repeat list-->
@@ -68,7 +67,7 @@
                 <div class="collapsible-body pack-list">
                     <span>
                         <i class="material-icons" ng-click="addListItem(items.label_key)">add</i>
-                        <input type="text" placeholder="list item" ng-model="listObj.title">
+                        <input autofocus="true" type="text" placeholder="list item" ng-model="listObj.title">
                     </span>
                     <div class="row pack-list-flex">
                         <div class="col s12 m2 pack-list-color" ng-repeat="list in listArray | filter:{label_key:items.label_key}">

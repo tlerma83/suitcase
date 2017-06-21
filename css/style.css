@@ -40,7 +40,8 @@ body, html {
   top: 85% !important;
   right: -95% !important;
   transform: translate(-50%, -50%) !important;
-  -ms-transform: translate(-50%, -50%); }
+  -ms-transform: translate(-50%, -50%);
+  height: 80px !important; }
 
 .container-images:hover .carousel-img-styling {
   opacity: 1 !important; }
@@ -53,7 +54,7 @@ body, html {
   background-color: #77bfc7 !important;
   color: white !important;
   border-radius: 50% !important;
-  padding: 10px 10px !important; }
+  padding: 5px 5px !important; }
 
 .carousel-1 .carousel-item {
   width: 400px !important; }
@@ -218,8 +219,7 @@ nav li, a {
   padding-bottom: 25px; }
 
 .closet-btn {
-  background-color: #77bfc7 !important;
-  float: right; }
+  background-color: #77bfc7 !important; }
 
 .empty-content-message {
   font-family: 'Josefin Slab', serif !important;
@@ -269,7 +269,8 @@ nav li, a {
   border-radius: 10px !important;
   margin-left: 8px !important;
   margin-right: 8px !important;
-  -webkit-column-break-inside: avoid; }
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 10px !important; }
 
 .popout-styling {
   margin-top: 0;
@@ -360,5 +361,9 @@ nav li, a {
 .camera-nav {
   background-color: transparent !important;
   box-shadow: none !important; }
+
+.closet-view-btn-icons {
+  margin-right: 5px !important;
+  padding-right: 10px !important; }
 
 /*# sourceMappingURL=style.css.map */

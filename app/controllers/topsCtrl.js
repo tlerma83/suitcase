@@ -85,7 +85,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
     $scope.addToCarousel = function () {
-        Materialize.toast('Added to Suitcase', 3000);
+        Materialize.toast('Added to Suitcase', 3000, 'rounded');
         $('.tooltipped').tooltip('remove');
         $scope.emptyPhotosMessage = true;
         $scope.counter += 1;
@@ -129,6 +129,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
     $scope.deleteSuitcase = function (suitKey) {
+        console.log("event?");
         DataFactory.deleteSuitcase(suitKey)
         .then((response) => {
             $scope.imageArrayOfObj.forEach(function(photoObj){

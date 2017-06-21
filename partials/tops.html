@@ -8,15 +8,12 @@
         <a class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
             <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
-<!--            <a ng-click="addToCarousel()" class="btn waves-effect waves-light suit-modal-btn">add</a>-->
-
-
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
             <li class= dark-color-text><a href="">Tops Packed: {{counter}}</a></li>
             <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
-            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
+            <li><a ng-controller="TopsCtrl" tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
         </ul>
     </div>
 <!--    change suitcase title modal-->
