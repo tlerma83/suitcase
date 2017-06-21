@@ -34,27 +34,23 @@
 <!--main content-->
 <div class="main-content-wrapper">
 <!--    breadcrumb and slide out nav-->
-    <div class="breadcrumbs">
-        <div class="bread-crumbs-2">
-            <div>
-                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
-            </div>
-            <div><a href="">Tops</a></div>
-            <div>
-                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
-            </div>
+    <div class="row center-align">
+       <div class="col m4 offset-m4">
+            <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img class="camera-icon" src="../images/camera.png"></a>
+        </div>
+        <div class="col m4">
+            <a ng-controller="ClosetCtrl" ng-click="addAllToCloset()" class="waves-effect waves-light btn closet-btn"><i class="material-icons left">add</i>Save to Closet</a>
         </div>
     </div>
+
     <div class="empty-content-message" ng-hide="emptyPhotosMessage">
         <h4>Let's get packing! Start adding to your suitcase by taking a photo</h4>
         <h5>Then head to your Pack List to add your essential items</h5>
         <h6>Organize your suitcase by tops, bottoms, and shoes</h6>
     </div>
 
-
-    <div>
-
     <!--    //carousel-->
+    <div class="hold-carousel">
         <div class="carousel carousel-1">
             <div id="card--{{items.key}}" ng-repeat="items in imageArrayOfObj" on-finish-render="ngRepeatFinished" class="carousel-item row">
                 <div class="container-images">
@@ -62,7 +58,7 @@
                     <div class="carousel-btn">
                         <a ng-click="deleteTops(items)" class="waves-effect waves-circle waves-light"><i class="material-icons delete-photo-icon">delete</i></a>
 
-                        <a tooltipped id="pop--{{items.key}}" class="waves-effect waves-circle waves-light title-delete-icon popup" data-position="bottom" data-delay="50" data-tooltip="save photos to your closet" ng-click="addToCloset(items)" ng-controller="ClosetCtrl"><i class="material-icons delete-photo-icon">add</i><span class="popuptext">PopUp Text</span></a>
+                        <a tooltipped class="waves-effect waves-circle waves-light title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="add to closet" ng-click="addToCloset(items)" ng-controller="ClosetCtrl"><i class="material-icons delete-photo-icon">add</i></a>
                     </div>
                 </div>
             </div>

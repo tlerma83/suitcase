@@ -85,6 +85,8 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
     $scope.addToCarousel = function () {
+        Materialize.toast('Added to Suitcase', 3000);
+        $('.tooltipped').tooltip('remove');
         $scope.emptyPhotosMessage = true;
         $scope.counter += 1;
         $scope.hideCamDiv = true;

@@ -9,6 +9,7 @@ app.controller("ClosetCtrl", function($scope, $window, $location, AuthFactory, D
     $scope.topsArray = [];
     $scope.bottomsArray = [];
     $scope.shoesArray = [];
+    $scope.toast = true;
 
 
     $scope.menuItems = [
@@ -21,9 +22,12 @@ app.controller("ClosetCtrl", function($scope, $window, $location, AuthFactory, D
 
 
     $scope.addToCloset = function (item) {
-        let poop = $("#pop--" `${item.key}`);
-        console.log("check ID", poop);
-        poop.classList.toggle("show");
+        if($scope.toast === true) {
+            Materialize.toast('Saved to Closet', 3000);
+            $('.tooltipped').tooltip('remove');
+        }
+//        Materialize.toast('Saved to Closet', 3000);
+
         let closet = {};
         console.log("what is type", item);
         closet.uid = item.uid;
@@ -58,6 +62,8 @@ app.controller("ClosetCtrl", function($scope, $window, $location, AuthFactory, D
 
     //retrieves all photos for suitcase
     $scope.addAllToCloset = function () {
+        $scope.taost = false;
+        Materialize.toast('Saved to Closet!', 3000, 'rounded');
         console.log("was I clicked");
         $scope.menuItems.forEach(function(item){
             console.log("type", item.name);
@@ -65,39 +71,38 @@ app.controller("ClosetCtrl", function($scope, $window, $location, AuthFactory, D
             .then((response) => {
                 console.log("response", response);
                 response.forEach(function(object){
-                    if(object.type === "tops") {
-                        $scope.topsArray.push(object);
-                        $scope.topsArray.forEach(function(thingy){
-                            $scope.addToCloset(thingy);
-                            console.log("this happened");
-                        });
-                    }else if(object.type === "bottoms") {
-                        $scope.bottomsArray.push(object);
-                        $scope.bottomsArray.forEach(function(thingy){
-                            $scope.addToCloset(thingy);
-                        });
-                    }else if (object.type === "shoes") {
-                        $scope.shoesArray.push(object);
-                        $scope.shoesArray.forEach(function(thingy){
-                            $scope.addAllToCloset(thingy);
-                        });
-                    }
+                    $scope.addToCloset(object);
+//                    $scope.closetObject.push(object);
+//                    if(object.type === "tops") {
+//                        $scope.topsArray.push(object);
+//                        $scope.topsArray.forEach(function(thingy){
+//                            $scope.addToCloset(thingy);
+//                            console.log("this happened");
+//                        });
+//                    }else if(object.type === "bottoms") {
+//                        $scope.bottomsArray.push(object);
+//                        $scope.bottomsArray.forEach(function(thingy){
+//                            $scope.addToCloset(thingy);
+//                        });
+//                    }else if (object.type === "shoes") {
+//                        $scope.shoesArray.push(object);
+//                        $scope.shoesArray.forEach(function(thingy){
+//                            $scope.addToCloset(thingy);
+//                        });
+//                    }
                 });
             });
         });
     };
 
 
-
-
-
-
-
-
-
-
-
-
+    $scope.deleteFromCloset = function (data) {
+        DataFactory.deleteFromCloset(data.closet_key)
+        .then((response) => {
+            let closetIndex = $scope.closetObject.indexOf(data);
+            $scope.closetObject.splice(closetIndex, 1);
+        });
+    };
 
 
     getCloset();

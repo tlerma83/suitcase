@@ -31,23 +31,18 @@
 <!--main content-->
 <div class="main-content-wrapper">
 <!--    breadcrumb and slide out nav-->
-    <div class="breadcrumbs">
-        <div class="bread-crumbs-2">
-            <div>
-                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
-            </div>
-            <div><a href="">Tops</a></div>
-            <div>
-                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
-            </div>
+    <div class="row center-align">
+       <div class="col m4 offset-m4">
+            <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img class="camera-icon" src="../images/camera.png"></a>
         </div>
-
-
+        <div class="col m4">
+            <a ng-controller="ClosetCtrl" ng-click="addAllToCloset()" class="waves-effect waves-light btn closet-btn"><i class="material-icons left">add</i>Save to Closet</a>
+        </div>
     </div>
-        <div class="empty-content-message" ng-hide="emptyPhotosMessage">
-            <h4>No outfit is complete without<br>an amazing pair of shoes</h4>
-        <h5>Let's add some photos</h5>
-        </div>
+    <div class="empty-content-message" ng-hide="emptyPhotosMessage">
+        <h4>No outfit is complete without<br>an amazing pair of shoes</h4>
+    <h5>Let's add some photos</h5>
+    </div>
 
 
     <!--    //carousel-->

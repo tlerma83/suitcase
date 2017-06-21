@@ -31,31 +31,10 @@
 </nav>
 
 <div class="main-content-wrapper">
-        <div class="breadcrumbs">
-        <div class="bread-crumbs-2">
-
-            <div>
-                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/006-camera.png"></a>
-            </div>
-            <div><a href="">Tops</a></div>
-            <div>
-
-                <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add a label</a>
-<!--            <a class="btn waves-effect closet-icon">Save to Closet</a>-->
-<!--                <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img src="../images/003-hanger-2.png"></a>-->
-<!--                <a class="waves-effect waves-light btn closet-icon"><i class="material-icons left">cloud</i>button</a>-->
-            </div>
-        </div>
-
-
-    </div>
-
-
-
     <div>
-       <div class="closet-message">
-        <h4>Save all your photos in a vitual closet<br> for your next vacation</h4>
-        <h5>Browse through your closet and pack your favorite outfits</h5>
+        <div class="closet-message">
+            <h4>Save all your photos in a vitual closet<br> for your next vacation</h4>
+            <h5>Browse through your closet and pack your favorite outfits</h5>
         </div>
         <ul class="collapsible popout row" data-collapsible="accordion">
 <!--           tops image ng-repeat list-->
@@ -72,7 +51,7 @@
                                 </div>
                                 <div class="card-content">
                                     <a ng-click="fromClosetToSuitCase(items)" class="btn waves-effect waves-light">pack</a>
-                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                    <a ng-click="deleteFromCloset(items)" class="btn waves-effect waves-light">delete</a>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +72,7 @@
                                 </div>
                                 <div class="card-content">
                                     <a ng-click="fromClosetToSuitCase(pants)" class="btn waves-effect waves-light">pack</a>
-                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                    <a ng-click="deleteFromCloset(pants)" class="btn waves-effect waves-light">delete</a>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +93,7 @@
                                 </div>
                                 <div class="card-content">
                                     <a ng-click="fromClosetToSuitCase(shoes)" class="btn waves-effect waves-light">pack</a>
-                                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
+                                    <a ng-click="deleteFromCloset(shoes)" class="btn waves-effect waves-light">delete</a>
                                 </div>
                             </div>
                         </div>

@@ -299,6 +299,20 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
+    let deleteFromCloset = function (closetKey) {
+        return $q((resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/closet/${closetKey}.json`)
+            .then((response) => {
+                console.log("FB delete response", response);
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
 
     return{
         addNewUser,
@@ -318,6 +332,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         deleteListItem,
         addToCloset,
         getCloset,
-        addClosetToSuitcase
+        addClosetToSuitcase,
+        deleteFromCloset
     };
 });
