@@ -92,9 +92,10 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
     };
 
     $scope.deleteListItem = function (listObj) {
+        console.log("What key did I get back", listObj);
         DataFactory.deleteListItem(listObj.list_key)
         .then((response) => {
-            let listIndex = $scope.listArray.indexOf(listObj.list_key);
+            let listIndex = $scope.listArray.indexOf(listObj);
             $scope.listArray.splice(listIndex, 1);
         });
     };
