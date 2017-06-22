@@ -83,6 +83,31 @@
         </ul>
     </div>
 
+<!--    saved lists-->
+    <div>
+        <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
+
+            <li col s12 m4 ng-repeat="things in packListArray">
+                <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
+                    <span>{{things.title}}</span>
+                        <span>
+                            <a ng-click="deleteLabel(items.label_key)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
+                            <a ng-click="saveLabelAndList(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">library_add</i></a>
+                        </span>
+                </div>
+                <div class="collapsible-body pack-list">
+                    <div class="row pack-list-flex">
+                        <div class="col s12 m2 pack-list-color">
+                            <p>{{things.list_title}}</p>
+                            <i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">delete</i><i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">shopping_basket</i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
     <!--  add label modal-->
     <div id="label-modal" class="modal suitcase-modal">
         <div class="modal-content">

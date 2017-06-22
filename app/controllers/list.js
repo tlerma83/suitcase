@@ -12,6 +12,7 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
     $scope.shoeArray = [];
     $scope.listArray = [];
     $scope.counterArray = [];
+    $scope.packListArray = [];
     $scope.labelObj = {};
     $scope.addLabelText = false;
     $scope.newLabel = {title: ""};
@@ -74,7 +75,7 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
             let newListObjObj = {};
             newListObjObj.list_key = response;
             newListObjObj.label_key = labelKey;
-            newListObjObj.title = $scope.listObj.title;
+            newListObjObj.list_title = $scope.listObj.title;
             newListObjObj.suitcase = $scope.suitKey;
             $scope.listArray.push(newListObjObj);
             $scope.listObj.title = "";
@@ -121,18 +122,37 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
     //get single label
     $scope.saveLabelAndList = function (object) {
         $scope.labelListObj = {};
-        $scope.labelListObj.label_title = object.title;
-        $scope.labelListObj.uid = object.uid;
         DataFactory.getSingleList(object.label_key)
         .then((response) => {
-
+            $scope.labelListObj.title = object.title;
+            $scope.labelListObj.uid = object.uid;
             $scope.labelListObj.list_title = response.list_title;
             console.log("new lablist obj", $scope.labelListObj);
+            DataFactory.postSavedPackList($scope.labelListObj);
+        })
+        .then((response) => {
+            console.log("success with new list", response);
         });
 
     };
 
+    let getAllPackLists = function () {
+        DataFactory.getSavedPackList($scope.user)
+        .then((response) =>{
+            console.log("everything after DF and FB", response);
+            response.forEach(function(item){
+                $scope.packListArray.push(item);
+            });
+        });
+    };
+
+
+
+
+
+
 
     getAllPhotos();
     getLabels();
+    getAllPackLists();
 });

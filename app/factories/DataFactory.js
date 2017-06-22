@@ -267,13 +267,52 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/list/${labelKey}.json`)
             .then((response) => {
-                resolve(resolve);
+                resolve(response);
             })
             .catch((error) => {
                 reject(error);
             });
         });
     };
+
+    let postSavedPackList = function (object) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/packlist.json`, object)
+            .then((response) => {
+                console.log("we have a key", response.data.name);
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+    let getSavedPackList = function (user) {
+        let newArr = [];
+        let newObj = {};
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/packlist.json?orderBy="uid"&equalTo="${user}"`)
+            .then((response) => {
+                console.log("look for key", response.data);
+                let holdKey = response.data;
+                Object.keys(holdKey).forEach(function(key){
+                    holdKey[key].packlist_key = key;
+                    newArr.push(holdKey[key]);
+                });
+                resolve(newArr);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+
+
+
+
 
     //closet
     let addToCloset = function (imgObject) {
@@ -355,6 +394,8 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         getCloset,
         addClosetToSuitcase,
         deleteFromCloset,
-        getSingleList
+        getSingleList,
+        postSavedPackList,
+        getSavedPackList
     };
 });
