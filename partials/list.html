@@ -62,7 +62,10 @@
             <li col s12 m4 ng-repeat="items in labelObj">
                 <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
                     <span>{{items.title}}</span>
-                    <span ng-click="deleteLabel(items.label_key)"><a href="" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="right" data-delay="50" data-tooltip="delete entire label?">delete</i></a></span>
+                        <span>
+                            <a ng-click="deleteLabel(items.label_key)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
+                            <a ng-click="saveLabelAndList(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">library_add</i></a>
+                        </span>
                 </div>
                 <div class="collapsible-body pack-list">
                     <span>

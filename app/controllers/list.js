@@ -116,6 +116,19 @@ app.controller("ListCtrl", function(DataFactory, AuthFactory, $routeParams, $loc
             });
 
         });
+    };
+
+    //get single label
+    $scope.saveLabelAndList = function (object) {
+        $scope.labelListObj = {};
+        $scope.labelListObj.label_title = object.title;
+        $scope.labelListObj.uid = object.uid;
+        DataFactory.getSingleList(object.label_key)
+        .then((response) => {
+
+            $scope.labelListObj.list_title = response.list_title;
+            console.log("new lablist obj", $scope.labelListObj);
+        });
 
     };
 

@@ -35,12 +35,13 @@
 <div class="main-content-wrapper">
 <!--    breadcrumb and slide out nav-->
     <div class="row center-align">
-       <div class="col m4 offset-m4">
-            <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img class="camera-icon" src="../images/camera.png"></a>
+        <div class="col m4">
+            <a ng-controller="ClosetCtrl" ng-click="addBottomsToCloset()" class="waves-effect waves-light btn closet-btn"><i class="material-icons left">add</i>Save to Closet</a>
         </div>
         <div class="col m4">
-            <a ng-controller="ClosetCtrl" ng-click="addAllToCloset()" class="waves-effect waves-light btn closet-btn"><i class="material-icons left">add</i>Save to Closet</a>
+            <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img class="camera-icon" src="../images/camera.png"></a>
         </div>
+        <div class="col m4"></div>  
     </div>
 
     <div class="empty-content-message" ng-hide="emptyPhotosMessage">

@@ -71,7 +71,7 @@ app.controller("ShoesCtrl", function($scope, $window, $location, DataFactory, Au
 
 
     $scope.addToCarousel = function () {
-        Materialize.toast('Added to Suitcase', 3000, 'rounded');
+        Materialize.toast('Added to Suitcase', 2000, 'rounded');
         $('.tooltipped').tooltip('remove');
         $scope.counter += 1;
         $scope.hideCamDiv = true;

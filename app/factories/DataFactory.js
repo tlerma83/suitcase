@@ -242,6 +242,27 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
+    let getSingleList = function (labelKey) {
+        let newArr = [];
+        let titleObj = {};
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/list.json?orderBy="label_key"&equalTo="${labelKey}"`)
+
+            .then((response) => {
+                console.log("check me", response);
+                let listObj = response.data;
+                Object.keys(listObj).forEach(function(key){
+                    titleObj.list_title = listObj[key].title;
+                    newArr.push(titleObj);
+                });
+                resolve(titleObj);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
     let deleteListItem = function (labelKey) {
         return $q((resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/list/${labelKey}.json`)
@@ -333,6 +354,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         addToCloset,
         getCloset,
         addClosetToSuitcase,
-        deleteFromCloset
+        deleteFromCloset,
+        getSingleList
     };
 });

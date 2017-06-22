@@ -72,7 +72,7 @@ app.controller("BottomsCtrl", function($scope, $window, $location, AuthFactory, 
 
 
     $scope.addToCarousel = function () {
-        Materialize.toast('Add to Suitcase!', 3000, 'rounded');
+        Materialize.toast('Add to Suitcase!', 2000, 'rounded');
         $('.tooltipped').tooltip('remove');
         $scope.counter += 1;
         $scope.hideCamDiv = true;
