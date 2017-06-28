@@ -9,7 +9,17 @@
     <div class="nav-wrapper second-nav-color">
         <a class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
-            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li ng-controller="NavCtrl">
+                <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
+                    Packlist
+                </a>
+        <!-- Dropdown Structure -->
+                <ul id='demoDropdown2' class='dropdown-content'>
+                    <li><a ng-click="choseListPath('packlist')">Current List</a></li>
+                    <li><a ng-click="choseListPath('stored')">Saved List</a></li>
+                </ul>
+            </li>
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
@@ -101,152 +111,6 @@
                 </div>
             </li>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--main nav-->
-<!--<div ng-include="'partials/nav.html'"></div>-->
-
-<!--second nav-->
-<!--<nav class="second-nav" ng-controller="NavCtrl">-->
-<!--   view selected-->
-<!--
-    <div class="nav-wrapper second-nav-color">
-        <a class="brand-logo center suitcase-title">{{suitName}}</a>
-        <ul class="left hide-on-med-and-down">
-            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
         </ul>
--->
-        <!--    title and counter display-->
-<!--
-        <ul class="right hide-on-med-and-down">
-            <li class= dark-color-text><a href="">Tops Packed: {{counter}}</a></li>
-            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
-            <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
-        </ul>
-    </div>
--->
-<!--    change suitcase title modal-->
-<!--
-    <div id="edit-mode-modal" class="modal suitcase-modal">
-        <div class="modal-content">
-            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
-        </div>
-        <div class="modal-footer">
-          <a class="modal-action modal-close waves-effect btn-flat">Cancel</a>
-          <a class="btn waves-effect" ng-click="editSuitcaseTitle()">Add</a>
-        </div>
-    </div>
-</nav>
-
-
-<div>
--->
-
-
-
-<!--
-
-    <div class="carousel">
-        <a class="carousel-item" ng-repeat="items in closetObject | filter: {type:'tops'}"><img src="{{items.url}}"></a>
-    </div>
--->
-
-<!--    <div ng-include="partials/test.html"></div>-->
-<!--
-    <div class="carousel carousel-shoe">
-        <a class="carousel-item" ng-repeat="items in closetObject | filter: {type:'shoes'}"><img src="{{items.url}}"></a>
-    </div>
--->
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-    <div ng-repeat="items in bottomsArray" class="col s12 m2">
-        <img src="{{items.url}}">
-        <button ng-click="fromClosetToSuitCase(items)">Add to suitcase</button>
-        <button ng-click="">Delete</button>
-    </div>
-
-    <div ng-repeat="items in shoesArray" class="col s12 m2">
-        <img src="{{items.url}}">
-        <button ng-click="fromClosetToSuitCase(items)">Add to suitcase</button>
-        <button ng-click="">Delete</button>
     </div>
 </div>
--->
-
-<!--
-        <div class="carousel carousel-2">
-            <div ng-repeat="items in closetObject | filter: {type:'tops'}" on-finish-render="ngRepeatFinished" class="carousel-item row">
-                <div class="container-images 2">
-                    <img class="carousel-img-styling-2" src="{{items.url}}">
-                    <div class="carousel-btn-2">
-                        <a ng-click="fromClosetToSuitCase(items)"><i class="material-icons delete-photo-icon">add</i></a>
-                        <a ng-click><i class="material-icons delete-photo-icon">delete</i></a>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
-
-
-
-
-
-
-
-<!--
-    <div>
-        <a class="waves-effect waves-light closet-view-btn"><img src="../images/003-shirt.png"></a>
-        <a class="waves-effect waves-light closet-view-btn"><img src="../images/002-pants.png"></a>
-        <a class="waves-effect waves-light closet-view-btn"><img src="../images/001-high-heels.png"></a>
-    </div>
-    <div class="row">
-        <div class="col s12 m2" ng-repeat="items in closetObject | filter: {type:'tops'}">
-            <div class="card">
-                <div class="card-image">
-                    <img src="{{items.url}}">
-                </div>
-                <div class="card-content">
-                    <a ng-click="fromClosetToSuitCase(items)" class="btn waves-effect waves-light">pack</a>
-                    <a ng-click="" class="btn waves-effect waves-light">delete</a>
-                </div>
-            </div>
-        </div>
-    </div>
--->

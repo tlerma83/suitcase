@@ -6,15 +6,14 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
        return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/user.json`, newUser)
            .then((response) => {
-                console.log("new user added");
                 resolve(response);
             })
            .catch((error) => {
-                console.log("Error adding new user");
                 reject(error);
             });
         });
     };
+
 
     let getUserInfo = function(userUid) {
         return $q((resolve, reject) => {
@@ -40,7 +39,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/suitcase.json`, suitcase)
             .then((response) => {
-                console.log("added a new suitcase", suitcase);
                 let newObj = {};
                 newObj.key = response.data.name;
                 newObj.title = suitcase.title;
@@ -77,7 +75,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/suitcase/${suitKey}.json`)
             .then((response) => {
-                console.log("suitcase deleted successfully");
                 resolve(response);
             })
             .catch((error) => {
@@ -93,7 +90,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.patch(`${FBCreds.databaseURL}/suitcase/${key}.json`, newobj)
             .then((response) => {
-                console.log("are we making it this far?", response);
                 resolve(response);
             })
             .catch((error) => {
@@ -169,7 +165,7 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/label.json`, labelObj)
             .then((response) => {
-                resolve(response);
+                resolve(response.data.name);
             })
             .catch((error) => {
                 reject(error);
@@ -199,7 +195,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
                 Object.keys(labelObj).forEach(function(key){
                     labelObj[key].label_key = key;
                     labeArray.push(labelObj[key]);
-
                 });
                 resolve(labeArray);
             })
@@ -215,8 +210,10 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/list.json`, listObj)
             .then((response) => {
-                console.log("list key", response.data);
                 resolve(response.data.name);
+            })
+            .catch((error) => {
+                reject(error);
             });
         });
     };
@@ -242,26 +239,23 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
-    let getSingleList = function (labelKey) {
-        let newArr = [];
-        let titleObj = {};
-        return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/list.json?orderBy="label_key"&equalTo="${labelKey}"`)
 
-            .then((response) => {
-                console.log("check me", response);
-                let listObj = response.data;
-                Object.keys(listObj).forEach(function(key){
-                    titleObj.list_title = listObj[key].title;
-                    newArr.push(titleObj);
-                });
-                resolve(titleObj);
-            })
-            .catch((error) => {
-                reject(error);
-            });
-        });
-    };
+
+
+//    let getSingleList = function (labelKey) {
+//        let newArr = [];
+//        let titleObj = {};
+//        return $q((resolve, reject) => {
+//            $http.get(`${FBCreds.databaseURL}/list.json?orderBy="label_key"&equalTo="${labelKey}"`)
+//
+//            .then((response) => {
+//                resolve(response.data);
+//            })
+//            .catch((error) => {
+//                reject(error);
+//            });
+//        });
+//    };
 
     let deleteListItem = function (labelKey) {
         return $q((resolve, reject) => {
@@ -275,12 +269,34 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
-    let postSavedPackList = function (object) {
+
+
+    let getListsByLabel = function (labelKey) {
+        let newArr = [];
+
         return $q((resolve, reject) => {
-            $http.post(`${FBCreds.databaseURL}/packlist.json`, object)
+            $http.get(`${FBCreds.databaseURL}/list.json?orderBy="label_key"&equalTo="${labelKey}"`)
             .then((response) => {
-                console.log("we have a key", response.data.name);
-                resolve(response);
+                let holdObj = response.data;
+                Object.keys(holdObj).forEach(function(object){
+                    let newObj = {};
+                    newObj.list_key = object;
+                    newObj.label_key = holdObj[object].label_key;
+                    newObj.list_title = holdObj[object].list_title;
+                    newObj.uid = holdObj[object].uid;
+                    newArr.push(newObj);
+                });
+                resolve(newArr);
+            });
+        });
+    };
+
+
+    let postSavedList = function (object) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/packedlist.json`, object)
+            .then((response) => {
+                resolve(response.data.name);
             })
             .catch((error) => {
                 reject(error);
@@ -288,17 +304,17 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         });
     };
 
+
+
     let getSavedPackList = function (user) {
         let newArr = [];
-        let newObj = {};
         return $q((resolve, reject) => {
-            $http.get(`${FBCreds.databaseURL}/packlist.json?orderBy="uid"&equalTo="${user}"`)
+            $http.get(`${FBCreds.databaseURL}/packedlist.json?orderBy="uid"&equalTo="${user}"`)
             .then((response) => {
-                console.log("look for key", response.data);
-                let holdKey = response.data;
-                Object.keys(holdKey).forEach(function(key){
-                    holdKey[key].packlist_key = key;
-                    newArr.push(holdKey[key]);
+                let holdObj = response.data;
+                Object.keys(holdObj).forEach(function(key){
+                    holdObj[key].packedlist_key = key;
+                    newArr.push(holdObj[key]);
                 });
                 resolve(newArr);
             })
@@ -309,7 +325,75 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
     };
 
 
+    let createPackedLabel = function (object) {
+        return $q((resolve, reject) => {
+            $http.post(`${FBCreds.databaseURL}/packedlabel.json`, object)
+            .then((response) => {
+                resolve(response.data.name);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
 
+    let getSavedPackLabels = function (user) {
+        let newArr = [];
+        return $q((resolve, reject) => {
+            $http.get(`${FBCreds.databaseURL}/packedlabel.json?orderBy="uid"&equalTo="${user}"`)
+            .then((response) => {
+                let holdMe = response.data;
+                Object.keys(holdMe).forEach(function(item){
+                    let newObj = holdMe[item];
+                    newArr.push(newObj);
+                });
+                resolve(newArr);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+    let patchToPackedLabel = function (key, obj) {
+        return $q((resolve, reject) => {
+            $http.patch(`${FBCreds.databaseURL}/packedlabel/${key}.json`, obj)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+    let deleteSavedLabel = function (objKey) {
+        return $q((resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/packedlabel/${objKey}.json`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
+
+
+    let deleteInPacklist = function (objKey) {
+        return $q((resolve, reject) => {
+            $http.delete(`${FBCreds.databaseURL}/packedlist/${objKey}.json`)
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
 
 
 
@@ -338,7 +422,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
                     closetKey.push(closetObj[key]);
                 });
                 resolve(closetKey);
-//                console.log("Return closet from FB", closetObj);
             })
             .catch((error) => {
                 reject(error);
@@ -352,8 +435,10 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.post(`${FBCreds.databaseURL}/${imgObj.type}.json`, imgObj)
             .then((response) => {
-                console.log("did imageget added correctly?", response);
                 resolve(response.data.name);
+            })
+            .catch((error) => {
+                reject(error);
             });
         });
     };
@@ -363,7 +448,6 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         return $q((resolve, reject) => {
             $http.delete(`${FBCreds.databaseURL}/closet/${closetKey}.json`)
             .then((response) => {
-                console.log("FB delete response", response);
                 resolve(response);
             })
             .catch((error) => {
@@ -394,8 +478,14 @@ app.factory("DataFactory", function($q, $http, FBCreds, AuthFactory){
         getCloset,
         addClosetToSuitcase,
         deleteFromCloset,
-        getSingleList,
-        postSavedPackList,
-        getSavedPackList
+//        getSingleList,
+        getSavedPackList,
+        deleteInPacklist,
+        getListsByLabel,
+        postSavedList,
+        getSavedPackLabels,
+        patchToPackedLabel,
+        deleteSavedLabel,
+        createPackedLabel
     };
 });
