@@ -1,4 +1,11 @@
-lib/node_modules,
-/fb-creds,
-css/,
+lib/node_modules
+values
+css/
 lib/.sass-cache
+.gitignore
+.firebaserc
+firebase.json
+database.rules.json
+public
+functions
+

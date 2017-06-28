@@ -1,0 +1,69 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true",
+    "tops": {
+      ".indexOn": [
+        "uid",
+        "suitcase"
+      ]
+    },
+    "bottoms": {
+      ".indexOn": [
+        "uid",
+        "suitcase"
+      ]
+    },
+    "shoes": {
+      ".indexOn": [
+        "uid",
+        "suitcase"
+      ]
+    },
+    "user": {
+      ".indexOn": [
+        "uid"
+      ]
+    },
+    "suitcase": {
+      ".indexOn": [
+        "uid",
+        "suitcase",
+        "title"
+      ]
+    },
+    "label": {
+      ".indexOn": [
+        "uid",
+        "suitcase",
+        "title",
+        "label_key"
+      ]
+    },
+    "list": {
+      ".indexOn": [
+        "uid",
+        "suitcase",
+        "label_key"
+      ]
+    },
+    "closet": {
+      ".indexOn": [
+        "uid",
+        "suitcase"
+      ]
+    },
+    "packedlist": {
+      ".indexOn": [
+        "uid",
+        "packedlist_key"
+      ]
+    },
+    "packedlabel": {
+      ".indexOn": [
+        "uid",
+        "packedlabel_key"
+      ]
+    }
+  }
+}
