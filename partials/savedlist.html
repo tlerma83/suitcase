@@ -1,0 +1,72 @@
+<!--main nav-->
+<div ng-include="'partials/nav.html'"></div>
+
+<!--second nav-->
+<nav class="second-nav" ng-controller="NavCtrl">
+<!--   view selected-->
+    <div class="nav-wrapper second-nav-color">
+        <a class="brand-logo center suitcase-title">{{suitName}}</a>
+        <ul class="left hide-on-med-and-down">
+            <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li ng-controller="NavCtrl">
+                <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
+                    Packlist
+                </a>
+        <!-- Dropdown Structure -->
+                <ul id='demoDropdown2' class='dropdown-content'>
+                    <li><a ng-click="choseListPath('packlist')">Current List</a></li>
+                    <li><a ng-click="choseListPath('stored')">Saved List</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!--    title and counter display-->
+        <ul class="right hide-on-med-and-down">
+            <li class= dark-color-text><a href="">Clothing Packed: {{counter}}</a></li>
+            <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
+            <li><a ng-controller="TopsCtrl" tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>
+        </ul>
+    </div>
+<!--    change suitcase title modal-->
+    <div id="edit-mode-modal" class="modal suitcase-modal">
+        <div class="modal-content">
+            <input type="text" ng-model="newSuitcase.title" placeholder="Rename Suitcase" maxlength="32">
+        </div>
+        <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect btn-flat">Cancel</a>
+          <a class="btn waves-effect" ng-click="editSuitcaseTitle()">Add</a>
+        </div>
+    </div>
+</nav>
+
+
+
+<!--    saved lists-->
+<div class="main-content-wrapper">
+        <div class="closet-message">
+            <h4 class="saved-list-message">Get packed with your most <br>important must haves</h4>
+        </div>
+    <div class="row list-row-div">
+        <ul class="collapsible" data-collapsible="accordion">
+
+            <li class="col s12 m10" ng-repeat="labels in labelArray">
+                <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
+                    <span>{{labels.title}}</span>
+                        <span>
+                            <a ng-click="deleteLabel(labels)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
+
+
+                            <a ng-click="AddToCurrentList(labels)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">shopping_basket</i></a>
+                        </span>
+                </div>
+                <div class="collapsible-body pack-list">
+                    <div class="row pack-list-flex">
+                        <div class="col s12 m2 pack-list-color" ng-repeat="list in packListArray | filter:{packedlabel_key:labels.packedlabel_key}">
+                            <p>{{list.list_title}}</p>
+                            <i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">delete</i>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -82,6 +82,11 @@ app.config(function($routeProvider){
         controller: "ClosetCtrl",
         resolve: {isAuth}
     })
+    .when("/savedlist/:suitcaseKey/:suitTitle", {
+        templateUrl: "partials/savedlist.html",
+        controller: "SavedlistCtrl",
+        resolve: {isAuth}
+    })
     .otherwise("/");
 });
 

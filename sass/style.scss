@@ -241,14 +241,13 @@ nav li, a {
 }
 
 .landing-card-position {
-    margin-left: 20% !important;
-    padding-top: 5em !important;
+    margin-left: 10% !important;
+    padding-top: 2em !important;
 }
 
 .landing-card-styling {
     margin: 0 !important;
     border-radius: 15px !important;
-//    box-shadow: 5px 5px 15px black;
     box-shadow: -5px 5px 15px 5px #191919;
 }
 
@@ -277,29 +276,9 @@ nav li, a {
     text-align: center !important;
 }
 
-//.breadcrumbs a {
-//    color: white !important;
-////    font-size: 1.5em !important;
-////    width: 20% !important;
-//    margin-top: 10px !important;
-//    margin-right: 25px !important;
-//}
-//
-//.breadcrumbs img {
-//    width: 40px;
-//    height: 40px;
-//    vertical-align: middle !important;
-//    margin-bottom: 5px !important;
-//}
-
-
 .bread-crumbs-2 {
     padding-top: 10px;
-//    display: flex;
-//    justify-content: center;
-
 }
-
 
 .bread-crumbs-2 img {
     width: 70px;
@@ -310,11 +289,7 @@ nav li, a {
 }
 
 .closet-btn {
-//    margin-top: 20px;
     background-color: #77bfc7 !important;
-//    float:right;
-//    margin-left: 200px !important;
-//    color: #333 !important;
 }
 
 .empty-content-message {
@@ -324,6 +299,10 @@ nav li, a {
     margin-top: 6em;
     font-style: italic;
     width: 50%;
+    margin-left: 2em;
+}
+
+.saved-list-message {
     margin-left: 2em;
 }
 
@@ -399,8 +378,16 @@ nav li, a {
     font-family: 'Josefin Slab', serif !important;
 }
 
+.collapsible {
+    border-top: none !important;
+}
+
 .pack-list-delete-icon {
     color: #999 !important;
+}
+
+.list-row-div {
+    margin-left: 3em !important;
 }
 
 .label-icon {
@@ -496,8 +483,6 @@ nav li, a {
 }
 
 .closet-view-btn-icons  {
-
-//    margin-left: 10px !important;
     margin-right: 5px !important;
     padding-right: 10px !important;
 }

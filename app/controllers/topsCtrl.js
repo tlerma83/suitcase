@@ -15,9 +15,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     //this sets the size of the webcam view, videoWidth is the parameter name set by author of this install
     $scope.channel = {videoWidth: 500};
 
-//    if($scope.counter > 0) {
-//        $scope.emptyPhotosMessage = true;
-//    }
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
@@ -109,7 +106,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
             if($scope.counter < 1) {
                 $scope.emptyPhotosMessage = false;
             }
-            console.log("photos", $scope.imageArrayOfObj);
         });
     };
 
@@ -129,7 +125,6 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
 
 
     $scope.deleteSuitcase = function (suitKey) {
-        console.log("event?");
         DataFactory.deleteSuitcase(suitKey)
         .then((response) => {
             $scope.imageArrayOfObj.forEach(function(photoObj){

@@ -182,8 +182,8 @@ nav li, a {
   margin-right: 10px !important; }
 
 .landing-card-position {
-  margin-left: 20% !important;
-  padding-top: 5em !important; }
+  margin-left: 10% !important;
+  padding-top: 2em !important; }
 
 .landing-card-styling {
   margin: 0 !important;
@@ -228,6 +228,9 @@ nav li, a {
   margin-top: 6em;
   font-style: italic;
   width: 50%;
+  margin-left: 2em; }
+
+.saved-list-message {
   margin-left: 2em; }
 
 .nav-background {
@@ -284,8 +287,14 @@ nav li, a {
 .collapsible-header {
   font-family: 'Josefin Slab', serif !important; }
 
+.collapsible {
+  border-top: none !important; }
+
 .pack-list-delete-icon {
   color: #999 !important; }
+
+.list-row-div {
+  margin-left: 3em !important; }
 
 .label-icon {
   color: #999 !important; }

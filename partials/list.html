@@ -6,7 +6,17 @@
     <div class="nav-wrapper second-nav-color">
         <a class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
-            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li ng-controller="NavCtrl">
+                <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
+                    Packlist
+                </a>
+        <!-- Dropdown Structure -->
+                <ul id='demoDropdown2' class='dropdown-content'>
+                    <li><a ng-click="choseListPath('packlist')">Current List</a></li>
+                    <li><a ng-click="choseListPath('stored')">Saved List</a></li>
+                </ul>
+            </li>
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
@@ -29,10 +39,10 @@
 
 <div class="main-content-wrapper">
     <a class="waves-effect waves-light btn pack-list-add-btn" data-target="label-modal" modal><i class="material-icons left">add</i>Add a label</a>
-    <div>
-        <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
+    <div class="row list-row-div">
+        <ul class="collapsible" data-collapsible="accordion">
 <!--           tops image ng-repeat list-->
-            <li>
+            <li class="col s12 m10">
                 <div class="collapsible-header"><img src="../images/003-shirt.png" class="clothing-icons">
                    Tops
                 </div>
@@ -41,7 +51,7 @@
                 </div>
             </li>
 <!--            bottoms image ng-repeat list-->
-            <li col s12 m4>
+            <li class="col s12 m10">
                 <div class="collapsible-header"><img src="../images/002-pants.png" class="clothing-icons">
                     Bottoms
                 </div>
@@ -50,7 +60,7 @@
                 </div>
             </li>
 <!--            shoes image ng-repeat list-->
-            <li col s12 m4>
+            <li class="col s12 m10">
                 <div class="collapsible-header"><img src="../images/001-high-heels.png" class="clothing-icons">
                     Shoes
                 </div>
@@ -59,12 +69,14 @@
                 </div>
             </li>
 <!--            labels and lists ng-repeat-->
-            <li col s12 m4 ng-repeat="items in labelObj">
+            <li class="col s12 m10" ng-repeat="items in labelObj">
                 <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
                     <span>{{items.title}}</span>
                         <span>
-                            <a ng-click="deleteLabel(items.label_key)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
-                            <a ng-click="saveLabelAndList(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">library_add</i></a>
+                            <a ng-click="deleteLabel(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
+
+
+                            <a ng-controller="SavedlistCtrl" ng-click="savePackedLabel(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">library_add</i></a>
                         </span>
                 </div>
                 <div class="collapsible-body pack-list">
@@ -83,31 +95,6 @@
         </ul>
     </div>
 
-<!--    saved lists-->
-<!--
-    <div>
-        <ul class="collapsible popout popout-styling row" data-collapsible="accordion">
-
-            <li col s12 m4 ng-repeat="things in packListArray">
-                <div class="collapsible-header"><i class="material-icons label-icon">label_outline</i>
-                    <span>{{things.title}}</span>
-                        <span>
-                            <a ng-click="deleteLabel(items.label_key)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="top" data-delay="50" data-tooltip="delete entire label?">delete</i></a>
-                            <a ng-click="saveLabelAndList(items)" class="secondary-content"><i class="material-icons pack-list-delete-icon" tooltipped class='col s4 offset-s4 l2 offset-l1' data-position="bottom" data-delay="50" data-tooltip="save list">library_add</i></a>
-                        </span>
-                </div>
-                <div class="collapsible-body pack-list">
-                    <div class="row pack-list-flex">
-                        <div class="col s12 m2 pack-list-color">
-                            <p>{{things.list_title}}</p>
-                            <i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">delete</i><i class="material-icons pack-list-delete-icon" ng-click="deleteListItem(list)">shopping_basket</i>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
--->
 
 
     <!--  add label modal-->

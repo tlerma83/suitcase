@@ -7,7 +7,17 @@
     <div class="nav-wrapper second-nav-color">
         <a class="brand-logo center suitcase-title">{{suitName}}</a>
         <ul class="left hide-on-med-and-down">
-            <li class="active dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+            <li ng-controller="NavCtrl">
+                <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
+                    Packlist
+                </a>
+        <!-- Dropdown Structure -->
+                <ul id='demoDropdown2' class='dropdown-content'>
+                    <li><a ng-click="choseListPath('packlist')">Current List</a></li>
+                    <li><a ng-click="choseListPath('stored')">Saved List</a></li>
+                </ul>
+            </li>
         </ul>
         <!--    title and counter display-->
         <ul class="right hide-on-med-and-down">
@@ -41,7 +51,7 @@
         <div class="col m4">
             <a tooltipped data-activates="slide-out" class="button-collapse" data-position="bottom" data-delay="50" data-tooltip="take an awesome photo"><img class="camera-icon" src="../images/camera.png"></a>
         </div>
-        <div class="col m4"></div>  
+        <div class="col m4"></div>
     </div>
 
     <div class="empty-content-message" ng-hide="emptyPhotosMessage">

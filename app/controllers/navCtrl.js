@@ -10,7 +10,6 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         {url: `tops/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Tops"},
         {url: `bottoms/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Bottoms"},
         {url: `shoes/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Shoes"},
-        {url: `packlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Pack List"},
         {url: `closet/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`, name: "Closet"}
     ];
 
@@ -25,6 +24,15 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
         .then((response) => {
             $scope.firstName = response[0];
         });
+    };
+
+
+    $scope.choseListPath = function (selected) {
+        if (selected === "packlist") {
+            $window.location.href = `#!/packlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }else if (selected === "stored") {
+            $window.location.href =  `#!/savedlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }
     };
 
 
@@ -67,7 +75,6 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
                 if(newTitle === $routeParams.suitcaseKey){
                     DataFactory.getAllSuitcases($scope.user)
                     .then((response) => {
-                        console.log("poop response", response);
                         $scope.select = response;
                         $routeParams.suitTitle = $scope.newSuitcase.title;
                         $scope.openSuitcase($routeParams.suitcaseKey, $scope.newSuitcase.title);
