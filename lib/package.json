@@ -10,7 +10,6 @@
   "license": "ISC",
   "devDependencies": {
     "angular-file-upload": "^2.5.0",
-    "bootstrap": "^3.3.7",
     "browserify": "^14.0.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",

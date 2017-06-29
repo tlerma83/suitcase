@@ -1,11 +1,5 @@
 "use strict";
 
-//var app = angular.module("Suitcase", ["angularFileUpload", "ngRoute"]);
-//
-//app.controller('AppController', function($scope, FileUploader) {
-//    $scope.uploader = new FileUploader();
-//});
-
 
 var app = angular.module('Suitcase', ['webcam', 'ngRoute', "ui.materialize"]);
 
