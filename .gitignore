@@ -3,4 +3,5 @@ values
 css/
 lib/.sass-cache
 .gitignore
-
+.git
+.DS_Store
