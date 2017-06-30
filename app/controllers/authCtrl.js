@@ -1,5 +1,6 @@
 "use strict";
 
+
 app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory, $window) {
 
     $scope.auth = {
@@ -49,3 +50,4 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
 
 
 });
+

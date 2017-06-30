@@ -1,23 +1,26 @@
 "use strict";
 
-var authCtrl = require("./authCtrl.js");
-var bottomCtrl = require("./bottomsCtrl.js");
-var closetCtrl = require("./closetCtrl.js");
-var listCtrl = require("./list.js");
-var navCtrl = require("./navCtrl.js");
-var savedlist = require("./savedlist.js");
-var shoesCtrl = require("./shoesCtrl.js");
-var topsCtrl = require("./topsCtrl");
-var authFact = require("./AuthFactory.js");
-var dataFact = require("./DataFactory.js");
-var credentials = require("./fb-Creds.js");
-var firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/database");
-require("firebase/storage");
+//var authCtrl = require("./authCtrl.js");
+//var bottomCtrl = require("./bottomsCtrl.js");
+//var closetCtrl = require("./closetCtrl.js");
+//var listCtrl = require("./list.js");
+//var navCtrl = require("./navCtrl.js");
+//var savedlist = require("./savedlist.js");
+//var shoesCtrl = require("./shoesCtrl.js");
+//var topsCtrl = require("./topsCtrl");
+//var authFact = require("./AuthFactory.js");
+//var dataFact = require("./DataFactory.js");
+//var credentials = require("./fb-Creds.js");
+//var firebase = require("firebase/app");
+//require("firebase/auth");
+//require("firebase/database");
+//require("firebase/storage");
 
 
-var app = angular.module('Suitcase', ['webcam', 'ngRoute', "ui.materialize", "topsCtrl", "shoesCtrl", "savedlist", "navCtrl", "listCtrl", "closetCtrl", "bottomCtrl", "authCtrl" , "authFact", "dataFact", "credentials", "firebase"]);
+//"topsCtrl", "shoesCtrl", "savedlist", "navCtrl", "listCtrl", "closetCtrl", "bottomCtrl", "authCtrl" , "authFact", "dataFact", "credentials", "firebase"
+//"ui.materialize"
+
+var app = angular.module('Suitcase', ['webcam', "angular-materialize", 'ngRoute']);
 
 
 // stackoverFlow solution for angular ng-repeat to finish loading before applying materialize   // function to create it and style
@@ -115,3 +118,5 @@ app.run(($location, FBCreds) => {
 
     firebase.initializeApp(authCreds);
 });
+
+

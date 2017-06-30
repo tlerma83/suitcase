@@ -5,3 +5,5 @@ lib/.sass-cache
 .gitignore
 .git
 .DS_Store
+bundle.js
+
