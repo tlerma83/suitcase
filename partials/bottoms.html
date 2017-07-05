@@ -5,9 +5,21 @@
 <nav class="second-nav" ng-controller="NavCtrl">
 <!--   view selected-->
     <div class="nav-wrapper second-nav-color">
-        <a class="brand-logo center suitcase-title">{{suitName}} ~ Bottoms</a>
+        <a class="brand-logo center suitcase-title hide-on-med-and-down">{{suitName}} ~ Bottoms</a>
         <ul class="left">
-            <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
+
+            <li ng-controller="NavCtrl">
+                <a class='dropdown-button active dark-color-text' data-activates='demoDropdown3' dropdown data-hover="true">
+                    Clothing
+                </a>
+        <!-- Dropdown Structure -->
+                <ul id='demoDropdown3' class='dropdown-content'>
+                    <li><a ng-click="choseListPath('tops')">Tops</a></li>
+                    <li><a ng-click="choseListPath('bottoms')">Bottoms</a></li>
+                    <li><a ng-click="choseListPath('shoes')">Shoes</a></li>
+                    <li><a ng-click="choseListPath('closet')">Closet</a></li>
+                </ul>
+            </li>
             <li ng-controller="NavCtrl">
                 <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
                     Packlist

@@ -32,6 +32,14 @@ app.controller("NavCtrl", function($scope, $q, DataFactory, AuthFactory, $locati
             $window.location.href = `#!/packlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
         }else if (selected === "stored") {
             $window.location.href =  `#!/savedlist/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }else if (selected === "tops") {
+            $window.location.href = `#!/tops/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }else if (selected === "bottoms") {
+            $window.location.href = `#!/bottoms/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }else if (selected === "shoes") {
+            $window.location.href = `#!/shoes/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
+        }else if (selected === "closet") {
+            $window.location.href = `#!/closet/${$routeParams.suitcaseKey}/${$routeParams.suitTitle}`;
         }
     };
 
