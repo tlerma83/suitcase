@@ -5,7 +5,7 @@
 <!--   view selected-->
     <div class="nav-wrapper second-nav-color">
         <a class="brand-logo center suitcase-title">{{suitName}} ~ PackList</a>
-        <ul class="left hide-on-med-and-down">
+        <ul class="left">
             <li class="dark-color-text" ng-repeat="stuff in menuItems"><a href="#!/{{stuff.url}}">{{stuff.name}}</a></li>
             <li ng-controller="NavCtrl">
                 <a class='dropdown-button active dark-color-text' data-activates='demoDropdown2' dropdown data-hover="true">
@@ -19,7 +19,7 @@
             </li>
         </ul>
         <!--    title and counter display-->
-        <ul class="right hide-on-med-and-down">
+        <ul class="right">
             <li class= dark-color-text><a href="">Clothing Packed: {{counter}}</a></li>
             <li><a tooltipped data-position="bottom" data-delay="50" data-tooltip="edit title"><i ng-click="" class="material-icons" data-target="edit-mode-modal" modal>mode_edit</i></a></li>
             <li><a tooltipped class="title-delete-icon" data-position="bottom" data-delay="50" data-tooltip="Delete Suitcase?"><i ng-click="deleteSuitcase(suitKey)" class="material-icons">delete</i></a></li>

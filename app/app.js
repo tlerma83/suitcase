@@ -18,7 +18,7 @@ app.directive('onFinishRender', function ($timeout) {
     };
 });
 
-
+//makes sure user is logged in at all times when navigating through page
 let isAuth = (AuthFactory) => new Promise( (resolve, reject) => {
     AuthFactory.isAuthorized()
     .then((ifUserTrue) => {
@@ -34,7 +34,7 @@ let isAuth = (AuthFactory) => new Promise( (resolve, reject) => {
 });
 
 
-
+//use routeParams by passing a variable. Keeps info from being lost if user hits refresh page
 app.config(function($routeProvider){
     $routeProvider
     .when("/", {
