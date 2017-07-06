@@ -137,6 +137,15 @@ app.controller("SavedlistCtrl", function($scope, $window, $location, AuthFactory
     };
 
 
+    $scope.deleteSuitcase = function (suitKey) {
+        DataFactory.deleteSuitcase(suitKey)
+        .then((response) => {
+            $scope.imageArrayOfObj.forEach(function(photoObj){
+                $scope.deleteShoes(photoObj);
+            });
+            $window.location.href = "#!/navigation";
+        });
+    };
 
 
 
