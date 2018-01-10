@@ -16,6 +16,7 @@ app.controller("TopsCtrl", function($scope, $window, $location, AuthFactory, $q,
     $scope.channel = {videoWidth: 500};
 
 
+
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         if ($('.carousel').hasClass("initialized")) {
             $('.carousel').removeClass("initialized");

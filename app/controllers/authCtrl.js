@@ -9,14 +9,26 @@ app.controller("AuthCtrl", function ($scope, $location, AuthFactory, DataFactory
         lastName: ""
     };
 
+    let getUser = () => {
+        return AuthFactory.currentUser;
+    };
+
     $scope.hideRegister = true;
 
     $scope.login = function () {
+
         if($scope.auth.email !== "" && $scope.auth.password !== "") {
+            var user = firebase.auth().currentUser;
+            //console.log("scope.auth ", $scope.auth);
+            //console.log("user ", user);
            AuthFactory.loginUser($scope.auth)
             .then(() =>{
-            console.log("user is logged in");
-            $window.location.href = "#!/navigation";
+               if(user){
+                    console.log("user is logged in");
+                    $window.location.href = "#!/navigation";
+                }else{
+                    $window.location.href = "#!/";
+                }
             });
         }
 

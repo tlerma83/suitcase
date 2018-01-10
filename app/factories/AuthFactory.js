@@ -24,6 +24,7 @@ app.factory("AuthFactory", function($q, $http){
             let errorCode = error.code;
             let errorMessage = error.message;
             console.log("This is a login error", errorCode, errorMessage);
+
         });
     };
 
